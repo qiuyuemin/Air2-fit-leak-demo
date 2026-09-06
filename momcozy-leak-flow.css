@@ -90,10 +90,10 @@
 #demo .mc-native-page-1 .mc-video video{transform:translateY(-8px) scale(.80)!important;transform-origin:center 46%!important}
 
 /* Render the MP4 colour directly; mobile browsers composite screen blending differently. */
-#demo .mc-leak-guide .mc-video{isolation:isolate!important;background:#984459!important}
+#demo .mc-leak-guide .mc-video{isolation:auto!important;background:#984459!important}
 #demo .mc-leak-guide .mc-video video{mix-blend-mode:screen!important;filter:none!important;opacity:1!important}
 #demo .mc-native-page-0 .mc-video video{transform:translateY(-10px) scale(.90)!important}
-#demo .mc-native-page-1 .mc-video video{transform:translateY(-18px) scale(.35)!important;transform-origin:center center!important}
+#demo .mc-native-page-1 .mc-video video{transform:translateY(2px) scale(.52)!important;transform-origin:center center!important}
 
 /* One shared surface colour prevents visible title/copy/mask blocks. */
 #demo .mc-leak-guide .mc-video,#demo .mc-video-title,#demo .mc-video-copy,#demo .mc-video-dots-mask{background:#984459!important}
