@@ -1,7 +1,7 @@
 (function(){
 var result=null,fitReady=false,fitTimers=[],pauseTimer=null,pages=[
- {title:'奶碗检查',lead:'边缘扣紧',copy:'鸭嘴阀装正装牢',video:'./assets/leak-check/step-1-cup-check.mp4'},
- {title:'佩戴建议',lead:'乳头对准通道',copy:'法兰贴紧不翘边',video:'./assets/leak-check/step-2-fit-check.mp4'}];
+ {title:'Check Cup',lead:'Snap rim shut',copy:'Seat duckbill valve',video:'./assets/leak-check/step-1-cup-check.mp4'},
+ {title:'Check Fit',lead:'Center the nipple',copy:'Seal flange firmly',video:'./assets/leak-check/step-2-fit-check.mp4'}];
 function S(){return typeof state==='undefined'?null:state} function paint(){if(window.v4View)window.v4View()}
 function clearFit(){fitTimers.forEach(clearTimeout);fitTimers=[]} function clearPause(){if(pauseTimer)clearTimeout(pauseTimer);pauseTimer=null}
 function guide(context,page){var s=S();if(s){s.mcLeakGuide={context:context,page:page||0};paint()}}
