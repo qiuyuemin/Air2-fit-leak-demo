@@ -75,3 +75,11 @@
 #demo .mc-fit-guide .mc-guide-arrows{bottom:14px!important}
 #demo .mc-fit-guide .mc-close{top:14px!important;right:14px!important;width:40px!important;height:40px!important}
 #demo .mc-native-page-1 .mc-video video{transform:scale(.82)!important;transform-origin:center center!important}
+
+/* Layout exported from the approved 402 × 874 Check Cup Figma frame. */
+#demo .mc-fit-guide{right:16px!important;bottom:20px!important;left:16px!important;width:auto!important;height:410px!important;padding:28px 24px 32px!important;border-radius:32px!important}
+#demo .mc-fit-guide .mc-video{width:100%!important;height:244px!important;margin:40px 0 0!important;border-radius:24px!important}
+#demo .mc-fit-guide .mc-close{top:16px!important;right:auto!important;left:24px!important;width:40px!important;height:40px!important}
+#demo .mc-fit-guide .mc-pages{right:0!important;bottom:46px!important;left:0!important;margin:0!important}
+#demo .mc-fit-guide .mc-guide-arrows{right:34px!important;bottom:10px!important;left:34px!important}
+#demo .mc-native-page-0 .mc-video video,#demo .mc-native-page-1 .mc-video video{width:100%!important;height:100%!important;max-width:100%!important;transform:none!important;transform-origin:center center!important;object-fit:contain!important}
