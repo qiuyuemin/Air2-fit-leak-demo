@@ -97,3 +97,10 @@
 
 /* One shared surface colour prevents visible title/copy/mask blocks. */
 #demo .mc-leak-guide .mc-video,#demo .mc-video-title,#demo .mc-video-copy,#demo .mc-video-dots-mask{background:#984459!important}
+
+/* Both troubleshooting pages share one coordinate system. */
+#demo .mc-fit-guide{box-sizing:border-box!important;position:absolute!important}
+#demo .mc-fit-guide .mc-native-page{position:absolute!important;inset:0!important;width:100%!important;height:100%!important}
+#demo .mc-fit-guide .mc-native-page .mc-video{position:absolute!important;top:68px!important;left:24px!important;width:322px!important;height:244px!important;margin:0!important}
+#demo .mc-fit-guide .mc-native-page .mc-pages{position:absolute!important;right:0!important;bottom:46px!important;left:0!important;margin:0!important}
+#demo .mc-fit-guide .mc-native-page .mc-guide-arrows{position:absolute!important;right:34px!important;bottom:10px!important;left:34px!important}
