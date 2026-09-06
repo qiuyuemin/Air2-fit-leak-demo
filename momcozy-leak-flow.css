@@ -83,3 +83,8 @@
 #demo .mc-fit-guide .mc-pages{right:0!important;bottom:46px!important;left:0!important;margin:0!important}
 #demo .mc-fit-guide .mc-guide-arrows{right:34px!important;bottom:10px!important;left:34px!important}
 #demo .mc-native-page-0 .mc-video video,#demo .mc-native-page-1 .mc-video video{width:100%!important;height:100%!important;max-width:100%!important;transform:none!important;transform-origin:center center!important;object-fit:contain!important}
+
+/* Calibrate the two source videos independently inside the shared Figma frame. */
+#demo .mc-video-title{top:14px!important}
+#demo .mc-native-page-0 .mc-video video{transform:translateY(-7px) scale(.94)!important;transform-origin:center 46%!important}
+#demo .mc-native-page-1 .mc-video video{transform:translateY(-8px) scale(.80)!important;transform-origin:center 46%!important}
