@@ -31,3 +31,9 @@
 #demo .mc-leak-guide .mc-video video{width:104%!important;height:104%!important;max-width:none!important;transform:translateY(-12px) scale(1.035);transform-origin:center top}
 #demo .mc-fit-guide .mc-pages{bottom:48px!important;margin:0!important}
 #demo .mc-fit-guide .mc-guide-arrows{bottom:22px!important}
+
+/* Preserve the source video at its native composition and resolution. */
+#demo .mc-leak-guide .mc-video{height:255px!important;margin:8px -4px 0!important}
+#demo .mc-leak-guide .mc-video video{width:100%!important;height:100%!important;max-width:100%!important;transform:none!important;object-fit:contain!important}
+#demo .mc-fit-guide .mc-pages{bottom:61px!important;margin:0!important}
+#demo .mc-fit-guide .mc-guide-arrows{bottom:30px!important}
