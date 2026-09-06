@@ -63,3 +63,14 @@
 #demo .mc-fit-guide .mc-pages{bottom:49px!important}
 #demo .mc-fit-guide .mc-guide-arrows{bottom:15px!important}
 #demo .mc-fit-guide .mc-close{top:10px!important;right:10px!important;width:44px!important;height:44px!important}
+
+/* Final sizing follows the existing Fit Check control sheet exactly. */
+#demo .mc-fit-guide{right:16px!important;bottom:20px!important;left:16px!important;width:auto!important;height:410px!important;padding:28px 24px 32px!important;border-radius:32px!important}
+#demo .mc-fit-guide .mc-video{width:100%!important;height:236px!important;aspect-ratio:auto!important;margin:36px 0 0!important;border-radius:22px!important}
+#demo .mc-video-title{top:22px!important;min-width:230px!important;min-height:40px!important;padding:7px 18px!important;font-size:18px!important}
+#demo .mc-video-copy{right:0!important;bottom:0!important;left:0!important;min-height:68px!important;padding:8px 24px!important}
+#demo .mc-video-dots-mask{width:92px!important;height:18px!important}
+#demo .mc-fit-guide .mc-pages{bottom:48px!important}
+#demo .mc-fit-guide .mc-guide-arrows{bottom:14px!important}
+#demo .mc-fit-guide .mc-close{top:14px!important;right:14px!important;width:40px!important;height:40px!important}
+#demo .mc-native-page-1 .mc-video video{transform:scale(.82)!important;transform-origin:center center!important}
