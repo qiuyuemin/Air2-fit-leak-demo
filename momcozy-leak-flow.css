@@ -50,3 +50,16 @@
 #demo .mc-fit-guide .mc-pages{bottom:47px!important}
 #demo .mc-fit-guide .mc-guide-arrows{bottom:16px!important}
 #demo .mc-fit-guide .mc-close{top:12px!important;right:12px!important}
+
+/* Match the supplied 432 × 432 layout reference and keep controls out of it. */
+#demo .mc-fit-guide{height:520px!important;padding:16px 22px 20px!important}
+#demo .mc-leak-guide .mc-video{width:100%!important;height:auto!important;aspect-ratio:1/1;margin:48px 0 0!important;border-radius:24px!important}
+#demo .mc-leak-guide .mc-video video{inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;filter:contrast(1.22) saturate(1.12) brightness(1.04)!important}
+#demo .mc-video-dots-mask{top:0!important;width:96px!important;height:20px!important}
+#demo .mc-video-title{top:36px!important;font-size:20px!important}
+#demo .mc-video-copy{right:30px!important;bottom:24px!important;left:30px!important;min-height:54px!important}
+#demo .mc-video-copy b{font-size:16px!important}
+#demo .mc-video-copy small{font-size:11px!important}
+#demo .mc-fit-guide .mc-pages{bottom:49px!important}
+#demo .mc-fit-guide .mc-guide-arrows{bottom:15px!important}
+#demo .mc-fit-guide .mc-close{top:10px!important;right:10px!important;width:44px!important;height:44px!important}
