@@ -1,5 +1,5 @@
 (function () {
-  if (window.Air2DemoTriggers && window.Air2DemoTriggers.version === 54) return;
+  if (window.Air2DemoTriggers && window.Air2DemoTriggers.version === 55) return;
   var CAP = 6.09;
   var BASE_FLOW = 0.002 * 28.3495;
   var DEMO_MILK_ACCEL = 14;
@@ -109,6 +109,6 @@
     host.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-demo-trigger]'); if(!b) return; e.preventDefault(); trigger(b.getAttribute('data-demo-trigger')); open(false);});
     sync();
   }
-  function boot(){ install(); wrapLogged(); wrapView(); mount(); window.Air2DemoTriggers={version:54,trigger:trigger,list:function(){return triggers;},sync:sync}; }
+  function boot(){ install(); wrapLogged(); wrapView(); mount(); window.Air2DemoTriggers={version:55,trigger:trigger,list:function(){return triggers;},sync:sync}; }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot(); setTimeout(boot,700); setTimeout(boot,1800);
 }());
