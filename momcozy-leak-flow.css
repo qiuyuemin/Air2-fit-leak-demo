@@ -127,3 +127,9 @@
 #demo .mc-fit-context{pointer-events:none!important}
 #demo .mc-fit-context .mc-fit-guide{pointer-events:auto!important}
 #demo .r72-leak-warning [data-mc="dismiss"]{position:relative!important;z-index:9999!important;pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important}
+
+/* The second guide page ends with an explicit acknowledgement action. */
+#demo .mc-native-page-1 .mc-pages{bottom:66px!important}
+#demo .mc-native-page-1 .mc-guide-arrows{align-items:center!important;gap:12px!important}
+#demo .mc-native-page-1 .mc-guide-done{display:grid!important;width:auto!important;height:40px!important;max-width:none!important;flex:1!important;place-items:center!important;padding:0 22px!important;border:0!important;border-radius:21px!important;background:#90002c!important;color:#fff!important;font:600 12px/1 var(--font)!important;cursor:pointer!important;pointer-events:auto!important;touch-action:manipulation!important}
+#demo .mc-fit-guide .mc-native-page-1 .mc-guide-done{background:#fff!important;color:#85002b!important}
