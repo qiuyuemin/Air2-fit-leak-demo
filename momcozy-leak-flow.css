@@ -109,6 +109,10 @@
 /* Suction failure continues into troubleshooting as the next horizontal page. */
 #demo .r50-fit-panel.is-sliding-to-guide{pointer-events:none;animation:mc-fit-page-out .32s cubic-bezier(.4,0,.2,1) both}
 #demo .mc-fit-context .mc-fit-guide{animation:mc-fit-page-in .36s cubic-bezier(.22,.8,.25,1) both}
+
+/* The MP4s now contain the approved #984459 surface colour. Rendering them
+   normally avoids device-dependent video blend/compositor behaviour. */
+#demo .mc-leak-guide .mc-video video{mix-blend-mode:normal!important;filter:none!important}
 @keyframes mc-fit-page-out{from{opacity:1;transform:translateX(0)}to{opacity:.25;transform:translateX(-100%)}}
 @keyframes mc-fit-page-in{from{opacity:.35;transform:translateX(100%)}to{opacity:1;transform:translateX(0)}}
 

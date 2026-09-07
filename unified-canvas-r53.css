@@ -1,0 +1,52 @@
+/* A single Figma-sized app canvas for browser tabs, installed apps and desktop.
+   Never stretch individual screens to a device's aspect ratio. */
+html,body{
+  position:fixed!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:#f9f7f5!important;
+}
+body{display:grid!important;place-items:center!important}
+html body #air2-phone-shell{
+  position:relative!important;
+  inset:auto!important;
+  width:var(--air2-shell-width,402px)!important;
+  height:var(--air2-shell-height,874px)!important;
+  min-width:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  transform:none!important;
+  box-shadow:0 20px 55px rgba(47,28,35,.12);
+}
+html body #demo{
+  position:absolute!important;
+  inset:0!important;
+  width:402px!important;
+  height:874px!important;
+  min-width:402px!important;
+  min-height:874px!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  transform:scale(var(--air2-scale,1))!important;
+  transform-origin:top left!important;
+  zoom:1!important;
+}
+html body #demo>.v4,html body #demo>.screen,html body #demo>.d4-device{
+  position:absolute!important;
+  inset:0!important;
+  width:402px!important;
+  height:874px!important;
+  min-width:402px!important;
+  min-height:874px!important;
+  border-radius:0!important;
+}
+@media(max-width:600px){html body #air2-phone-shell{box-shadow:none!important}}
