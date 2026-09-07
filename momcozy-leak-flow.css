@@ -133,3 +133,10 @@
 #demo .mc-native-page-1 .mc-guide-arrows{align-items:center!important;gap:12px!important}
 #demo .mc-native-page-1 .mc-guide-done{display:grid!important;width:auto!important;height:40px!important;max-width:none!important;flex:1!important;place-items:center!important;padding:0 22px!important;border:0!important;border-radius:21px!important;background:#90002c!important;color:#fff!important;font:600 12px/1 var(--font)!important;cursor:pointer!important;pointer-events:auto!important;touch-action:manipulation!important}
 #demo .mc-fit-guide .mc-native-page-1 .mc-guide-done{background:#fff!important;color:#85002b!important}
+
+/* Page navigation belongs to the animation; completion is a separate action. */
+#demo .mc-leak-guide .mc-native-page .mc-pages,#demo .mc-native-page-1 .mc-pages{z-index:20!important;right:0!important;bottom:64px!important;left:0!important;display:flex!important;margin:0!important}
+#demo .mc-leak-guide .mc-native-page .mc-guide-arrows,#demo .mc-native-page-1 .mc-guide-arrows{z-index:30!important;top:68px!important;right:24px!important;bottom:auto!important;left:24px!important;display:flex!important;height:244px!important;align-items:center!important;justify-content:space-between!important;gap:0!important;pointer-events:none!important}
+#demo .mc-leak-guide .mc-guide-arrows label,#demo .mc-leak-guide .mc-guide-arrows span{pointer-events:auto!important}
+#demo .mc-native-page-1 .mc-guide-done{position:absolute!important;z-index:40!important;right:24px!important;bottom:10px!important;left:24px!important;display:grid!important;width:auto!important;height:40px!important;place-items:center!important;padding:0 22px!important;border:0!important;border-radius:21px!important;background:#90002c!important;color:#fff!important;font:600 12px/1 var(--font)!important;cursor:pointer!important;pointer-events:auto!important;touch-action:manipulation!important}
+#demo .mc-fit-guide .mc-native-page-1 .mc-guide-done{background:#fff!important;color:#85002b!important}
