@@ -126,3 +126,4 @@
 /* Keep the upper severe-leak notice clickable while the lower guide is open. */
 #demo .mc-fit-context{pointer-events:none!important}
 #demo .mc-fit-context .mc-fit-guide{pointer-events:auto!important}
+#demo .r72-leak-warning [data-mc="dismiss"]{position:relative!important;z-index:9999!important;pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important}
