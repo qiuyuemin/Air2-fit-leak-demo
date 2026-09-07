@@ -192,6 +192,22 @@
 #demo .mc-leak-guide .mc-native-page .mc-animation .mc-video video{position:absolute!important;top:-59px!important;left:0!important;width:100%!important;height:auto!important;max-width:none!important;aspect-ratio:1/1!important;object-fit:cover!important;mix-blend-mode:normal!important;filter:none!important;transform:none!important;transform-origin:center!important}
 #demo .mc-leak-guide .mc-native-page .mc-video-dots-mask{display:none!important}
 
+/* Both compact and post-session guides now share the supplied animation
+   masters. Cup is cropped to its middle motion band; Fit is already clean. */
+#demo .mc-leak-guide .mc-native-page-0 .mc-animation .mc-video video{top:-59px!important;left:0!important;width:100%!important;height:auto!important;aspect-ratio:1/1!important;object-fit:cover!important;mix-blend-mode:screen!important}
+#demo .mc-leak-guide .mc-native-page-1 .mc-animation .mc-video video{inset:0!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;object-fit:contain!important;mix-blend-mode:screen!important}
+#demo .mc-leak-guide .mc-animation .mc-video video{visibility:hidden!important}
+#demo .mc-leak-guide .mc-motion-canvas{position:absolute!important;display:block!important;width:100%!important;height:auto!important;max-width:none!important}
+#demo .mc-leak-guide .mc-native-page-0 .mc-motion-canvas{top:-59px!important;left:0!important;aspect-ratio:1/1!important}
+#demo .mc-leak-guide .mc-native-page-1 .mc-motion-canvas{inset:0!important;height:100%!important;object-fit:contain!important}
+#demo .mc-leak-guide .mc-animation .mc-video video.mc-key-fallback{visibility:visible!important}
+#demo .mc-leak-guide .mc-native-page-0 .mc-animation{height:126px!important}
+#demo .mc-leak-guide .mc-native-page-0 .mc-guide-arrows{height:126px!important}
+#demo .mc-leak-guide .mc-native-page-0 .mc-video-copy{top:238px!important}
+#demo .mc-leak-guide .mc-native-page-0 .mc-pages{top:307px!important}
+#demo .mc-post-guide .mc-native-page-0 .mc-video-copy{top:258px!important}
+#demo .mc-post-guide .mc-native-page-0 .mc-pages{top:331px!important}
+
 /* Keep the severe-leak note centred and self-contained on the log page. */
 #demo .mc-severe-log-note{width:100%!important;justify-content:center!important;gap:8px!important;margin:11px 0 0!important;text-align:center!important}
 #demo .mc-severe-log-note span{display:flex!important;flex:0 1 auto!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:7px!important;white-space:nowrap!important}
