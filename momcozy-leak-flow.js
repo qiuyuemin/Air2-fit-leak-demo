@@ -1,7 +1,7 @@
 (function(){
 var result=null,fitReady=false,fitTimers=[],pauseTimer=null,pages=[
- {title:'Check Cup',lead:'Snap rim shut',copy:'Seat duckbill valve',video:'./assets/leak-check/step-1-cup-check.mp4?v=normalized-2',lightVideo:'./assets/leak-check/step-1-cup-check-light.mp4?v=light-1'},
- {title:'Check Fit',lead:'Center the nipple',copy:'Seal flange firmly',video:'./assets/leak-check/step-2-fit-check.mp4?v=normalized-2',lightVideo:'./assets/leak-check/step-2-fit-check-light.mp4?v=light-1'}];
+ {title:'Check Cup',lead:'Snap rim shut',copy:'Seat duckbill valve',video:'./assets/leak-check/step-1-cup-check.mp4?v=normalized-2',lightVideo:'./assets/leak-check/step-1-cup-check-light.mp4?v=light-2'},
+ {title:'Check Fit',lead:'Center the nipple',copy:'Seal flange firmly',video:'./assets/leak-check/step-2-fit-check.mp4?v=normalized-2',lightVideo:'./assets/leak-check/step-2-fit-check-light.mp4?v=light-2'}];
 function S(){return typeof state==='undefined'?null:state} function paint(){if(window.v4View)window.v4View()}
 function clearFit(){fitTimers.forEach(clearTimeout);fitTimers=[]} function clearPause(){if(pauseTimer)clearTimeout(pauseTimer);pauseTimer=null}
 function guide(context,page){var s=S();if(s){s.mcLeakGuide={context:context,page:page||0};paint()}}

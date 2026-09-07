@@ -135,7 +135,7 @@
 
 /* Post-session troubleshooting is an informational light surface. */
 #demo .mc-post-guide{background:linear-gradient(160deg,#fff 3%,#fff9fa 77%,#ffe9ee)!important}
-#demo .mc-post-guide .mc-video,#demo .mc-post-guide .mc-video-title,#demo .mc-post-guide .mc-video-copy,#demo .mc-post-guide .mc-video-dots-mask{background:#fff!important}
+#demo .mc-post-guide .mc-video,#demo .mc-post-guide .mc-video-title,#demo .mc-post-guide .mc-video-copy,#demo .mc-post-guide .mc-video-dots-mask{background:#f0cbd5!important}
 #demo .mc-post-guide .mc-video-title,#demo .mc-post-guide .mc-video-copy b{color:#7d1732!important}
 #demo .mc-post-guide .mc-video-copy small{color:#786a6f!important}
 #demo .mc-post-guide .mc-guide-arrows label,#demo .mc-post-guide .mc-guide-arrows span{color:#7d1732!important}
