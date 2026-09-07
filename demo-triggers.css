@@ -103,12 +103,14 @@
 .demo-trigger-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 
 .demo-trigger-action {
+  display: grid;
+  place-items: center;
   min-height: 50px;
   border: 1px solid rgba(117, 80, 92, .10);
   border-radius: 16px;
   background: rgba(255, 255, 255, .38);
   color: #4b383d;
-  text-align: left;
+  text-align: center;
   padding: 10px 11px;
   box-shadow: 0 5px 14px rgba(65, 38, 48, .055);
   cursor: grab;
