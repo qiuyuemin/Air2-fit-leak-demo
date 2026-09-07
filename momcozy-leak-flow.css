@@ -122,3 +122,7 @@
 #demo .mc-leak-guide:not(.mc-fit-guide) .mc-guide-skip{border-color:#90002c!important;background:#90002c!important;color:#fff!important}
 /* Post-session videos already contain their own labels; do not duplicate them. */
 #demo .mc-leak-guide:not(.mc-fit-guide) .mc-video-title,#demo .mc-leak-guide:not(.mc-fit-guide) .mc-video-copy,#demo .mc-leak-guide:not(.mc-fit-guide) .mc-video-dots-mask{display:none!important}
+
+/* Keep the upper severe-leak notice clickable while the lower guide is open. */
+#demo .mc-fit-context{pointer-events:none!important}
+#demo .mc-fit-context .mc-fit-guide{pointer-events:auto!important}
