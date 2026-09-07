@@ -171,19 +171,26 @@
 /* Compose guide copy and controls independently from the source MP4. Only the
    central motion band is cropped from the video, removing its baked-in labels. */
 #demo .mc-leak-guide .mc-video-title{position:absolute!important;z-index:9!important;top:58px!important;left:50%!important;min-width:0!important;width:auto!important;min-height:0!important;padding:0!important;background:transparent!important;transform:translateX(-50%)!important;white-space:nowrap!important}
-#demo .mc-leak-guide .mc-animation{position:absolute!important;z-index:5!important;top:96px!important;left:50%!important;width:220px!important;height:148px!important;overflow:hidden!important;transform:translateX(-50%)!important}
+#demo .mc-leak-guide .mc-animation{position:absolute!important;z-index:5!important;top:96px!important;left:50%!important;width:220px!important;height:132px!important;overflow:hidden!important;transform:translateX(-50%)!important}
 #demo .mc-leak-guide .mc-animation .mc-video{position:absolute!important;top:-49px!important;left:50%!important;width:322px!important;height:244px!important;margin:0!important;border-radius:0!important;transform:translateX(-50%)!important}
-#demo .mc-leak-guide .mc-video-copy{position:absolute!important;z-index:9!important;top:260px!important;right:24px!important;bottom:auto!important;left:24px!important;min-height:0!important;padding:0!important;background:transparent!important}
-#demo .mc-leak-guide .mc-guide-arrows{position:absolute!important;z-index:10!important;top:96px!important;right:30px!important;bottom:auto!important;left:30px!important;height:148px!important;align-items:center!important}
-#demo .mc-leak-guide .mc-pages{position:absolute!important;top:329px!important;right:0!important;bottom:auto!important;left:0!important;margin:0!important}
+#demo .mc-leak-guide .mc-video-copy{position:absolute!important;z-index:9!important;top:244px!important;right:24px!important;bottom:auto!important;left:24px!important;min-height:0!important;padding:0!important;background:transparent!important}
+#demo .mc-leak-guide .mc-guide-arrows{position:absolute!important;z-index:10!important;top:96px!important;right:30px!important;bottom:auto!important;left:30px!important;height:132px!important;align-items:center!important}
+#demo .mc-leak-guide .mc-pages{position:absolute!important;top:313px!important;right:0!important;bottom:auto!important;left:0!important;margin:0!important}
 #demo .mc-post-guide .mc-video-title,#demo .mc-post-guide .mc-video-copy b{color:#7d1732!important}
 #demo .mc-post-guide .mc-video-copy small{color:#786a6f!important}
-#demo .mc-post-guide .mc-animation{top:116px!important;width:232px!important;height:156px!important}
+#demo .mc-post-guide .mc-animation{top:116px!important;width:232px!important;height:132px!important}
 #demo .mc-post-guide .mc-animation .mc-video{top:-44px!important}
 #demo .mc-post-guide .mc-video-title{top:76px!important;font-size:19px!important}
-#demo .mc-post-guide .mc-video-copy{top:292px!important}
-#demo .mc-post-guide .mc-guide-arrows{top:116px!important;height:156px!important}
-#demo .mc-post-guide .mc-pages{top:365px!important}
+#demo .mc-post-guide .mc-video-copy{top:270px!important}
+#demo .mc-post-guide .mc-guide-arrows{top:116px!important;height:132px!important}
+#demo .mc-post-guide .mc-pages{top:343px!important}
+
+/* Crop the 704 × 704 source to its animation-only middle band. These fully
+   qualified rules intentionally outrank the legacy full-video positioning. */
+#demo .mc-leak-guide.mc-post-guide .mc-native-page .mc-animation .mc-video,
+#demo .mc-leak-guide.mc-fit-guide .mc-native-page .mc-animation .mc-video{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;margin:0!important;overflow:hidden!important;border-radius:0!important;background:transparent!important;transform:none!important}
+#demo .mc-leak-guide .mc-native-page .mc-animation .mc-video video{position:absolute!important;top:-59px!important;left:0!important;width:100%!important;height:auto!important;max-width:none!important;aspect-ratio:1/1!important;object-fit:cover!important;mix-blend-mode:normal!important;filter:none!important;transform:none!important;transform-origin:center!important}
+#demo .mc-leak-guide .mc-native-page .mc-video-dots-mask{display:none!important}
 
 /* Keep the severe-leak note centred and self-contained on the log page. */
 #demo .mc-severe-log-note{width:100%!important;justify-content:center!important;gap:8px!important;margin:11px 0 0!important;text-align:center!important}
