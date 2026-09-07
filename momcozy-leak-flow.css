@@ -154,9 +154,9 @@
 /* Post-session troubleshooting uses the same 402 × 582 bottom-sheet canvas
    as Log Pumping Amount. Its contents size from the sheet instead of keeping
    the compact 370 × 410 in-session geometry. */
-#demo .mc-post-guide{right:auto!important;bottom:0!important;left:50%!important;width:min(100%,402px)!important;height:582px!important;padding:0!important;border-radius:31px 31px 0 0!important;transform:translateX(-50%)!important}
-#demo .mc-leak-guide.mc-post-guide .mc-native-page .mc-video{top:84px!important;right:24px!important;left:24px!important;width:auto!important;height:390px!important;border-radius:26px!important}
-#demo .mc-leak-guide.mc-post-guide .mc-native-page .mc-guide-arrows{top:84px!important;right:24px!important;bottom:auto!important;left:24px!important;height:390px!important}
+#demo .mc-post-guide{right:auto!important;bottom:0!important;left:50%!important;width:min(100%,402px)!important;height:582px!important;padding:0!important;overflow:hidden!important;border-radius:31px 31px 0 0!important;transform:translateX(-50%)!important}
+#demo .mc-leak-guide.mc-post-guide .mc-native-page .mc-video{top:112px!important;right:auto!important;left:50%!important;width:min(calc(100% - 48px),322px)!important;height:244px!important;border-radius:24px!important;transform:translateX(-50%)!important}
+#demo .mc-leak-guide.mc-post-guide .mc-native-page .mc-guide-arrows{top:112px!important;right:auto!important;bottom:auto!important;left:50%!important;width:min(calc(100% - 48px),322px)!important;height:244px!important;transform:translateX(-50%)!important}
 #demo .mc-post-guide .mc-guide-skip{top:22px!important;right:24px!important}
 #demo .mc-leak-guide.mc-post-guide .mc-native-page .mc-pages{right:0!important;bottom:67px!important;left:0!important}
 #demo .mc-post-guide .mc-native-page-1 .mc-guide-done{right:24px!important;bottom:16px!important;left:24px!important}
