@@ -155,16 +155,16 @@
    as Log Pumping Amount. Its contents size from the sheet instead of keeping
    the compact 370 × 410 in-session geometry. */
 #demo .mc-post-guide{right:auto!important;bottom:0!important;left:50%!important;width:min(100%,402px)!important;height:582px!important;padding:0!important;overflow:hidden!important;border-radius:31px 31px 0 0!important;transform:translateX(-50%)!important}
-#demo .mc-leak-guide.mc-post-guide .mc-native-page .mc-video{top:72px!important;right:auto!important;left:50%!important;width:min(calc(100% - 48px),322px)!important;height:244px!important;border-radius:24px!important;transform:translateX(-50%)!important}
-#demo .mc-leak-guide.mc-post-guide .mc-native-page .mc-guide-arrows{top:72px!important;right:auto!important;bottom:auto!important;left:50%!important;width:min(calc(100% - 48px),322px)!important;height:244px!important;transform:translateX(-50%)!important}
+#demo .mc-leak-guide.mc-post-guide .mc-native-page .mc-video{top:86px!important;right:auto!important;left:50%!important;width:min(calc(100% - 48px),322px)!important;height:244px!important;border-radius:24px!important;transform:translateX(-50%)!important}
+#demo .mc-leak-guide.mc-post-guide .mc-native-page .mc-guide-arrows{top:86px!important;right:auto!important;bottom:auto!important;left:50%!important;width:min(calc(100% - 48px),322px)!important;height:244px!important;transform:translateX(-50%)!important}
 #demo .mc-post-guide .mc-guide-skip{top:18px!important;right:24px!important}
-#demo .mc-leak-guide.mc-post-guide .mc-native-page .mc-pages{right:0!important;bottom:72px!important;left:0!important}
+#demo .mc-leak-guide.mc-post-guide .mc-native-page .mc-pages{top:354px!important;right:0!important;bottom:auto!important;left:0!important;margin:0!important}
 #demo .mc-post-guide .mc-native-page-1 .mc-guide-done{right:24px!important;bottom:16px!important;left:24px!important}
 
 /* The post-session notice shares the Logged sheet canvas and typography. */
 #demo .mc-minor-result{right:auto!important;bottom:0!important;left:50%!important;width:min(100%,402px)!important;height:582px!important;padding:0 24px!important;border-radius:31px 31px 0 0!important;background:linear-gradient(160deg,#fff 3%,#fff9fa 77%,#ffe9ee)!important;transform:translateX(-50%)!important;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif!important}
-#demo .mc-minor-result h1{margin:43px 0 4px!important;color:#97002d!important;font-family:"Exposure[-10]",Georgia,serif!important;font-size:27px!important;font-weight:500!important;line-height:1.2!important;letter-spacing:0!important}
-#demo .mc-minor-result>img{width:166px!important;height:166px!important;margin:20px auto 8px!important}
+#demo .mc-minor-result h1{margin:54px 0 4px!important;color:#97002d!important;font-family:"Exposure[-10]",Georgia,serif!important;font-size:27px!important;font-weight:500!important;line-height:1.2!important;letter-spacing:0!important}
+#demo .mc-minor-result>img{width:166px!important;height:166px!important;margin:28px auto 18px!important}
 #demo .mc-minor-result p{max-width:326px!important;margin:0 auto!important;color:#786a6f!important;font-size:14px!important;font-weight:400!important;line-height:1.5!important;letter-spacing:0!important}
 #demo .mc-minor-result .mc-primary{right:20px!important;bottom:25px!important;left:20px!important;width:auto!important;height:56px!important;font-size:16px!important;font-weight:500!important}
 
