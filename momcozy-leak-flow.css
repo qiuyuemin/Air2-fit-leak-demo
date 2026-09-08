@@ -441,3 +441,8 @@
 /* Compact arrows are pinned to the inner sheet edges, never outside it. */
 #demo .mc-fit-guide .mc-native-page-0 .mc-guide-arrows label{right:20px!important;left:auto!important}
 #demo .mc-fit-guide .mc-native-page-1 .mc-guide-arrows label{right:auto!important;left:20px!important}
+
+/* Let the corrected black-background masters sit naturally on each sheet. */
+#demo .mc-leak-guide .mc-native-page .mc-animation{overflow:hidden!important;border-radius:24px!important;isolation:isolate!important}
+#demo .mc-fit-guide .mc-native-page .mc-animation{border:1px solid rgba(255,255,255,.10)!important;background:radial-gradient(circle at 50% 46%,rgba(255,218,229,.16),rgba(255,218,229,.04) 67%,transparent 78%)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 28px rgba(67,0,20,.10)!important}
+#demo .mc-post-guide .mc-native-page .mc-animation{border:1px solid rgba(151,0,45,.06)!important;background:radial-gradient(circle at 50% 45%,rgba(240,190,205,.23),rgba(255,247,249,.72) 70%)!important;box-shadow:0 12px 30px rgba(91,31,48,.06),inset 0 1px 0 #fff!important}
