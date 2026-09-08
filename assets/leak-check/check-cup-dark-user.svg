@@ -1,6 +1,7 @@
 <svg width="214" height="208" viewBox="0 0 214 208" fill="none" xmlns="http://www.w3.org/2000/svg">
 <style>
 #___, #____2 { display: none; }
+#______, #_______2, #_________, #___, #____2 { animation-iteration-count: 1 !important; animation-fill-mode: forwards !important; }
 svg { overflow: visible; }
 @keyframes kf________transform_0 {
   0% {
