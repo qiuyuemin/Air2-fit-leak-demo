@@ -10,12 +10,14 @@
 
 #demo .mc-fit-guide .mc-native-page .mc-video-title{top:42px!important;right:auto!important;left:133px!important;transform:none!important;text-align:left!important}
 #demo .mc-fit-guide .mc-native-page .mc-animation{top:62px!important;left:50%!important;width:208px!important;height:208px!important;transform:translateX(-50%)!important}
+#demo .mc-fit-guide .mc-native-page-0 .mc-animation{left:calc(50% + 20px)!important}
 #demo .mc-fit-guide .mc-native-page .mc-video-copy{top:270px!important;right:20px!important;bottom:auto!important;left:20px!important;width:auto!important;height:48px!important;min-height:48px!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
 #demo .mc-fit-guide .mc-native-page .mc-pages{top:322px!important;right:0!important;bottom:auto!important;left:0!important;height:18px!important;margin:0!important}
 #demo .mc-fit-guide .mc-native-page-1 .mc-guide-done{right:24px!important;bottom:10px!important;left:24px!important;width:auto!important;height:40px!important}
 
 #demo .mc-post-guide .mc-native-page .mc-video-title{top:74px!important;right:auto!important;left:128px!important;transform:none!important;text-align:left!important}
 #demo .mc-post-guide .mc-native-page .mc-animation{top:140px!important;left:50%!important;width:270px!important;height:230px!important;transform:translateX(-50%)!important}
+#demo .mc-post-guide .mc-native-page-0 .mc-animation{left:calc(50% + 20px)!important}
 #demo .mc-post-guide .mc-native-page .mc-video-copy{top:388px!important;right:20px!important;bottom:auto!important;left:20px!important;width:auto!important;height:57px!important;min-height:57px!important;padding:0 20px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
 #demo .mc-post-guide .mc-native-page .mc-pages{top:455px!important;right:0!important;bottom:auto!important;left:0!important;height:18px!important;margin:0!important}
 #demo .mc-post-guide .mc-native-page-1 .mc-guide-done{right:20px!important;bottom:25px!important;left:20px!important;width:auto!important;height:56px!important;border:0!important;border-radius:30px!important;background:linear-gradient(180deg,#75001f,#bd5a62)!important;box-shadow:0 8px 40px rgba(0,0,0,.12)!important;color:#fff!important;font-size:16px!important}
