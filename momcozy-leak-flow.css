@@ -293,6 +293,13 @@
 #demo .mc-post-guide .mc-native-page-0 .mc-guide-arrows label{left:calc(50% + 126px)!important}
 #demo .mc-post-guide .mc-native-page-1 .mc-guide-arrows label{left:calc(50% - 166px)!important}
 
+/* Supplied Check Cup MP4 variants: preserve aspect ratio and stay below nav. */
+#demo .mc-fit-guide{background:linear-gradient(180deg,#a81948 0%,#770523 91.35%)!important}
+#demo .mc-leak-guide .mc-native-page-0 .mc-animation{z-index:10!important;overflow:hidden!important}
+#demo .mc-leak-guide .mc-native-page-0 .mc-direct-video{position:absolute!important;z-index:1!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:contain!important;transform:translateX(8px)!important}
+#demo .mc-leak-guide .mc-native-page-0 .mc-guide-arrows{z-index:70!important;overflow:visible!important}
+#demo .mc-leak-guide .mc-native-page-0 .mc-guide-arrows label{z-index:71!important}
+
 /* Post-session troubleshooting inherits the Log Pumping Amount skeleton. */
 #demo .mc-post-guide .mc-guide-skip{top:17px!important;right:auto!important;left:16px!important;width:44px!important;min-width:44px!important;height:44px!important;padding:0!important;border:0!important;border-radius:50%!important;background:rgba(255,255,255,.58)!important;box-shadow:0 4px 18px rgba(30,10,22,.04)!important;color:transparent!important;font-size:0!important}
 #demo .mc-post-guide .mc-guide-skip::before{display:block!important;color:#21151b!important;font:300 32px/1 Arial,sans-serif!important;content:'×'!important}
