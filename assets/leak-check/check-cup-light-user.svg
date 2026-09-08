@@ -1,5 +1,6 @@
 <svg width="214" height="208" viewBox="0 0 214 208" fill="none" xmlns="http://www.w3.org/2000/svg">
 <style>
+#___, #____2 { display: none; }
 svg { overflow: visible; }
 @keyframes kf________transform_0 {
   0% {
@@ -228,7 +229,7 @@ svg { overflow: visible; }
 }
 </style>
 <g id="Check_Cup">
-<rect width="208" height="208" fill="url(#paint0_linear_9234_5430)"/>
+<rect width="208" height="208" fill="none"/>
 <g id="______" transform="translate(67 26)">
 <g id="Frame_2147241315" transform="translate(1.95044 24.6804)">
 <g id="Frame_2147241322" transform="translate(9.21291 19.6746) rotate(3.91058)">
