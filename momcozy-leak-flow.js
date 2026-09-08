@@ -1,6 +1,6 @@
 (function(){
 var result=null,fitReady=false,fitTimers=[],pauseTimer=null,pages=[
- {title:'Check Cup',lead:'Snap rim shut',copy:'Seat duckbill valve',darkArt:'./assets/leak-check/check-cup-dark-user.svg?v=user-1',lightArt:'./assets/leak-check/check-cup-light-user.svg?v=user-1'},
+ {title:'Check Cup',lead:'Snap rim shut',copy:'Seat duckbill valve',darkArt:'./assets/leak-check/check-cup-light-user.svg?v=user-2',lightArt:'./assets/leak-check/check-cup-dark-user.svg?v=user-2'},
  {title:'Check Fit',lead:'Center the nipple',copy:'Seal flange firmly',darkArt:'./assets/leak-check/check-fit-dark-user.svg?v=user-1',lightArt:'./assets/leak-check/check-fit-light-user.svg?v=user-1'}];
 function S(){return typeof state==='undefined'?null:state} function paint(){if(window.v4View)window.v4View()}
 function clearFit(){fitTimers.forEach(clearTimeout);fitTimers=[]} function clearPause(){if(pauseTimer)clearTimeout(pauseTimer);pauseTimer=null}
