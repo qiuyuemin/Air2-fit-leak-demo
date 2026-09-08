@@ -13,6 +13,8 @@
 #demo .mc-leak-guide .mc-animation .mc-direct-video{opacity:1!important;clip-path:none!important}
 #demo .mc-leak-guide.mc-ios-motion .mc-animation .mc-direct-video{opacity:0!important}
 #demo .mc-leak-guide .mc-animation .mc-transparent-motion{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;clip-path:none!important}
+#demo .mc-fit-guide.mc-mobile-video .mc-animation{isolation:auto!important;background:transparent!important}
+#demo .mc-fit-guide.mc-mobile-video .mc-animation .mc-direct-video{mix-blend-mode:screen!important;filter:saturate(1.04) contrast(1.02)!important}
 
 #demo .mc-fit-guide .mc-native-page .mc-video-title{top:42px!important;right:auto!important;left:133px!important;transform:none!important;text-align:left!important}
 #demo .mc-fit-guide .mc-native-page .mc-animation{top:62px!important;left:50%!important;width:208px!important;height:208px!important;transform:translateX(-50%)!important}
