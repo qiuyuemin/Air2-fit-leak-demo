@@ -1,4 +1,7 @@
 /* Authoritative troubleshooting layout. Loaded after all shared canvas styles. */
+#demo .r72-leak-warning .r72-leak-line>img{display:none!important;pointer-events:none!important}
+#demo .v4-control .r97-leak-guide{display:none!important}
+#demo .v4-control .c32-vessel.r97-leak-adjusting{animation:none!important;transform:none!important}
 #demo .mc-leak-guide .mc-guide-arrows{display:none!important}
 #demo .mc-leak-guide{touch-action:none!important;overscroll-behavior:contain!important}
 #demo .mc-leak-guide .mc-guide-swipe-zone{position:absolute!important;z-index:80!important;top:46px!important;right:0!important;bottom:64px!important;left:0!important;display:block!important;touch-action:none!important;background:transparent!important}
