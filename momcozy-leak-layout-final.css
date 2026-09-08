@@ -1,6 +1,6 @@
 /* Authoritative troubleshooting layout. Loaded after all shared canvas styles. */
 #demo .mc-leak-guide .mc-guide-arrows{display:none!important}
-#demo .mc-leak-guide{touch-action:pan-y!important}
+#demo .mc-leak-guide{touch-action:none!important;overscroll-behavior:contain!important}
 #demo .mc-leak-guide .mc-native-page{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;opacity:0!important;transform:translateX(18px)!important;transition:opacity .26s ease,transform .34s cubic-bezier(.22,.8,.25,1)!important;pointer-events:none!important;will-change:opacity,transform!important}
 #demo .mc-leak-guide .mc-native-page-0{opacity:1!important;transform:translateX(0)!important;pointer-events:auto!important}
 #demo .mc-leak-guide .mc-native-page-toggle:checked~.mc-native-page-0{opacity:0!important;transform:translateX(-18px)!important;pointer-events:none!important}
