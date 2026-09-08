@@ -279,6 +279,13 @@
 #demo .mc-post-guide .mc-native-page .mc-guide-arrows label,#demo .mc-post-guide .mc-native-page .mc-guide-arrows span{color:#7d1732!important;text-shadow:0 1px 4px rgba(255,255,255,.8)!important;pointer-events:auto!important}
 #demo .mc-post-guide .mc-native-page-1 .mc-guide-done{right:24px!important;bottom:20px!important;left:24px!important;height:48px!important;border-radius:26px!important}
 
+/* Check Fit uses the supplied original 3-3 motion.  A canvas keys out only
+   the black source background and maps the original pixels to the component
+   palette, preserving the source animation and internal construction. */
+#demo .mc-leak-guide .mc-native-page-1 .mc-animation .mc-video{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;margin:0!important;overflow:hidden!important;border-radius:0!important;background:transparent!important}
+#demo .mc-leak-guide .mc-native-page-1 .mc-animation .mc-video video{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;opacity:0!important;visibility:visible!important;transform:none!important}
+#demo .mc-leak-guide .mc-native-page-1 .mc-motion-canvas{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;transform:none!important}
+
 /* Page navigation belongs to the animation; completion is a separate action. */
 #demo .mc-leak-guide .mc-native-page .mc-pages,#demo .mc-native-page-1 .mc-pages{z-index:20!important;right:0!important;bottom:64px!important;left:0!important;display:flex!important;margin:0!important}
 #demo .mc-leak-guide .mc-native-page .mc-guide-arrows,#demo .mc-native-page-1 .mc-guide-arrows{z-index:30!important;top:68px!important;right:24px!important;bottom:auto!important;left:24px!important;display:flex!important;height:244px!important;align-items:center!important;justify-content:space-between!important;gap:0!important;pointer-events:none!important}
