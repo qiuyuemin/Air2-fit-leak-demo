@@ -278,6 +278,36 @@
 #demo .mc-leak-guide .mc-native-page-0 .mc-animation{overflow:visible!important}
 #demo .mc-leak-guide .mc-native-page-0 .mc-motion-art{transform:translateX(8px)!important}
 
+/* Post-session troubleshooting inherits the Log Pumping Amount skeleton. */
+#demo .mc-post-guide .mc-guide-skip{top:17px!important;right:auto!important;left:16px!important;width:44px!important;min-width:44px!important;height:44px!important;padding:0!important;border:0!important;border-radius:50%!important;background:rgba(255,255,255,.58)!important;box-shadow:0 4px 18px rgba(30,10,22,.04)!important;color:transparent!important;font-size:0!important}
+#demo .mc-post-guide .mc-guide-skip::before{display:block!important;color:#21151b!important;font:300 32px/1 Arial,sans-serif!important;content:'×'!important}
+#demo .mc-post-guide .mc-native-page .mc-video-title{top:60px!important;color:#97002d!important;font-family:Georgia,'Songti SC',serif!important;font-size:27px!important;font-weight:500!important;line-height:34px!important}
+#demo .mc-post-guide .mc-native-page .mc-animation{top:126px!important;width:270px!important;height:230px!important}
+#demo .mc-post-guide .mc-native-page .mc-motion-art{width:270px!important;height:230px!important}
+#demo .mc-post-guide .mc-native-page .mc-video-copy{top:390px!important;right:20px!important;left:20px!important;height:57px!important;min-height:57px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:0 20px!important;border-radius:29px!important;background:#fff!important;text-align:left!important}
+#demo .mc-post-guide .mc-native-page .mc-video-copy b{color:#240f1b!important;font-size:16px!important;font-weight:500!important}
+#demo .mc-post-guide .mc-native-page .mc-video-copy small{color:#98002e!important;font-size:14px!important;font-weight:500!important}
+#demo .mc-post-guide .mc-native-page .mc-pages{z-index:61!important;top:472px!important;bottom:auto!important;height:18px!important;align-items:center!important}
+#demo .mc-post-guide .mc-native-page .mc-guide-arrows{z-index:62!important;top:457px!important;right:0!important;left:0!important;width:100%!important;height:48px!important}
+#demo .mc-post-guide .mc-native-page .mc-guide-arrows label{top:0!important;margin-top:0!important}
+#demo .mc-post-guide .mc-native-page-0 .mc-guide-arrows label{left:calc(50% + 126px)!important}
+#demo .mc-post-guide .mc-native-page-1 .mc-guide-arrows label{left:calc(50% - 166px)!important}
+
+/* Post-session troubleshooting inherits the Log Pumping Amount skeleton. */
+#demo .mc-post-guide .mc-guide-skip{top:17px!important;right:auto!important;left:16px!important;width:44px!important;min-width:44px!important;height:44px!important;padding:0!important;border:0!important;border-radius:50%!important;background:rgba(255,255,255,.58)!important;box-shadow:0 4px 18px rgba(30,10,22,.04)!important;color:transparent!important;font-size:0!important}
+#demo .mc-post-guide .mc-guide-skip::before{display:block!important;color:#21151b!important;font:300 32px/1 Arial,sans-serif!important;content:'×'!important}
+#demo .mc-post-guide .mc-native-page .mc-video-title{top:60px!important;color:#97002d!important;font-family:Georgia,'Songti SC',serif!important;font-size:27px!important;font-weight:500!important;line-height:34px!important}
+#demo .mc-post-guide .mc-native-page .mc-animation{top:126px!important;width:270px!important;height:230px!important}
+#demo .mc-post-guide .mc-native-page .mc-motion-art{width:270px!important;height:230px!important}
+#demo .mc-post-guide .mc-native-page .mc-video-copy{top:390px!important;right:20px!important;left:20px!important;height:57px!important;min-height:57px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:0 20px!important;border-radius:29px!important;background:#fff!important;text-align:left!important}
+#demo .mc-post-guide .mc-native-page .mc-video-copy b{color:#240f1b!important;font-size:16px!important;font-weight:500!important}
+#demo .mc-post-guide .mc-native-page .mc-video-copy small{color:#98002e!important;font-size:14px!important;font-weight:500!important}
+#demo .mc-post-guide .mc-native-page .mc-pages{z-index:61!important;top:472px!important;bottom:auto!important;height:18px!important;align-items:center!important}
+#demo .mc-post-guide .mc-native-page .mc-guide-arrows{z-index:62!important;top:457px!important;right:0!important;left:0!important;width:100%!important;height:48px!important}
+#demo .mc-post-guide .mc-native-page .mc-guide-arrows label{top:0!important;margin-top:0!important}
+#demo .mc-post-guide .mc-native-page-0 .mc-guide-arrows label{left:calc(50% + 126px)!important}
+#demo .mc-post-guide .mc-native-page-1 .mc-guide-arrows label{left:calc(50% - 166px)!important}
+
 /* Correct guide variants and restore visible, generous page navigation. */
 #demo .mc-fit-guide .mc-native-page .mc-video-title{top:42px!important}
 #demo .mc-fit-guide .mc-native-page .mc-animation{top:72px!important;width:208px!important;height:208px!important}
@@ -346,3 +376,18 @@
 #demo .mc-post-guide .mc-native-page-1 .mc-guide-arrows label{left:calc(50% - 164px)!important}
 #demo .mc-leak-guide .mc-native-page-0 .mc-animation{overflow:visible!important}
 #demo .mc-leak-guide .mc-native-page-0 .mc-motion-art{transform:translateX(8px)!important}
+
+/* Final post-guide geometry mirrors the log sheet row for row. */
+#demo .mc-post-guide .mc-guide-skip{top:17px!important;right:auto!important;left:16px!important;width:44px!important;min-width:44px!important;height:44px!important;padding:0!important;border:0!important;border-radius:50%!important;background:rgba(255,255,255,.58)!important;box-shadow:0 4px 18px rgba(30,10,22,.04)!important;color:transparent!important;font-size:0!important}
+#demo .mc-post-guide .mc-guide-skip::before{display:block!important;color:#21151b!important;font:300 32px/1 Arial,sans-serif!important;content:'×'!important}
+#demo .mc-post-guide .mc-native-page .mc-video-title{top:60px!important;color:#97002d!important;font-family:Georgia,'Songti SC',serif!important;font-size:27px!important;font-weight:500!important;line-height:34px!important}
+#demo .mc-post-guide .mc-native-page .mc-animation{top:126px!important;width:270px!important;height:230px!important}
+#demo .mc-post-guide .mc-native-page .mc-motion-art{width:270px!important;height:230px!important}
+#demo .mc-post-guide .mc-native-page .mc-video-copy{top:390px!important;right:20px!important;left:20px!important;height:57px!important;min-height:57px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:0 20px!important;border-radius:29px!important;background:#fff!important;text-align:left!important}
+#demo .mc-post-guide .mc-native-page .mc-video-copy b{color:#240f1b!important;font-size:16px!important;font-weight:500!important}
+#demo .mc-post-guide .mc-native-page .mc-video-copy small{color:#98002e!important;font-size:14px!important;font-weight:500!important}
+#demo .mc-post-guide .mc-native-page .mc-pages{z-index:61!important;top:472px!important;bottom:auto!important;height:18px!important;align-items:center!important}
+#demo .mc-post-guide .mc-native-page .mc-guide-arrows{z-index:62!important;top:457px!important;right:0!important;left:0!important;width:100%!important;height:48px!important}
+#demo .mc-post-guide .mc-native-page .mc-guide-arrows label{top:0!important;margin-top:0!important}
+#demo .mc-post-guide .mc-native-page-0 .mc-guide-arrows label{left:calc(50% + 126px)!important}
+#demo .mc-post-guide .mc-native-page-1 .mc-guide-arrows label{left:calc(50% - 166px)!important}
