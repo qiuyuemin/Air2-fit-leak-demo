@@ -238,6 +238,25 @@
 #demo .mc-native-page-1 .mc-pages{bottom:66px!important}
 #demo .mc-native-page-1 .mc-guide-arrows{align-items:center!important;gap:12px!important}
 #demo .mc-native-page-1 .mc-guide-done{display:grid!important;width:auto!important;height:40px!important;max-width:none!important;flex:1!important;place-items:center!important;padding:0 22px!important;border:0!important;border-radius:21px!important;background:#90002c!important;color:#fff!important;font:600 12px/1 var(--font)!important;cursor:pointer!important;pointer-events:auto!important;touch-action:manipulation!important}
+
+/* User-tuned guide artwork.  The square SVG owns the illustration background
+   and visible arrows; the HTML arrow layer remains as the navigation hit area. */
+#demo .mc-leak-guide .mc-native-page .mc-animation{position:absolute!important;top:82px!important;left:50%!important;width:208px!important;height:208px!important;margin:0!important;overflow:hidden!important;border-radius:0!important;background:transparent!important;transform:translateX(-50%)!important}
+#demo .mc-leak-guide .mc-native-page .mc-motion-art{display:block!important;width:214px!important;height:208px!important;max-width:none!important;object-fit:contain!important;transform:none!important}
+#demo .mc-leak-guide .mc-native-page .mc-video-title{top:48px!important;left:50%!important;right:auto!important;width:auto!important;background:transparent!important;transform:translateX(-50%)!important}
+#demo .mc-leak-guide .mc-native-page .mc-video-copy{top:294px!important;right:20px!important;left:20px!important;min-height:48px!important;padding:0!important;background:transparent!important}
+#demo .mc-leak-guide .mc-native-page .mc-pages{top:348px!important;bottom:auto!important}
+#demo .mc-leak-guide .mc-native-page .mc-guide-arrows{top:82px!important;right:auto!important;bottom:auto!important;left:50%!important;width:208px!important;height:208px!important;transform:translateX(-50%)!important}
+#demo .mc-leak-guide .mc-native-page .mc-guide-arrows label,#demo .mc-leak-guide .mc-native-page .mc-guide-arrows span{color:transparent!important}
+#demo .mc-fit-guide .mc-native-page-1 .mc-animation,#demo .mc-fit-guide .mc-native-page-1 .mc-video-title{left:50%!important}
+#demo .mc-fit-guide .mc-native-page-1 .mc-video-copy{right:20px!important;left:20px!important}
+
+#demo .mc-post-guide .mc-native-page .mc-animation{top:96px!important;width:232px!important;height:226px!important}
+#demo .mc-post-guide .mc-native-page .mc-motion-art{width:232px!important;height:226px!important}
+#demo .mc-post-guide .mc-native-page .mc-video-title{top:58px!important}
+#demo .mc-post-guide .mc-native-page .mc-video-copy{top:330px!important}
+#demo .mc-post-guide .mc-native-page .mc-pages{top:394px!important}
+#demo .mc-post-guide .mc-native-page .mc-guide-arrows{top:96px!important;width:232px!important;height:226px!important}
 #demo .mc-fit-guide .mc-native-page-1 .mc-guide-done{background:#fff!important;color:#85002b!important}
 
 /* Page navigation belongs to the animation; completion is a separate action. */
