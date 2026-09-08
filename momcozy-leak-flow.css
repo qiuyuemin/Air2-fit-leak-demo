@@ -417,3 +417,16 @@
 #demo .mc-fit-guide .mc-native-page .mc-guide-arrows label::before{display:none!important;content:none!important}
 #demo .mc-fit-guide .mc-native-page-0 .mc-guide-arrows label{right:auto!important;left:calc(50% + 108px)!important}
 #demo .mc-fit-guide .mc-native-page-1 .mc-guide-arrows label{right:auto!important;left:calc(50% - 148px)!important}
+
+/* Keep compact navigation inside the sheet but outside the media footprint. */
+#demo .mc-fit-guide .mc-native-page .mc-animation{top:62px!important}
+#demo .mc-fit-guide .mc-native-page .mc-video-copy{top:270px!important}
+#demo .mc-fit-guide .mc-native-page .mc-pages{top:322px!important;bottom:auto!important}
+#demo .mc-fit-guide .mc-native-page .mc-guide-arrows{top:62px!important;right:0!important;left:0!important;width:100%!important;height:208px!important}
+#demo .mc-fit-guide .mc-native-page .mc-guide-arrows label{width:40px!important;height:48px!important;margin-top:-24px!important;border:0!important;border-radius:0!important;background:transparent!important;color:transparent!important;font-size:0!important;box-shadow:none!important}
+#demo .mc-fit-guide .mc-native-page .mc-guide-arrows label::before{display:none!important;content:none!important}
+#demo .mc-fit-guide .mc-native-page .mc-guide-arrows label::after{display:block!important;width:13px!important;height:13px!important;border-top:3px solid #fff!important;border-right:3px solid #fff!important;content:''!important}
+#demo .mc-fit-guide .mc-native-page-0 .mc-guide-arrows label{right:auto!important;left:calc(50% + 122px)!important}
+#demo .mc-fit-guide .mc-native-page-0 .mc-guide-arrows label::after{transform:rotate(45deg)!important}
+#demo .mc-fit-guide .mc-native-page-1 .mc-guide-arrows label{right:auto!important;left:calc(50% - 162px)!important}
+#demo .mc-fit-guide .mc-native-page-1 .mc-guide-arrows label::after{transform:rotate(-135deg)!important}
