@@ -293,6 +293,16 @@
 #demo .mc-post-guide .mc-native-page-0 .mc-guide-arrows label{left:calc(50% + 126px)!important}
 #demo .mc-post-guide .mc-native-page-1 .mc-guide-arrows label{left:calc(50% - 166px)!important}
 
+/* Screenshot-calibrated compact guide: continue the supplied video's own
+   gradient across the full sheet and keep navigation unmistakably visible. */
+#demo .mc-fit-guide{background:linear-gradient(180deg,#a53954 0%,#4b0d0e 100%)!important}
+#demo .mc-fit-guide .mc-native-page .mc-pages{top:349px!important;bottom:auto!important}
+#demo .mc-fit-guide .mc-native-page .mc-guide-arrows{z-index:9998!important;top:72px!important;right:0!important;left:0!important;width:100%!important;height:208px!important;overflow:visible!important;opacity:1!important;visibility:visible!important}
+#demo .mc-fit-guide .mc-native-page .mc-guide-arrows label{z-index:9999!important;top:50%!important;width:40px!important;height:40px!important;margin-top:-20px!important;border:1px solid rgba(255,255,255,.34)!important;border-radius:50%!important;background:rgba(255,255,255,.14)!important;color:#fff!important;font:500 34px/36px Arial,sans-serif!important;opacity:1!important;visibility:visible!important;box-shadow:0 3px 12px rgba(60,0,20,.16)!important}
+#demo .mc-fit-guide .mc-native-page .mc-guide-arrows label::before{display:none!important;content:none!important}
+#demo .mc-fit-guide .mc-native-page-0 .mc-guide-arrows label{right:auto!important;left:calc(50% + 108px)!important}
+#demo .mc-fit-guide .mc-native-page-1 .mc-guide-arrows label{right:auto!important;left:calc(50% - 148px)!important}
+
 /* Supplied Check Cup MP4 variants: preserve aspect ratio and stay below nav. */
 #demo .mc-fit-guide{background:linear-gradient(180deg,#a81948 0%,#770523 91.35%)!important}
 #demo .mc-leak-guide .mc-native-page-0 .mc-animation{z-index:10!important;overflow:hidden!important}
@@ -398,3 +408,12 @@
 #demo .mc-post-guide .mc-native-page .mc-guide-arrows label{top:0!important;margin-top:0!important}
 #demo .mc-post-guide .mc-native-page-0 .mc-guide-arrows label{left:calc(50% + 126px)!important}
 #demo .mc-post-guide .mc-native-page-1 .mc-guide-arrows label{left:calc(50% - 166px)!important}
+
+/* Final compact-guide geometry, calibrated from the supplied video frame. */
+#demo .mc-fit-guide{background:linear-gradient(180deg,#a53954 0%,#4b0d0e 100%)!important}
+#demo .mc-fit-guide .mc-native-page .mc-pages{top:349px!important;bottom:auto!important}
+#demo .mc-fit-guide .mc-native-page .mc-guide-arrows{z-index:9998!important;top:72px!important;right:0!important;left:0!important;width:100%!important;height:208px!important;overflow:visible!important;opacity:1!important;visibility:visible!important}
+#demo .mc-fit-guide .mc-native-page .mc-guide-arrows label{z-index:9999!important;top:50%!important;width:40px!important;height:40px!important;margin-top:-20px!important;border:1px solid rgba(255,255,255,.34)!important;border-radius:50%!important;background:rgba(255,255,255,.14)!important;color:#fff!important;font:500 34px/36px Arial,sans-serif!important;opacity:1!important;visibility:visible!important;box-shadow:0 3px 12px rgba(60,0,20,.16)!important}
+#demo .mc-fit-guide .mc-native-page .mc-guide-arrows label::before{display:none!important;content:none!important}
+#demo .mc-fit-guide .mc-native-page-0 .mc-guide-arrows label{right:auto!important;left:calc(50% + 108px)!important}
+#demo .mc-fit-guide .mc-native-page-1 .mc-guide-arrows label{right:auto!important;left:calc(50% - 148px)!important}
