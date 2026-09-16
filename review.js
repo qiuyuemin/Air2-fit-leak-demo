@@ -1,6 +1,8 @@
 (() => {
   const STORAGE_KEY = 'air2-v2-review';
   const params = new URLSearchParams(location.search);
+  const studioEnabled = params.get('studio') === '1' || params.get('review') === '1';
+  document.documentElement.classList.toggle('demo-studio-enabled', studioEnabled);
   const notes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
   let selecting = false;
@@ -13,22 +15,22 @@
   const launcher = document.createElement('button');
   launcher.type = 'button';
   launcher.className = 'review-launcher';
-  launcher.innerHTML = '<span aria-hidden="true">⌗</span> 批注';
-  launcher.setAttribute('aria-label', '打开页面批注工具');
+  launcher.innerHTML = '<span aria-hidden="true">⌗</span> Demo Studio';
+  launcher.setAttribute('aria-label', '打开 Demo Studio 元素定位');
 
   const tools = document.createElement('aside');
   tools.className = 'review-tools';
-  tools.hidden = params.get('review') !== '1';
+  tools.hidden = !studioEnabled;
   tools.innerHTML = `
     <div class="review-tools__head">
-      <div><b>页面批注</b><small data-review-count></small></div>
+      <div><b>元素定位</b><small data-review-count></small></div>
       <button type="button" class="review-close" data-review="close" aria-label="收起批注工具">×</button>
     </div>
-    <button type="button" class="review-primary" data-review="mark">框选标记</button>
+    <button type="button" class="review-primary" data-review="mark">框选元素</button>
     <button type="button" data-review="copy">复制标注 JSON</button>
     <button type="button" data-review="export">导出 JSON</button>
     <button type="button" data-review="clear">清空标注</button>
-    <p class="review-status" aria-live="polite">拖拽框选页面区域，再填写修改意见。</p>
+    <p class="review-status" aria-live="polite">拖拽框选元素，记录其在 402×874 画布中的坐标。</p>
   `;
 
   const editor = document.createElement('section');
@@ -105,7 +107,7 @@
     selecting = false;
     removeSelectionLayer();
     markButton.classList.remove('marking');
-    markButton.textContent = '框选标记';
+    markButton.textContent = '框选元素';
     if (!keepEditor) {
       pendingRect = null;
       editor.hidden = true;
@@ -199,10 +201,16 @@
         x: +(left / end.width * 100).toFixed(2),
         y: +(top / end.height * 100).toFixed(2),
         width: +(width / end.width * 100).toFixed(2),
-        height: +(height / end.height * 100).toFixed(2)
+        height: +(height / end.height * 100).toFixed(2),
+        canvas: {
+          x: Math.round(left / end.width * 402),
+          y: Math.round(top / end.height * 874),
+          width: Math.round(width / end.width * 402),
+          height: Math.round(height / end.height * 874)
+        }
       };
       openEditor({ ...end, x: left, y: top + height });
-      setStatus('填写意见并保存；取消不会留下标记。');
+      setStatus(`坐标 ${pendingRect.canvas.x}, ${pendingRect.canvas.y} · ${pendingRect.canvas.width}×${pendingRect.canvas.height}；填写意见后保存。`);
     });
   }
 

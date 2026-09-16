@@ -193,3 +193,4 @@
   .review-tools { top: 56px; right: 10px; }
 }
 .review-launcher{display:none!important}
+.demo-studio-enabled .review-launcher{display:inline-flex!important}
