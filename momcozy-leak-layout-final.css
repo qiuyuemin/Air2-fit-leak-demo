@@ -1,4 +1,6 @@
 /* Authoritative troubleshooting layout. Loaded after all shared canvas styles. */
+#demo .mc-leak-side-label{position:absolute;z-index:81;top:70px;left:16px;right:16px;text-align:center;font-size:11px;line-height:16px;color:inherit;pointer-events:none}
+#demo .mc-post-guide .mc-leak-side-label{top:112px}
 #demo .r72-leak-warning .r72-leak-line>img{display:none!important;pointer-events:none!important}
 #demo .v4-control .r97-leak-guide{display:none!important}
 #demo .v4-control .c32-vessel.r97-leak-adjusting{animation:none!important;transform:none!important}
