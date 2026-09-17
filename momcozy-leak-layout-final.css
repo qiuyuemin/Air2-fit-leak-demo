@@ -39,10 +39,11 @@
 /* Wear guidance mirrors the reference: only the problem pump rocks; its target stays still. */
 .mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit:not(.is-problem) .r50-hardware{animation:none!important;transform:none!important}
 .mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.is-problem .r50-hardware{transform-origin:50% 58%!important;animation:mc-wear-rock-left 2.45s ease-in-out var(--mc-wear-phase,0ms) infinite alternate!important;will-change:transform!important;backface-visibility:hidden!important}
-.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right.is-problem .r50-hardware{animation-name:mc-wear-rock-right!important}
+.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.is-right-problem .r50-hardware{animation-name:mc-wear-rock-right!important}
+.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.is-right-problem .r50-hardware img{left:-107px!important}
 .mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.is-problem .r50-hardware img{animation:none!important;transform:none!important}
 .mc-stable-fit #demo .r50-guide.is-adjusting .r50-angle-guide{animation:none!important;transform:none!important}
-.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit:not(.right) .r50-angle-guide{transform:scaleX(-1)!important}
+.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit:not(.right):not(.is-right-problem) .r50-angle-guide{transform:scaleX(-1)!important}
 .mc-stable-fit #demo .r50-control.is-inline-fit .r50-guide.is-adjusting .r50-pump-unit:not(.is-problem){opacity:.58!important;filter:saturate(.72)!important}
 .mc-stable-fit #demo .r50-control.is-inline-fit .r50-guide.is-adjusting .r50-pump-unit.is-problem .r50-angle-guide{animation:mc-wear-problem-pulse 1.65s ease-in-out infinite!important}
 @keyframes mc-wear-rock-left{from{transform:rotate(14deg)}to{transform:rotate(-14deg)}}
