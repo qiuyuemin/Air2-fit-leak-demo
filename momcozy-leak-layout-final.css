@@ -46,7 +46,7 @@
 /* The status rail stays fixed while the guidance content cuts in horizontally. */
 #demo .r50-control .mc-fit-viewport{position:absolute!important;z-index:1!important;top:130px!important;right:18px!important;bottom:34px!important;left:18px!important;overflow:hidden!important}
 #demo .r50-control .mc-fit-pane{position:absolute!important;inset:0!important;overflow:hidden!important}
-#demo .r50-control .mc-fit-pane-adjust{animation:mc-fit-pane-in .46s cubic-bezier(.22,.8,.25,1) both!important}
+#demo .r50-control .mc-fit-pane-adjust{animation:mc-fit-pane-in .46s cubic-bezier(.22,.8,.25,1) var(--mc-pane-delay,0ms) both!important}
 #demo .r50-control .mc-fit-viewport .r50-guide{top:2px!important;right:8px!important;bottom:auto!important;left:8px!important;height:174px!important}
 #demo .r50-control .mc-fit-viewport .r50-pump-unit{transform:scale(.82)!important}
 #demo .r50-control.is-inline-fit .r50-fit-head{position:relative!important;z-index:4!important}
