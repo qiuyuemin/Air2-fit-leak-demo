@@ -37,16 +37,17 @@
 
 /* The wearing check uses a controlled, constant-speed rocking motion. */
 .mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right .r50-hardware{transform-origin:50% 76%!important;animation:mc-wearing-rock 2.8s linear var(--mc-wear-phase,0ms) infinite alternate!important;will-change:transform!important;backface-visibility:hidden!important}
+.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right .r50-hardware img{transform-origin:75% 76%!important;animation:mc-wearing-pump-rock 2.8s linear var(--mc-wear-phase,0ms) infinite alternate!important;will-change:transform!important;backface-visibility:hidden!important}
 .mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right .r50-angle-guide{transform-origin:50% 72%!important;animation:mc-wearing-guide-rock 2.8s linear var(--mc-wear-phase,0ms) infinite alternate!important;will-change:transform!important}
-@keyframes mc-wearing-rock{from{transform:translate3d(-4px,1px,0) rotate(-10deg)}to{transform:translate3d(4px,-1px,0) rotate(10deg)}}
+@keyframes mc-wearing-rock{from{transform:translate3d(-6px,2px,0) rotate(-11deg)}to{transform:translate3d(6px,-2px,0) rotate(11deg)}}
+@keyframes mc-wearing-pump-rock{from{transform:translate3d(-3px,1px,0) rotate(-7deg)}to{transform:translate3d(3px,-1px,0) rotate(7deg)}}
 @keyframes mc-wearing-guide-rock{from{transform:rotate(-6deg);opacity:.68}to{transform:rotate(6deg);opacity:1}}
 
 /* Leak check reads as gentle suction/release instead of mechanical motion. */
-#demo .r50-guide.is-leak-check .r50-pump-unit::before{position:absolute;z-index:0;top:-2px;left:3px;width:122px;height:122px;border-radius:50%;background:radial-gradient(circle,rgba(255,225,233,.32) 0,rgba(255,202,217,.16) 44%,rgba(255,191,210,0) 72%);content:"";animation:mc-leak-halo 1.9s ease-in-out var(--mc-leak-phase,0ms) infinite;will-change:transform,opacity}
-#demo .r50-guide.is-leak-check .r50-hardware{animation:mc-leak-breathe 1.9s ease-in-out var(--mc-leak-phase,0ms) infinite!important;will-change:filter,opacity,transform!important}
-#demo .r50-guide.is-leak-check .r50-pump-unit.right .r50-hardware,#demo .r50-guide.is-leak-check .r50-pump-unit.right::before{animation-delay:calc(var(--mc-leak-phase,0ms) - 160ms)!important}
-@keyframes mc-leak-breathe{0%,100%{filter:brightness(.78) saturate(.88);opacity:.76;transform:translateZ(0) scale(.975)}50%{filter:brightness(1.12) saturate(1.05) drop-shadow(0 0 12px rgba(255,211,224,.34));opacity:1;transform:translateZ(0) scale(1.025)}}
-@keyframes mc-leak-halo{0%,100%{opacity:.22;transform:scale(.86)}50%{opacity:1;transform:scale(1.08)}}
+#demo .r50-guide.is-leak-check .r50-pump-unit::before{position:absolute;z-index:0;top:-2px;left:3px;width:122px;height:122px;border-radius:50%;background:radial-gradient(circle,rgba(255,225,233,.23) 0,rgba(255,202,217,.10) 44%,rgba(255,191,210,0) 72%);content:"";animation:mc-leak-halo 3s ease-in-out var(--mc-leak-phase,0ms) infinite;will-change:opacity}
+#demo .r50-guide.is-leak-check .r50-hardware{animation:mc-leak-breathe 3s ease-in-out var(--mc-leak-phase,0ms) infinite!important;will-change:filter,opacity!important}
+@keyframes mc-leak-breathe{0%,100%{filter:brightness(.91) saturate(.96);opacity:.9;transform:none}50%{filter:brightness(1.035) saturate(1.01) drop-shadow(0 0 7px rgba(255,211,224,.20));opacity:1;transform:none}}
+@keyframes mc-leak-halo{0%,100%{opacity:.28;transform:none}50%{opacity:.68;transform:none}}
 
 #demo .mc-fit-guide .mc-native-page .mc-video-title{top:42px!important;right:auto!important;left:133px!important;transform:none!important;text-align:left!important}
 #demo .mc-fit-guide .mc-native-page .mc-animation{top:62px!important;left:50%!important;width:208px!important;height:208px!important;transform:translateX(-50%)!important}
