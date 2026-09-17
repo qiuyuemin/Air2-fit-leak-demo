@@ -43,9 +43,10 @@
 @keyframes mc-original-wear-cycle{0%{transform:rotate(23deg);animation-timing-function:cubic-bezier(.2,.82,.28,1)}68%{transform:rotate(0deg);animation-timing-function:cubic-bezier(.75,0,1,.2)}100%{transform:rotate(23deg)}}
 
 /* Leak check reads as gentle suction/release instead of mechanical motion. */
-#demo .r50-guide.is-leak-check .r50-pump-unit::before{position:absolute;z-index:0;top:6px;left:10px;width:108px;height:108px;border-radius:50%;background:radial-gradient(circle,rgba(255,244,248,.66) 0,rgba(255,211,224,.38) 38%,rgba(255,184,207,.16) 62%,rgba(255,174,201,0) 78%);box-shadow:0 0 12px 5px rgba(255,220,231,.24),0 0 26px 10px rgba(255,184,207,.12);filter:blur(4px);content:"";transform-origin:50% 50%;animation:mc-leak-halo 3s ease-in-out var(--mc-leak-phase,0ms) infinite;will-change:opacity,transform,filter}
+#demo .r50-guide.is-leak-check .r50-pump-unit::before{position:absolute;z-index:0;top:9px;left:16px;width:96px;height:96px;border-radius:46% 54% 52% 48%/43% 47% 53% 57%;background:radial-gradient(ellipse at 50% 48%,rgba(255,250,252,.92) 0,rgba(255,219,230,.68) 32%,rgba(244,132,168,.34) 58%,rgba(213,52,108,0) 82%);box-shadow:0 0 8px 2px rgba(255,226,235,.46),0 0 15px 4px rgba(239,104,149,.22);filter:blur(2px);content:"";transform-origin:50% 52%;animation:mc-leak-halo 3s cubic-bezier(.45,.05,.55,.95) var(--mc-leak-phase,0ms) infinite;will-change:opacity,transform,filter,box-shadow}
+#demo .r50-guide.is-leak-check .r50-pump-unit.right::before{border-radius:54% 46% 48% 52%/47% 43% 57% 53%}
 #demo .r50-guide.is-leak-check .r50-hardware{animation:none!important;filter:none!important;opacity:1!important;transform:none!important}
-@keyframes mc-leak-halo{0%,100%{opacity:.9;filter:blur(6px);transform:scale(1.18)}50%{opacity:.5;filter:blur(3px);transform:scale(.94)}}
+@keyframes mc-leak-halo{0%,100%{opacity:.96;filter:blur(4px);box-shadow:0 0 10px 3px rgba(255,226,235,.58),0 0 18px 5px rgba(239,104,149,.28);transform:scale(1.08)}50%{opacity:.34;filter:blur(1.5px);box-shadow:0 0 4px 1px rgba(255,226,235,.2),0 0 7px 2px rgba(239,104,149,.1);transform:scale(.98)}}
 
 #demo .mc-fit-guide .mc-native-page .mc-video-title{top:42px!important;right:auto!important;left:133px!important;transform:none!important;text-align:left!important}
 #demo .mc-fit-guide .mc-native-page .mc-animation{top:62px!important;left:50%!important;width:208px!important;height:208px!important;transform:translateX(-50%)!important}
