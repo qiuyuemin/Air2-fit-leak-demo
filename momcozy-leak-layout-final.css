@@ -23,6 +23,14 @@
 #demo .r50-fit-item.is-loading .r50-check-icon b{animation:mc-smooth-spin .72s linear infinite!important;animation-delay:var(--mc-spin-delay,0ms)!important;will-change:transform!important;backface-visibility:hidden!important;transform:translateZ(0) rotate(0deg)}
 @keyframes mc-smooth-spin{from{transform:translateZ(0) rotate(0deg)}to{transform:translateZ(0) rotate(360deg)}}
 
+/* A check in progress always uses the same still product view as Battery.
+   Motion is unlocked only after a failed trigger adds is-failure-preview,
+   or inside the dedicated adjustment view. */
+.mc-stable-fit #demo .r50-control:not(.is-failure-preview):not(.is-inline-fit) .r50-pump-unit::before{display:none!important;animation:none!important;content:none!important}
+.mc-stable-fit #demo .r50-control:not(.is-failure-preview):not(.is-inline-fit) .r50-pump-unit .r50-hardware,
+.mc-stable-fit #demo .r50-control:not(.is-failure-preview):not(.is-inline-fit) .r50-pump-unit .r50-hardware img{animation:none!important;transform:none!important;filter:none!important;box-shadow:none!important}
+.mc-stable-fit #demo .r50-control:not(.is-failure-preview):not(.is-inline-fit) .r50-angle-guide{display:none!important;animation:none!important}
+
 /* Three-stage Fit Check: battery, wearing fit, then leak check. */
 #demo .r50-control .r50-fit-head{height:72px!important;min-height:72px!important;overflow:hidden!important}
 #demo .r50-control .r50-fit-copy{width:100%!important;min-width:0!important}
@@ -69,10 +77,10 @@
 
 /* Leak check reads as gentle suction/release instead of mechanical motion. */
 #demo .r50-guide.is-leak-check .r50-pump-unit::before{position:absolute!important;z-index:3!important;top:-44px!important;left:-39px!important;display:none!important;width:180px!important;height:255px!important;background:url('./assets/air2-fit-glow/air2-l.svg') 0 0/180px 255px no-repeat!important;clip-path:inset(54px 27px 101px 53px)!important;mix-blend-mode:screen!important;transform-origin:57.22% 40.78%!important;content:""!important;pointer-events:none!important;animation:mc-leak-shape-light 3s cubic-bezier(.45,.05,.55,.95) var(--mc-leak-phase,0ms) infinite!important;will-change:opacity,filter,transform}
-#demo .r50-guide.is-leak-check .r50-pump-unit.is-problem::before{display:block!important}
+#demo .r50-control.is-failure-preview .r50-guide.is-leak-check .r50-pump-unit.is-problem::before{display:block!important}
 #demo .r50-guide.is-leak-check .r50-pump-unit.right::before{left:-18px!important;background-image:url('./assets/air2-fit-glow/air2-r.svg')!important;clip-path:inset(54px 48px 101px 32px)!important;transform-origin:45.56% 40.78%!important}
 #demo .r50-guide.is-leak-check .r50-hardware{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
-#demo .r50-guide.is-leak-check .r50-pump-unit.is-problem .r50-hardware{animation:mc-leak-pump-light 3s cubic-bezier(.45,.05,.55,.95) var(--mc-leak-phase,0ms) infinite!important;will-change:filter}
+#demo .r50-control.is-failure-preview .r50-guide.is-leak-check .r50-pump-unit.is-problem .r50-hardware{animation:mc-leak-pump-light 3s cubic-bezier(.45,.05,.55,.95) var(--mc-leak-phase,0ms) infinite!important;will-change:filter}
 @keyframes mc-leak-pump-light{0%,100%{filter:brightness(1.045) saturate(1.01) drop-shadow(0 0 3px rgba(255,238,244,.62)) drop-shadow(0 0 7px rgba(244,142,174,.24))}50%{filter:brightness(.91) saturate(.96) drop-shadow(0 0 0 rgba(255,238,244,0))}}
 @keyframes mc-leak-shape-light{0%,100%{opacity:.22;filter:brightness(1.16) saturate(.82) drop-shadow(0 0 3px rgba(255,236,242,.52)) drop-shadow(0 0 6px rgba(244,142,174,.22));transform:scale(1.065)}50%{opacity:.035;filter:brightness(1.02) saturate(.94) drop-shadow(0 0 1px rgba(255,226,235,.08));transform:scale(1)}}
 
