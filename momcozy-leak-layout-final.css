@@ -28,27 +28,24 @@
 #demo .r50-control .r50-fit-copy{width:100%!important;min-width:0!important}
 #demo .r50-control .r50-fit-copy strong{height:24px!important;line-height:24px!important}
 #demo .r50-control .r50-fit-copy>span{display:block!important;height:38px!important;max-width:286px!important;margin-top:4px!important;overflow:hidden!important;font-size:12px!important;line-height:17px!important}
-#demo .r50-control .r50-fit-checks{display:grid!important;width:240px!important;grid-template-columns:1fr!important;gap:6px!important;min-height:102px!important;margin:8px auto 0!important}
-#demo .r50-control .r50-fit-item{display:grid!important;width:240px!important;height:30px!important;grid-template-columns:18px minmax(0,1fr)!important;align-items:center!important;justify-content:initial!important;column-gap:9px!important;padding:0 12px!important;border-color:rgba(255,255,255,.24)!important;border-radius:16px!important;background:rgba(255,255,255,.09)!important;font-size:11px!important;line-height:14px!important;white-space:nowrap!important}
+#demo .r50-control .r50-fit-checks{display:grid!important;width:100%!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;min-height:28px!important;margin:8px 0 0!important}
+#demo .r50-control .r50-fit-item{display:grid!important;width:auto!important;height:28px!important;grid-template-columns:16px minmax(0,1fr)!important;align-items:center!important;justify-content:initial!important;column-gap:6px!important;padding:0 8px!important;border-color:rgba(255,255,255,.24)!important;border-radius:15px!important;background:rgba(255,255,255,.09)!important;font-size:10px!important;line-height:14px!important;white-space:nowrap!important}
 #demo .r50-control .r50-fit-item>span{display:block!important;min-height:14px!important;overflow:visible!important;line-height:14px!important;text-align:left!important}
-#demo .r50-control .r50-check-icon{width:18px!important;height:18px!important;justify-self:start!important;font-size:11px!important}
+#demo .r50-control .r50-check-icon{width:16px!important;height:16px!important;justify-self:start!important;font-size:10px!important}
 #demo .r50-control .r50-fit-item.is-pending{border-color:rgba(255,255,255,.13)!important;background:rgba(255,255,255,.045)!important;color:rgba(255,255,255,.52)!important}
 #demo .r50-control .r50-fit-item.is-pending .r50-check-icon{border:1px solid rgba(255,255,255,.28)!important;background:transparent!important}
-#demo .r50-control .r50-guide{bottom:32px!important;height:174px!important}
+#demo .r50-control .r50-guide{bottom:42px!important;height:220px!important}
 
-/* The wearing check uses a controlled, constant-speed rocking motion. */
-.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right .r50-hardware{transform-origin:50% 76%!important;animation:mc-wearing-rock 2.8s linear var(--mc-wear-phase,0ms) infinite alternate!important;will-change:transform!important;backface-visibility:hidden!important}
-.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right .r50-hardware img{transform-origin:75% 76%!important;animation:mc-wearing-pump-rock 2.8s linear var(--mc-wear-phase,0ms) infinite alternate!important;will-change:transform!important;backface-visibility:hidden!important}
-.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right .r50-angle-guide{transform-origin:50% 72%!important;animation:mc-wearing-guide-rock 2.8s linear var(--mc-wear-phase,0ms) infinite alternate!important;will-change:transform!important}
-@keyframes mc-wearing-rock{from{transform:translate3d(-6px,2px,0) rotate(-11deg)}to{transform:translate3d(6px,-2px,0) rotate(11deg)}}
-@keyframes mc-wearing-pump-rock{from{transform:translate3d(-3px,1px,0) rotate(-7deg)}to{transform:translate3d(3px,-1px,0) rotate(7deg)}}
-@keyframes mc-wearing-guide-rock{from{transform:rotate(-6deg);opacity:.68}to{transform:rotate(6deg);opacity:1}}
+/* Reuse the original Air2 H5 wear-check motion: the complete right pump rotates as one unit. */
+.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right .r50-hardware{transform-origin:42% 56%!important;animation:mc-original-wear-cycle 2.25s var(--mc-wear-phase,0ms) infinite!important;will-change:transform!important;backface-visibility:hidden!important}
+.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right .r50-hardware img{animation:none!important;transform:none!important}
+.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right .r50-angle-guide{animation:none!important;transform:none!important}
+@keyframes mc-original-wear-cycle{0%{transform:rotate(23deg);animation-timing-function:cubic-bezier(.2,.82,.28,1)}68%{transform:rotate(0deg);animation-timing-function:cubic-bezier(.75,0,1,.2)}100%{transform:rotate(23deg)}}
 
 /* Leak check reads as gentle suction/release instead of mechanical motion. */
-#demo .r50-guide.is-leak-check .r50-pump-unit::before{position:absolute;z-index:0;top:-2px;left:3px;width:122px;height:122px;border-radius:50%;background:radial-gradient(circle,rgba(255,225,233,.23) 0,rgba(255,202,217,.10) 44%,rgba(255,191,210,0) 72%);content:"";animation:mc-leak-halo 3s ease-in-out var(--mc-leak-phase,0ms) infinite;will-change:opacity}
-#demo .r50-guide.is-leak-check .r50-hardware{animation:mc-leak-breathe 3s ease-in-out var(--mc-leak-phase,0ms) infinite!important;will-change:filter,opacity!important}
-@keyframes mc-leak-breathe{0%,100%{filter:brightness(.91) saturate(.96);opacity:.9;transform:none}50%{filter:brightness(1.035) saturate(1.01) drop-shadow(0 0 7px rgba(255,211,224,.20));opacity:1;transform:none}}
-@keyframes mc-leak-halo{0%,100%{opacity:.28;transform:none}50%{opacity:.68;transform:none}}
+#demo .r50-guide.is-leak-check .r50-pump-unit::before{position:absolute;z-index:0;top:6px;left:10px;width:108px;height:108px;border-radius:50%;background:radial-gradient(circle,rgba(255,232,239,.28) 0,rgba(255,207,220,.14) 48%,rgba(255,191,210,0) 74%);content:"";transform-origin:50% 50%;animation:mc-leak-halo 3s ease-in-out var(--mc-leak-phase,0ms) infinite;will-change:opacity,transform}
+#demo .r50-guide.is-leak-check .r50-hardware{animation:none!important;filter:none!important;opacity:1!important;transform:none!important}
+@keyframes mc-leak-halo{0%,100%{opacity:.72;transform:scale(1.16)}50%{opacity:.42;transform:scale(.94)}}
 
 #demo .mc-fit-guide .mc-native-page .mc-video-title{top:42px!important;right:auto!important;left:133px!important;transform:none!important;text-align:left!important}
 #demo .mc-fit-guide .mc-native-page .mc-animation{top:62px!important;left:50%!important;width:208px!important;height:208px!important;transform:translateX(-50%)!important}
