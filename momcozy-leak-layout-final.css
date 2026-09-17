@@ -71,6 +71,7 @@
 #demo .r50-control .mc-inline-motion-current{opacity:1!important;transform:translateX(0)!important}
 #demo .r50-control .mc-inline-motion-legacy{display:grid!important;place-items:center!important;opacity:0!important;transform:translateX(104%)!important;pointer-events:none!important}
 #demo .r50-control .mc-inline-motion-legacy video{display:block!important;width:184px!important;height:164px!important;margin:0!important;object-fit:contain!important;object-position:center!important;mix-blend-mode:screen!important;filter:none!important;transform:translate(-7px,-4px)!important;transform-origin:center!important}
+#demo .r50-control.is-inline-leak .mc-inline-motion-legacy video{transform:translate(10px,-4px)!important}
 #demo .r50-control .mc-inline-motion-loop.is-showing-legacy .mc-inline-motion-legacy video{opacity:1!important;transition:opacity .48s ease!important}
 #demo .r50-control .mc-inline-motion-loop.is-showing-legacy.is-video-fading .mc-inline-motion-legacy video{opacity:0!important}
 #demo .r50-control .mc-inline-motion-loop.is-showing-legacy .mc-inline-motion-current{opacity:0!important;transform:translateX(-104%)!important}
@@ -94,6 +95,8 @@
 #demo .r50-guide.is-leak-check .r50-hardware{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
 #demo .r50-control.is-failure-preview .r50-guide.is-leak-check .r50-pump-unit.is-problem .r50-hardware,
 #demo .r50-control.is-inline-leak .r50-guide.is-leak-check .r50-pump-unit.is-problem .r50-hardware{animation:mc-leak-pump-light 3s cubic-bezier(.45,.05,.55,.95) var(--mc-leak-phase,0ms) infinite!important;will-change:filter}
+#demo .r50-control.is-inline-leak .r50-guide.is-leak-check .r50-pump-unit:not(.is-problem){opacity:.5!important;filter:brightness(.72) saturate(.62)!important}
+#demo .r50-control.is-inline-leak .r50-guide.is-leak-check .r50-pump-unit.is-problem{opacity:1!important;filter:none!important}
 @keyframes mc-leak-pump-light{0%,100%{filter:brightness(1.045) saturate(1.01) drop-shadow(0 0 3px rgba(255,238,244,.62)) drop-shadow(0 0 7px rgba(244,142,174,.24))}50%{filter:brightness(.91) saturate(.96) drop-shadow(0 0 0 rgba(255,238,244,0))}}
 @keyframes mc-leak-shape-light{0%,100%{opacity:.22;filter:brightness(1.16) saturate(.82) drop-shadow(0 0 3px rgba(255,236,242,.52)) drop-shadow(0 0 6px rgba(244,142,174,.22));transform:scale(1.065)}50%{opacity:.035;filter:brightness(1.02) saturate(.94) drop-shadow(0 0 1px rgba(255,226,235,.08));transform:scale(1)}}
 
