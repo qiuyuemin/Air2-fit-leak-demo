@@ -36,11 +36,28 @@
 #demo .r50-control .r50-fit-item.is-pending .r50-check-icon{border:1px solid rgba(255,255,255,.28)!important;background:transparent!important}
 #demo .r50-control .r50-guide{bottom:42px!important;height:220px!important}
 
-/* Reuse the original Air2 H5 wear-check motion: the complete right pump rotates as one unit. */
-.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right .r50-hardware{transform-origin:42% 56%!important;animation:mc-original-wear-cycle 2.25s var(--mc-wear-phase,0ms) infinite!important;will-change:transform!important;backface-visibility:hidden!important}
-.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right .r50-hardware img{animation:none!important;transform:none!important}
-.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.right .r50-angle-guide{animation:none!important;transform:none!important}
-@keyframes mc-original-wear-cycle{0%{transform:rotate(23deg);animation-timing-function:cubic-bezier(.2,.82,.28,1)}68%{transform:rotate(0deg);animation-timing-function:cubic-bezier(.75,0,1,.2)}100%{transform:rotate(23deg)}}
+/* Wear guidance mirrors the reference: only the problem pump rocks; its target stays still. */
+.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit .r50-hardware{animation:none!important;transform:none!important}
+.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.is-problem .r50-hardware{transform-origin:50% 58%!important;animation:mc-wear-rock 2.65s ease-in-out var(--mc-wear-phase,0ms) infinite alternate!important;will-change:transform!important;backface-visibility:hidden!important}
+.mc-stable-fit #demo .r50-guide.is-adjusting .r50-pump-unit.is-problem .r50-hardware img{animation:none!important;transform:none!important}
+.mc-stable-fit #demo .r50-guide.is-adjusting .r50-angle-guide{animation:none!important;transform:none!important}
+@keyframes mc-wear-rock{from{transform:rotate(-9deg)}to{transform:rotate(9deg)}}
+
+/* The status rail stays fixed while the guidance content cuts in horizontally. */
+#demo .r50-control .mc-fit-viewport{position:absolute!important;z-index:1!important;top:130px!important;right:18px!important;bottom:34px!important;left:18px!important;overflow:hidden!important}
+#demo .r50-control .mc-fit-pane{position:absolute!important;inset:0!important;overflow:hidden!important}
+#demo .r50-control .mc-fit-pane-adjust{animation:mc-fit-pane-in .46s cubic-bezier(.22,.8,.25,1) both!important}
+#demo .r50-control .mc-fit-viewport .r50-guide{top:2px!important;right:8px!important;bottom:auto!important;left:8px!important;height:174px!important}
+#demo .r50-control .mc-fit-viewport .r50-pump-unit{transform:scale(.82)!important}
+#demo .r50-control.is-inline-fit .r50-fit-head{position:relative!important;z-index:4!important}
+#demo .r50-control.is-inline-fit .r50-fit-copy{padding-right:66px!important}
+#demo .r50-control.is-inline-fit .r50-fit-copy>span{max-width:236px!important}
+#demo .r50-control .mc-inline-skip{position:absolute!important;top:0!important;right:0!important}
+#demo .r50-control .mc-inline-copy{position:absolute!important;right:12px!important;bottom:56px!important;left:12px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;color:#fff!important;text-align:center!important}
+#demo .r50-control .mc-inline-copy b{font-size:15px!important;line-height:20px!important}
+#demo .r50-control .mc-inline-copy span{color:rgba(255,255,255,.76)!important;font-size:11px!important;line-height:18px!important}
+#demo .r50-control .mc-inline-done{position:absolute!important;z-index:5!important;right:10px!important;bottom:5px!important;left:10px!important;height:39px!important;border:0!important;border-radius:21px!important;background:#fff!important;color:#85002b!important;font:600 12px/1 var(--font)!important;box-shadow:0 6px 18px rgba(42,0,15,.14)!important}
+@keyframes mc-fit-pane-in{from{opacity:.3;transform:translateX(44px)}to{opacity:1;transform:translateX(0)}}
 
 /* Leak check reads as gentle suction/release instead of mechanical motion. */
 #demo .r50-guide.is-leak-check .r50-pump-unit::before{position:absolute!important;z-index:3!important;top:-44px!important;left:-39px!important;display:block!important;width:180px!important;height:255px!important;background:url('./assets/air2-fit-glow/air2-l.svg') 0 0/180px 255px no-repeat!important;clip-path:inset(54px 27px 101px 53px)!important;mix-blend-mode:screen!important;transform-origin:57.22% 40.78%!important;content:""!important;pointer-events:none!important;animation:mc-leak-shape-light 3s cubic-bezier(.45,.05,.55,.95) var(--mc-leak-phase,0ms) infinite!important;will-change:opacity,filter,transform}
