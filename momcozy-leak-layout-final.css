@@ -75,7 +75,8 @@
 #demo .r50-control .mc-inline-motion-loop.is-showing-legacy .mc-inline-motion-legacy{opacity:1!important;transform:translateX(0)!important}
 #demo .r50-control.is-inline-fit .r50-fit-head{position:relative!important;z-index:4!important}
 #demo .r50-control.is-inline-fit .r50-fit-copy{width:100%!important;padding-right:0!important}
-#demo .r50-control.is-inline-fit .r50-fit-copy>span{max-width:none!important;white-space:nowrap!important;font-size:11px!important}
+#demo .r50-control.is-inline-fit .r50-fit-copy>span{display:none!important}
+#demo .r50-control.is-inline-fit .r50-fit-copy strong{height:auto!important;max-width:250px!important;line-height:24px!important}
 #demo .r50-control .mc-inline-skip{position:absolute!important;top:0!important;right:0!important}
 #demo .r50-control .mc-inline-copy{position:absolute!important;right:12px!important;bottom:56px!important;left:12px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;color:#fff!important;text-align:center!important}
 #demo .r50-control .mc-inline-copy b,#demo .r50-control .mc-inline-copy span{color:#fff!important;font-size:13px!important;font-weight:600!important;line-height:20px!important}
