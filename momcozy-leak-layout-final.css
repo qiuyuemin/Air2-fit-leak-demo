@@ -140,7 +140,7 @@
 #demo .mc-fit-guide .mc-native-page.mc-native-page-0 .mc-pages{top:auto!important;bottom:18px!important;align-items:center!important}
 #demo .mc-fit-guide .mc-native-page-1 .mc-guide-done{right:24px!important;bottom:10px!important;left:24px!important;width:auto!important;height:40px!important}
 
-#demo .mc-post-guide .mc-native-page .mc-video-title{top:74px!important;right:auto!important;left:50%!important;transform:translateX(-50%)!important;text-align:center!important}
+#demo .mc-post-guide .mc-native-page .mc-video-title{top:74px!important;right:0!important;left:0!important;width:100%!important;min-width:100%!important;transform:none!important;text-align:center!important}
 #demo .mc-post-guide .mc-native-page .mc-animation{top:140px!important;left:50%!important;width:270px!important;height:230px!important;transform:translateX(-50%)!important}
 #demo .mc-post-guide .mc-native-page-0 .mc-animation{top:144px!important;left:calc(50% + 9px)!important}
 #demo .mc-post-guide .mc-native-page .mc-video-copy{top:388px!important;right:20px!important;bottom:auto!important;left:20px!important;width:auto!important;height:57px!important;min-height:57px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;padding:0 20px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;text-align:center!important}
