@@ -108,11 +108,11 @@
 #demo .mc-running-leak-panel .mc-inline-skip{position:absolute!important;top:24px!important;right:24px!important}
 #demo .mc-running-leak-panel .mc-running-title{position:absolute!important;z-index:7!important;top:70px!important;right:24px!important;left:24px!important;display:block!important;color:#fff!important;font-size:18px!important;font-weight:600!important;line-height:24px!important;text-align:center!important}
 #demo .mc-running-leak-panel .mc-fit-viewport{top:104px!important;bottom:34px!important}
-#demo .mc-running-leak-panel .mc-fit-viewport .r50-guide{top:6px!important}
+#demo .mc-running-leak-panel .mc-fit-viewport .r50-guide{top:-7px!important;justify-content:center!important;gap:18px!important}
 #demo .mc-running-leak-panel .mc-inline-motion-loop{inset:0 0 49px!important}
 #demo .mc-running-leak-panel .mc-running-subtitle{position:absolute!important;z-index:6!important;right:18px!important;bottom:64px!important;left:18px!important;display:block!important;color:rgba(255,255,255,.82)!important;font-size:11px!important;font-weight:500!important;line-height:17px!important;text-align:center!important}
-#demo .mc-running-leak-panel .mc-inline-motion-legacy video{transform:translate(-7px,-16px)!important}
-#demo .mc-running-leak-panel.is-inline-leak .mc-inline-motion-legacy video{transform:translate(10px,-16px)!important}
+#demo .mc-running-leak-panel .mc-inline-motion-legacy video{transform:translate(-7px,-24px)!important}
+#demo .mc-running-leak-panel.is-inline-leak .mc-inline-motion-legacy video{transform:translate(10px,-24px)!important}
 #demo .mc-running-leak-panel .mc-inline-done{right:8px!important;bottom:2px!important;left:8px!important}
 @keyframes mc-leak-pump-light{0%,100%{filter:brightness(1.01) saturate(.99) drop-shadow(0 0 2px rgba(255,238,244,.42)) drop-shadow(0 0 6px rgba(244,142,174,.18))}50%{filter:brightness(.8) saturate(.9) drop-shadow(0 0 0 rgba(255,238,244,0))}}
 @keyframes mc-leak-shape-light{0%,100%{opacity:.18;filter:brightness(1.09) saturate(.84) drop-shadow(0 0 2px rgba(255,236,242,.38)) drop-shadow(0 0 5px rgba(244,142,174,.16));transform:scale(1.055)}50%{opacity:.012;filter:brightness(.96) saturate(.9) drop-shadow(0 0 0 rgba(255,226,235,0));transform:scale(1)}}
