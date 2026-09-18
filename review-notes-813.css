@@ -94,6 +94,16 @@
 #demo .r80-cloud-pink{right:-50%!important;bottom:-330%!important;width:128%!important;height:480%!important;opacity:.12!important;animation:r80-pink-drift 22s ease-in-out -8s infinite alternate!important}
 #demo .r80-cloud-indigo{right:-58%!important;bottom:-318%!important;width:134%!important;height:470%!important;opacity:.26!important;filter:brightness(1.3) saturate(.7);mix-blend-mode:screen;animation:r80-indigo-drift 18s ease-in-out -3s infinite alternate!important}
 #demo .r80-cloud-purple{right:-42%!important;bottom:-325%!important;width:132%!important;height:490%!important;opacity:.9!important;filter:saturate(.9) brightness(1.02);animation:r80-purple-drift 16s ease-in-out -6s infinite alternate!important}
+
+/* Expression mode rebuilds the control DOM after let-down confirmation. Keep
+   the neutral canvas as the real background and fade the new colour layers in,
+   so the rebuilt first frame does not flash from one gradient to another. */
+#demo .v4-control.expression{background:#f9f7f5!important;isolation:isolate}
+#demo .v4-control.expression::before{position:absolute;z-index:0;inset:0;display:block;background:linear-gradient(180deg,#ffdadd 0,#fff4c8 45%,#f9f7f5 72%);opacity:0;pointer-events:none;content:"";animation:r117-expression-canvas-in .9s cubic-bezier(.22,.61,.36,1) forwards}
+#demo .r54-expression>.r80-figma-cloud{opacity:0;animation:r117-expression-card-in .75s .08s ease-out forwards!important}
+@keyframes r117-expression-canvas-in{from{opacity:0}to{opacity:1}}
+@keyframes r117-expression-card-in{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){#demo .v4-control.expression::before,#demo .r54-expression>.r80-figma-cloud{animation-duration:.01ms!important;animation-delay:0s!important}}
 @keyframes r80-base-drift{from{transform:translate3d(7%,2%,0) rotate(-5deg) scale(1.02)}to{transform:translate3d(-13%,-3%,0) rotate(4deg) scale(1.08)}}
 @keyframes r80-pink-drift{from{transform:translate3d(4%,1%,0) rotate(5deg)}to{transform:translate3d(-15%,-4%,0) rotate(-5deg) scale(1.06)}}
 @keyframes r80-indigo-drift{from{transform:translate3d(8%,2%,0) rotate(-6deg) scale(1.02)}to{transform:translate3d(-14%,4%,0) rotate(5deg) scale(1.09)}}
