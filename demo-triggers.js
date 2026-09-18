@@ -1,5 +1,5 @@
 (function () {
-  if (window.Air2DemoTriggers && window.Air2DemoTriggers.version === 63) return;
+  if (window.Air2DemoTriggers && window.Air2DemoTriggers.version === 64) return;
   var CAP = 6.09;
   var BASE_FLOW = 0.002 * 28.3495;
   var DEMO_MILK_ACCEL = 0.6;
@@ -36,7 +36,10 @@
   function flowNow(s,side){
     var age, step, suffix=side==='r'?'R':'L', phase;
     if(!s) return BASE_FLOW;
-    phase=s['letdownPhase'+suffix]||s.letdownPhase||'baseline';
+    /* Each bowl owns its let-down state. Never inherit the session-wide phase:
+       one confirmed side sets that summary phase to active, which previously
+       promoted an uninitialised opposite side to high flow as well. */
+    phase=s['letdownPhase'+suffix]||'baseline';
     if(phase==='rising'){
       age=Math.max(0,Date.now()-(s['letdownEventAt'+suffix]||Date.now()));
       step=Math.floor(age/LETDOWN_STEP_MS);
@@ -66,7 +69,7 @@
   function criticalBattery(){ var s=st(), left=5, start=Date.now(), id=Date.now(); if(!s) return false; s.batteryL=3; s.batteryR=2; s.air2ShutdownAfterSave=true; s.air2CriticalBatteryActive=true; s.air2AutoSubmitPending=false; s.air2AutoSubmitCancelled=true; function setText(text){ var c=st(); if(!c||!c.air2CriticalBatteryActive) return; c.controlNotice={kind:'critical-battery',text:text,id:id,startedAt:start,duration:6500,backdrop:true,steady:true}; paint(); setTimeout(patchNotice,30); } function tick(){ if(left>=1){ setText('Battery is too low for this session. It will save and shut down in '+left+'s.'); left-=1; setTimeout(tick,1000); return; } setText('Please charge, see you later.'); setTimeout(function(){ var a=st(); if(!a) return; a.air2CriticalBatteryActive=false; a.controlNotice=null; captureSession(a); resetBasePlan(a); a.running=false; a.paused=false; a.modal='log'; a.air2SessionEnded=true; prepareSummaryLog(a); paint(); },1200); } tick(); return true; }
 
   function recordLetdown(s,side,type){if(!Array.isArray(s.air2LetdownEvents))s.air2LetdownEvents=[];s.air2LetdownEvents.push({side:side,type:type,at:Date.now(),second:Number(s.timer)||0,milk:side==='l'?(Number(s.milkL)||0):(Number(s.milkR)||0)});}
-  function trigger(id){ var s=st(), match, side, sides, suffix, sideName, now, i; if(!s) return false; s.lastIgnoredTrigger=''; if(id==='fit-ok') return fitOk(); if(!isActive(s)) return ignored(s,id); match=/^letdown-(start|end)-(l|r|both)$/.exec(id); if(match){side=match[2];sides=side==='both'?['l','r']:[side];sideName=side==='both'?'Both sides':side==='r'?'Right':'Left';now=Date.now();for(i=0;i<sides.length;i++){suffix=sides[i]==='r'?'R':'L';s['letdownPhase'+suffix]=match[1]==='start'?'rising':'falling';s['letdownEventAt'+suffix]=now;recordLetdown(s,sides[i],match[1])}s.letdownPhase=match[1]==='start'?'rising':s.letdownPhase;s.noMilkSince=null;s.manualEndSuggestionShown=false;if(match[1]==='start'){if(s.mode==='stimulation')s.air2ModeLetdownConfirmed=false;notify(s,'side-letdown',sideName+' let-down detected.',false)}else notify(s,'side-letdown',sideName+' let-down has ended.',false);paint();return true;} if(id==='air-leak'){ s.paused=true; s.severeLeak=true; s.leakSide='r'; s.leakAdjusting=true; s.flowRate=0; s.flowKind='paused'; s.controlNotice={kind:'leak',phase:'warning',text:'Air leak detected',id:Date.now()}; paint(); return true; } if(id==='low-battery'){ s.batteryL=12; s.batteryR=10; notify(s,'low-battery','Battery is running low. You can finish this session, then charge Air 2 soon.',false); paint(); return true; } if(id==='critical-battery') return criticalBattery(); if(id==='minor-leak'){ s.microLeakDuringSession=true; return true; } return false; }
+  function trigger(id){ var s=st(), match, side, sides, suffix, sideName, now, i; if(!s) return false; s.lastIgnoredTrigger=''; if(id==='fit-ok') return fitOk(); if(!isActive(s)) return ignored(s,id); match=/^letdown-(start|end)-(l|r|both)$/.exec(id); if(match){side=match[2];sides=side==='both'?['l','r']:[side];sideName=side==='both'?'Both sides':side==='r'?'Right':'Left';now=Date.now();if(!s.letdownPhaseL)s.letdownPhaseL='baseline';if(!s.letdownPhaseR)s.letdownPhaseR='baseline';for(i=0;i<sides.length;i++){suffix=sides[i]==='r'?'R':'L';s['letdownPhase'+suffix]=match[1]==='start'?'rising':'falling';s['letdownEventAt'+suffix]=now;recordLetdown(s,sides[i],match[1])}s.letdownPhase=match[1]==='start'?'rising':s.letdownPhase;s.noMilkSince=null;s.manualEndSuggestionShown=false;if(match[1]==='start'){if(s.mode==='stimulation')s.air2ModeLetdownConfirmed=false;notify(s,'side-letdown',sideName+' let-down detected.',false)}else notify(s,'side-letdown',sideName+' let-down has ended.',false);paint();return true;} if(id==='air-leak'){ s.paused=true; s.severeLeak=true; s.leakSide='r'; s.leakAdjusting=true; s.flowRate=0; s.flowKind='paused'; s.controlNotice={kind:'leak',phase:'warning',text:'Air leak detected',id:Date.now()}; paint(); return true; } if(id==='low-battery'){ s.batteryL=12; s.batteryR=10; notify(s,'low-battery','Battery is running low. You can finish this session, then charge Air 2 soon.',false); paint(); return true; } if(id==='critical-battery') return criticalBattery(); if(id==='minor-leak'){ s.microLeakDuringSession=true; return true; } return false; }
   document.addEventListener('pointerdown',function(e){ var finish=e.target.closest&&e.target.closest('#demo [data-v4="finish"],#demo [data-action="finish"]'), s=st(), abnormal; if(!finish||!s) return; abnormal=s.air2SessionSummaryKind==='severe'||s.air2SessionSummaryKind==='wear'; if(s.microLeakDuringSession) s.air2SessionSummaryKind='minor-leak'; else if(!abnormal) s.air2SessionSummaryKind='stable'; s.air2ShowSessionSummary=true; },true);
   document.addEventListener('click',function(e){ var done=e.target.closest&&e.target.closest('#demo [data-air2-logged-done]'), s=st(); if(!done||!s) return; e.preventDefault(); e.stopImmediatePropagation(); s.air2ShowLoggedSummary=false; var offline=!!s.air2ShutdownAfterSave; s.modal=null; s.running=false; s.paused=false; s.controlNotice=null; if(offline){ s.page='control'; s.air2Offline=true; } else { s.page='home'; } paint(); },true);
   document.addEventListener('click',function(e){ var guide=e.target.closest&&e.target.closest('#demo [data-air2-wear-guide]'); if(!guide) return; e.preventDefault(); e.stopImmediatePropagation(); var card=guide.closest('.air2-logged-summary'); if(card) card.classList.add('is-guide-open'); },true);
@@ -116,6 +119,6 @@
     host.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-demo-trigger]'); if(!b) return; e.preventDefault(); trigger(b.getAttribute('data-demo-trigger')); open(false);});
     sync();
   }
-  function boot(){ install(); wrapLogged(); wrapView(); mount(); window.Air2DemoTriggers={version:63,trigger:trigger,list:function(){return triggers;},sync:sync,physics:physics}; }
+  function boot(){ install(); wrapLogged(); wrapView(); mount(); window.Air2DemoTriggers={version:64,trigger:trigger,list:function(){return triggers;},sync:sync,physics:physics}; }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot(); setTimeout(boot,700); setTimeout(boot,1800);
 }());
