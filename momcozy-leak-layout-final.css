@@ -85,6 +85,7 @@
 #demo .r50-control.is-inline-fit .mc-subtitle-item>b{display:block!important;width:4px!important;height:4px!important;flex:0 0 4px!important;border-radius:50%!important;background:rgba(255,255,255,.82)!important}
 #demo .r50-control.is-inline-fit .r50-fit-copy strong{height:auto!important;max-width:250px!important;line-height:24px!important}
 #demo .r50-control .mc-inline-skip{position:absolute!important;top:0!important;right:0!important}
+#demo .r50-control [data-mc-fit-skip]{z-index:9999!important;pointer-events:auto!important;touch-action:manipulation!important;cursor:pointer!important}
 #demo .r50-control .mc-inline-copy{position:absolute!important;right:12px!important;bottom:56px!important;left:12px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;color:#fff!important;text-align:center!important}
 #demo .r50-control .mc-inline-copy b,#demo .r50-control .mc-inline-copy span{color:#fff!important;font-size:13px!important;font-weight:600!important;line-height:20px!important}
 #demo .r50-control .mc-inline-done{position:absolute!important;z-index:5!important;right:10px!important;bottom:5px!important;left:10px!important;height:39px!important;border:0!important;border-radius:21px!important;background:#fff!important;color:#85002b!important;font:600 12px/1 var(--font)!important;box-shadow:0 6px 18px rgba(42,0,15,.14)!important}
