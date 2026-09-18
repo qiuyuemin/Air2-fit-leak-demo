@@ -20,7 +20,12 @@
 #demo .c32-pump .c32-liquid{height:min(var(--liquid-height),94px)!important}
 #demo .c32-liquid[style*="--liquid-height:0px"]{display:none!important}
 #demo .c32-drops{top:8px!important;left:23px!important;width:45px!important;height:60px!important;overflow:hidden!important}
-#demo .c32-drops img{top:0!important;right:auto!important;left:calc(var(--drop-x) - 4.2px)!important;width:8.4px!important;height:11.2px!important;object-fit:contain!important;visibility:hidden;filter:drop-shadow(0 1px 1px rgba(255,255,255,.18));will-change:transform,opacity;animation-duration:2.4s!important;animation-timing-function:linear!important;animation-iteration-count:infinite!important;animation-delay:var(--drop-phase,0s)!important}
+#demo .c32-drops img{width:8.4px!important;height:11.2px!important;object-fit:contain!important;visibility:hidden;filter:drop-shadow(0 1px 1px rgba(255,255,255,.18));will-change:transform,opacity;animation-duration:2.4s!important;animation-timing-function:linear!important;animation-iteration-count:infinite!important;animation-delay:var(--drop-phase,0s)!important}
+#demo .c32-drops img:nth-child(1){top:0!important;right:auto!important;left:18px!important}
+#demo .c32-drops img:nth-child(2){top:15px!important;right:auto!important;left:9px!important}
+#demo .c32-drops img:nth-child(3){top:18px!important;right:8px!important;left:auto!important}
+#demo .c32-drops img:nth-child(4){top:29px!important;right:auto!important;left:11px!important}
+#demo .c32-drops img:nth-child(5){top:31px!important;right:10px!important;left:auto!important}
 #demo .c32-drops img:nth-child(1){animation-name:r130-drop-1!important}
 #demo .c32-drops img:nth-child(2){animation-name:r130-drop-2!important}
 #demo .c32-drops img:nth-child(3){animation-name:r130-drop-3!important}
