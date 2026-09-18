@@ -411,9 +411,8 @@
         vessel.classList.add('c32-flow-' + nextFlow);
         var oldDrops = vessel.querySelector('.c32-drops');
         var oldFlow = oldDrops ? (oldDrops.getAttribute('data-flow-kind') || '') : '';
-        if (oldDrops && oldFlow !== nextFlow) oldDrops.remove();
-        if (nextFlow !== 'none' && nextFlow !== 'paused' && (!oldDrops || oldFlow !== nextFlow)) {
-          var count = nextFlow === 'low' ? 1 : nextFlow === 'medium' ? 3 : 5;
+        if (nextFlow !== 'none' && nextFlow !== 'paused' && !oldDrops) {
+          var count = 5;
           var dropSide = pump.classList.contains('right') ? 'r' : 'l';
           var dropLanes = [50,40,60,45,55,35,65,43,52,58];
           var dropOffset = dropSide === 'r' ? 3 : 0;
@@ -426,11 +425,27 @@
             drop.alt = '';
             drop.style.setProperty('--drop', dropIndex);
             drop.style.setProperty('--drop-x', dropLanes[(dropIndex + dropOffset) % dropLanes.length] + '%');
-            drop.style.setProperty('--drop-delay', (-(dropIndex * (nextFlow === 'high' ? .19 : nextFlow === 'medium' ? .32 : .86) + (dropSide === 'r' ? .16 : 0))).toFixed(2) + 's');
             drops.appendChild(drop);
           }
           var clip = vessel.querySelector('.c32-liquid-clip');
           if (clip) clip.appendChild(drops);
+          oldDrops = drops;
+          oldFlow = nextFlow;
+        }
+        if (oldDrops && oldFlow !== nextFlow) {
+          oldDrops.setAttribute('data-desired-flow', nextFlow);
+          if (!oldDrops.__air2FlowBound) {
+            oldDrops.__air2FlowBound = true;
+            oldDrops.addEventListener('animationiteration', function (event) {
+              var node = event.currentTarget;
+              if (event.target !== node.firstElementChild) return;
+              var desired = node.getAttribute('data-desired-flow');
+              if (!desired || desired === node.getAttribute('data-flow-kind')) return;
+              node.className = node.className.replace(/c32-drops-(low|medium|high|none|paused)/g, '').replace(/\s+/g, ' ').trim();
+              node.classList.add('c32-drops-' + desired);
+              node.setAttribute('data-flow-kind', desired);
+            });
+          }
         }
       }
     });

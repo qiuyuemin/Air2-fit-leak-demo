@@ -20,14 +20,23 @@
 #demo .c32-pump .c32-liquid{height:min(var(--liquid-height),94px)!important}
 #demo .c32-liquid[style*="--liquid-height:0px"]{display:none!important}
 #demo .c32-drops{top:8px!important;left:23px!important;width:45px!important;height:60px!important;overflow:hidden!important}
-#demo .c32-drops img{width:8.4px!important;height:11.2px!important;object-fit:contain!important;filter:drop-shadow(0 1px 1px rgba(255,255,255,.18));will-change:transform,opacity}
-#demo .c32-drops-low img{animation:r53-drop-low 2.15s cubic-bezier(.35,.05,.7,.42) infinite!important}
-#demo .c32-drops-medium img{animation:r53-drop-medium 1.3s cubic-bezier(.35,.05,.7,.42) infinite!important;animation-delay:calc(var(--drop)*-.31s)!important}
-#demo .c32-drops-high img{animation:r53-drop-high .82s cubic-bezier(.35,.05,.7,.42) infinite!important;animation-delay:calc(var(--drop)*-.13s)!important}
+#demo .c32-drops img{top:0!important;right:auto!important;left:calc(var(--drop-x) - 4.2px)!important;width:8.4px!important;height:11.2px!important;object-fit:contain!important;visibility:hidden;filter:drop-shadow(0 1px 1px rgba(255,255,255,.18));will-change:transform,opacity;animation-duration:2.4s!important;animation-timing-function:linear!important;animation-iteration-count:infinite!important;animation-delay:0s!important}
+#demo .c32-drops img:nth-child(1){animation-name:r130-drop-1!important}
+#demo .c32-drops img:nth-child(2){animation-name:r130-drop-2!important}
+#demo .c32-drops img:nth-child(3){animation-name:r130-drop-3!important}
+#demo .c32-drops img:nth-child(4){animation-name:r130-drop-4!important}
+#demo .c32-drops img:nth-child(5){animation-name:r130-drop-5!important}
+#demo .c32-drops-low img:nth-child(1),#demo .c32-drops-medium img:nth-child(-n+3),#demo .c32-drops-high img{visibility:visible}
+#demo .c32-drops-none img,#demo .c32-drops-paused img{visibility:hidden!important}
 @keyframes r53-milk-wave{0%{transform:translateX(0) translateY(0)}50%{transform:translateX(16.666%) translateY(-1px)}100%{transform:translateX(33.333%) translateY(0)}}
 @keyframes r53-drop-low{0%,26%{opacity:0;transform:translate(0,-7px) scale(.76)}38%{opacity:.95}82%{opacity:.95}100%{opacity:0;transform:translate(1px,45px) scale(1)}}
 @keyframes r53-drop-medium{0%{opacity:0;transform:translateY(-9px) scale(.78)}14%{opacity:.95}78%{opacity:.95}100%{opacity:0;transform:translateY(43px) scale(1)}}
 @keyframes r53-drop-high{0%{opacity:0;transform:translateY(-8px) scale(.8)}12%{opacity:1}76%{opacity:1}100%{opacity:0;transform:translateY(39px) scale(1)}}
+@keyframes r130-drop-1{0%,8%{opacity:0;transform:translateY(-7px) scale(.76)}15%,76%{opacity:1}92%,100%{opacity:0;transform:translateY(45px) scale(1)}}
+@keyframes r130-drop-2{0%,17%{opacity:0;transform:translateY(-7px) scale(.76)}24%,76%{opacity:.96}92%,100%{opacity:0;transform:translateY(45px) scale(1)}}
+@keyframes r130-drop-3{0%,31%{opacity:0;transform:translateY(-7px) scale(.76)}38%,78%{opacity:.96}94%,100%{opacity:0;transform:translateY(45px) scale(1)}}
+@keyframes r130-drop-4{0%,45%{opacity:0;transform:translateY(-7px) scale(.76)}52%,80%{opacity:.94}96%,100%{opacity:0;transform:translateY(45px) scale(1)}}
+@keyframes r130-drop-5{0%,59%{opacity:0;transform:translateY(-7px) scale(.76)}66%,82%{opacity:.94}98%,100%{opacity:0;transform:translateY(45px) scale(1)}}
 
 @media (prefers-reduced-motion:reduce){#demo .c32-liquid svg,#demo .c32-drops img{animation:none!important}}
 
