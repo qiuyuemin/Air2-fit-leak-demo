@@ -412,7 +412,7 @@
         if (nextFlow !== 'none' && nextFlow !== 'paused' && (!oldDrops || oldFlow !== nextFlow)) {
           var count = nextFlow === 'low' ? 1 : nextFlow === 'medium' ? 3 : 5;
           var dropSide = pump.classList.contains('right') ? 'r' : 'l';
-          var dropLanes = [48,24,70,37,61,15,82,31,55,75];
+          var dropLanes = [49,42,56,46,53,39,60,44,51,57];
           var dropOffset = dropSide === 'r' ? 3 : 0;
           var drops = document.createElement('span');
           drops.className = 'c32-drops c32-drops-' + nextFlow + ' c32-drops-' + dropSide;
