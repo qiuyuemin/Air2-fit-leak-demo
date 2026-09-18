@@ -8,7 +8,7 @@ function c32Vessel(side,amount){
 }
 function c32Drops(flow,side){
   var count=flow==='low'?1:flow==='medium'?3:flow==='high'?5:0;
-  var lanes=[49,42,56,46,53,39,60,44,51,57],offset=side==='r'?3:0;
+  var lanes=[50,40,60,45,55,35,65,43,52,58],offset=side==='r'?3:0;
   return count?`<span class="c32-drops c32-drops-${flow} c32-drops-${side}" data-flow-kind="${flow}">${Array.from({length:count},function(_,i){var lane=lanes[(i+offset)%lanes.length],delay=-(i*(flow==='high'?.19:flow==='medium'?.32:.86)+(side==='r'?.16:0));return `<img src="./assets/figma-control-r15/milk-drop.svg" style="--drop:${i};--drop-x:${lane}%;--drop-delay:${delay.toFixed(2)}s" alt="">`;}).join('')}</span>`:'';
 }
 v4Hardware=function(side,amount){return state.running?c32Vessel(side,amount):c15Hardware(side,amount);};
