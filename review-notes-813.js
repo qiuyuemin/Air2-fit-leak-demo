@@ -268,7 +268,8 @@
      bowl once, then refreshed in-place by updateRunningControl below. */
   var r60Hardware = window.v4Hardware;
   function sideFlow(side) {
-    var rate = state.paused ? 0 : Math.max(0, Number(state.flowRate) || 0);
+    var sideRate = side === 'r' ? state.flowRateR : state.flowRateL;
+    var rate = state.paused ? 0 : Math.max(0, Number(sideRate == null ? state.flowRate : sideRate) || 0);
     return rate * (side === 'r' ? 1.018 : 1.015);
   }
   function sideFlowOz(side) { return sideFlow(side) / 28.3495; }
@@ -400,7 +401,8 @@
          stayed in its initial `none` state until the mode card rebuilt, so
          the first visible frame jumped straight from no drops to many. */
       var vessel = pump.querySelector('.c32-vessel');
-      var nextFlow = state.paused ? 'paused' : (state.flowKind || 'none');
+      var sideFlowKind = index === 0 ? state.flowKindL : state.flowKindR;
+      var nextFlow = state.paused ? 'paused' : (sideFlowKind || state.flowKind || 'none');
       if (vessel) {
         ['none','low','medium','high','paused'].forEach(function (kind) {
           vessel.classList.remove('c32-flow-' + kind);
