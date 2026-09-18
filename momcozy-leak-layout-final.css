@@ -118,9 +118,9 @@
 #demo .mc-running-leak-panel .mc-inline-done{z-index:9999!important;right:8px!important;bottom:2px!important;left:8px!important;pointer-events:auto!important;touch-action:manipulation!important;cursor:pointer!important}
 #demo .v4-control .c32-liquid-clip .c32-drops{position:absolute!important;z-index:4!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;overflow:hidden!important;pointer-events:none!important}
 #demo .v4-control .c32-liquid-clip .c32-drops img{position:absolute!important;top:-13px!important;left:var(--drop-x)!important;display:block!important;width:8px!important;height:11px!important;opacity:0;transform:translateX(-50%);animation-delay:var(--drop-delay)!important;filter:drop-shadow(0 1px 1px rgba(255,255,255,.2));will-change:transform,opacity}
-#demo .v4-control .c32-drops-low img{animation:mc-rain-drop-low 2.4s cubic-bezier(.35,.03,.72,.45) infinite!important}
-#demo .v4-control .c32-drops-medium img{animation:mc-rain-drop-medium 1.35s cubic-bezier(.32,.02,.72,.46) infinite!important}
-#demo .v4-control .c32-drops-high img{animation:mc-rain-drop-high 1.05s cubic-bezier(.3,.01,.7,.48) infinite!important}
+#demo .v4-control .c32-drops-low img{animation:mc-rain-drop-low 2.8s cubic-bezier(.35,.03,.72,.45) infinite!important}
+#demo .v4-control .c32-drops-medium img{animation:mc-rain-drop-medium 1.75s cubic-bezier(.32,.02,.72,.46) infinite!important}
+#demo .v4-control .c32-drops-high img{animation:mc-rain-drop-high 1.35s cubic-bezier(.3,.01,.7,.48) infinite!important}
 @keyframes mc-rain-drop-low{0%,26%{opacity:0;transform:translate(-50%,-5px) scale(.78)}36%,82%{opacity:.92}100%{opacity:0;transform:translate(-50%,72px) scale(1)}}
 @keyframes mc-rain-drop-medium{0%,10%{opacity:0;transform:translate(-50%,-5px) scale(.82)}18%,82%{opacity:.96}100%{opacity:0;transform:translate(-50%,78px) scale(1)}}
 @keyframes mc-rain-drop-high{0%,5%{opacity:0;transform:translate(-50%,-5px) scale(.85)}12%,84%{opacity:1}100%{opacity:0;transform:translate(-50%,82px) scale(1.02)}}
