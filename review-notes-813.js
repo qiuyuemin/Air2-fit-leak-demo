@@ -410,7 +410,7 @@
         var oldFlow = oldDrops ? (oldDrops.getAttribute('data-flow-kind') || '') : '';
         if (oldDrops && oldFlow !== nextFlow) oldDrops.remove();
         if (nextFlow !== 'none' && nextFlow !== 'paused' && (!oldDrops || oldFlow !== nextFlow)) {
-          var count = nextFlow === 'low' ? 2 : nextFlow === 'medium' ? 5 : 10;
+          var count = nextFlow === 'low' ? 1 : nextFlow === 'medium' ? 3 : 5;
           var dropSide = pump.classList.contains('right') ? 'r' : 'l';
           var dropLanes = [48,24,70,37,61,15,82,31,55,75];
           var dropOffset = dropSide === 'r' ? 3 : 0;
@@ -423,7 +423,7 @@
             drop.alt = '';
             drop.style.setProperty('--drop', dropIndex);
             drop.style.setProperty('--drop-x', dropLanes[(dropIndex + dropOffset) % dropLanes.length] + '%');
-            drop.style.setProperty('--drop-delay', (-(dropIndex * (nextFlow === 'high' ? .09 : nextFlow === 'medium' ? .19 : .72) + (dropSide === 'r' ? .13 : 0))).toFixed(2) + 's');
+            drop.style.setProperty('--drop-delay', (-(dropIndex * (nextFlow === 'high' ? .19 : nextFlow === 'medium' ? .32 : .86) + (dropSide === 'r' ? .16 : 0))).toFixed(2) + 's');
             drops.appendChild(drop);
           }
           var clip = vessel.querySelector('.c32-liquid-clip');
