@@ -20,7 +20,7 @@
 #demo .c32-pump .c32-liquid{height:min(var(--liquid-height),94px)!important}
 #demo .c32-liquid[style*="--liquid-height:0px"]{display:none!important}
 #demo .c32-drops{top:8px!important;left:23px!important;width:45px!important;height:60px!important;overflow:hidden!important}
-#demo .c32-drops img{top:0!important;right:auto!important;left:calc(var(--drop-x) - 4.2px)!important;width:8.4px!important;height:11.2px!important;object-fit:contain!important;visibility:hidden;filter:drop-shadow(0 1px 1px rgba(255,255,255,.18));will-change:transform,opacity;animation-duration:2.4s!important;animation-timing-function:linear!important;animation-iteration-count:infinite!important;animation-delay:0s!important}
+#demo .c32-drops img{top:0!important;right:auto!important;left:calc(var(--drop-x) - 4.2px)!important;width:8.4px!important;height:11.2px!important;object-fit:contain!important;visibility:hidden;filter:drop-shadow(0 1px 1px rgba(255,255,255,.18));will-change:transform,opacity;animation-duration:2.4s!important;animation-timing-function:linear!important;animation-iteration-count:infinite!important;animation-delay:var(--drop-phase,0s)!important}
 #demo .c32-drops img:nth-child(1){animation-name:r130-drop-1!important}
 #demo .c32-drops img:nth-child(2){animation-name:r130-drop-2!important}
 #demo .c32-drops img:nth-child(3){animation-name:r130-drop-3!important}

@@ -313,9 +313,9 @@
   animation: air2-warm-backdrop-in .65s cubic-bezier(.22,.61,.36,1) both !important;
   pointer-events: none !important;
 }
-#demo .v4-control.has-c36-notice.air2-notice-leaving::before{animation:air2-warm-backdrop-out 1.2s cubic-bezier(.4,0,.2,1) both!important}
-#demo .v4-control.has-c36-notice.air2-notice-leaving .c36-notice{animation:air2-notice-copy-out 1.05s ease both!important}
-#demo .v4-control.has-c36-notice.air2-notice-leaving .v4-pump-row{animation:air2-notice-pumps-return 1.2s cubic-bezier(.4,0,.2,1) both!important}
+#demo .v4-control.has-c36-notice.air2-notice-leaving::before{animation:air2-warm-backdrop-out 1.2s cubic-bezier(.4,0,.2,1) var(--notice-leave-delay,0s) both!important}
+#demo .v4-control.has-c36-notice.air2-notice-leaving .c36-notice{animation:air2-notice-copy-out 1.05s ease var(--notice-leave-delay,0s) both!important}
+#demo .v4-control.has-c36-notice.air2-notice-leaving .v4-pump-row{animation:air2-notice-pumps-return 1.2s cubic-bezier(.4,0,.2,1) var(--notice-leave-delay,0s) both!important}
 @keyframes air2-warm-backdrop-in{from{opacity:0}to{opacity:1}}
 @keyframes air2-warm-backdrop-out{from{opacity:1}to{opacity:0}}
 @keyframes air2-notice-copy-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}

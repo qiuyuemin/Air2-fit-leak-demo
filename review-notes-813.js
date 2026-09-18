@@ -402,7 +402,7 @@
          stayed in its initial `none` state until the mode card rebuilt, so
          the first visible frame jumped straight from no drops to many. */
       var vessel = pump.querySelector('.c32-vessel');
-      var sideFlowKind = index === 0 ? state.flowKindL : state.flowKindR;
+      var sideFlowKind = index === 0 ? (state.dropFlowKindL || state.flowKindL) : (state.dropFlowKindR || state.flowKindR);
       var nextFlow = state.paused ? 'paused' : (sideFlowKind || state.flowKind || 'none');
       if (vessel) {
         ['none','low','medium','high','paused'].forEach(function (kind) {
@@ -419,6 +419,7 @@
           var drops = document.createElement('span');
           drops.className = 'c32-drops c32-drops-' + nextFlow + ' c32-drops-' + dropSide;
           drops.setAttribute('data-flow-kind', nextFlow);
+          drops.style.setProperty('--drop-phase', (-Math.max(0, (Date.now() - (state.air2DropEpoch || Date.now())) % 2400) / 1000).toFixed(3) + 's');
           for (var dropIndex = 0; dropIndex < count; dropIndex += 1) {
             var drop = document.createElement('img');
             drop.src = './assets/figma-control-r15/milk-drop.svg';
@@ -433,19 +434,9 @@
           oldFlow = nextFlow;
         }
         if (oldDrops && oldFlow !== nextFlow) {
-          oldDrops.setAttribute('data-desired-flow', nextFlow);
-          if (!oldDrops.__air2FlowBound) {
-            oldDrops.__air2FlowBound = true;
-            oldDrops.addEventListener('animationiteration', function (event) {
-              var node = event.currentTarget;
-              if (event.target !== node.firstElementChild) return;
-              var desired = node.getAttribute('data-desired-flow');
-              if (!desired || desired === node.getAttribute('data-flow-kind')) return;
-              node.className = node.className.replace(/c32-drops-(low|medium|high|none|paused)/g, '').replace(/\s+/g, ' ').trim();
-              node.classList.add('c32-drops-' + desired);
-              node.setAttribute('data-flow-kind', desired);
-            });
-          }
+          oldDrops.className = oldDrops.className.replace(/c32-drops-(low|medium|high|none|paused)/g, '').replace(/\s+/g, ' ').trim();
+          oldDrops.classList.add('c32-drops-' + nextFlow);
+          oldDrops.setAttribute('data-flow-kind', nextFlow);
         }
       }
     });
