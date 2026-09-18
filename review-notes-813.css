@@ -37,11 +37,11 @@
 @keyframes r53-drop-low{0%,26%{opacity:0;transform:translate(0,-7px) scale(.76)}38%{opacity:.95}82%{opacity:.95}100%{opacity:0;transform:translate(1px,45px) scale(1)}}
 @keyframes r53-drop-medium{0%{opacity:0;transform:translateY(-9px) scale(.78)}14%{opacity:.95}78%{opacity:.95}100%{opacity:0;transform:translateY(43px) scale(1)}}
 @keyframes r53-drop-high{0%{opacity:0;transform:translateY(-8px) scale(.8)}12%{opacity:1}76%{opacity:1}100%{opacity:0;transform:translateY(39px) scale(1)}}
-@keyframes r130-drop-1{0%,8%{opacity:0;transform:translateY(-7px) scale(.76)}15%,76%{opacity:1}92%,100%{opacity:0;transform:translateY(45px) scale(1)}}
-@keyframes r130-drop-2{0%,17%{opacity:0;transform:translateY(-7px) scale(.76)}24%,76%{opacity:.96}92%,100%{opacity:0;transform:translateY(45px) scale(1)}}
-@keyframes r130-drop-3{0%,31%{opacity:0;transform:translateY(-7px) scale(.76)}38%,78%{opacity:.96}94%,100%{opacity:0;transform:translateY(45px) scale(1)}}
-@keyframes r130-drop-4{0%,45%{opacity:0;transform:translateY(-7px) scale(.76)}52%,80%{opacity:.94}96%,100%{opacity:0;transform:translateY(45px) scale(1)}}
-@keyframes r130-drop-5{0%,59%{opacity:0;transform:translateY(-7px) scale(.76)}66%,82%{opacity:.94}98%,100%{opacity:0;transform:translateY(45px) scale(1)}}
+@keyframes r130-drop-1{0%{opacity:0;transform:translateY(-7px) scale(.76)}8%{opacity:0}15%,76%{opacity:1}92%{opacity:0}100%{opacity:0;transform:translateY(45px) scale(1)}}
+@keyframes r130-drop-2{0%{opacity:0;transform:translateY(-7px) scale(.76)}17%{opacity:0}24%,76%{opacity:.96}92%{opacity:0}100%{opacity:0;transform:translateY(45px) scale(1)}}
+@keyframes r130-drop-3{0%{opacity:0;transform:translateY(-7px) scale(.76)}31%{opacity:0}38%,78%{opacity:.96}94%{opacity:0}100%{opacity:0;transform:translateY(45px) scale(1)}}
+@keyframes r130-drop-4{0%{opacity:0;transform:translateY(-7px) scale(.76)}45%{opacity:0}52%,80%{opacity:.94}96%{opacity:0}100%{opacity:0;transform:translateY(45px) scale(1)}}
+@keyframes r130-drop-5{0%{opacity:0;transform:translateY(-7px) scale(.76)}59%{opacity:0}66%,82%{opacity:.94}98%{opacity:0}100%{opacity:0;transform:translateY(45px) scale(1)}}
 
 @media (prefers-reduced-motion:reduce){#demo .c32-liquid svg,#demo .c32-drops img{animation:none!important}}
 
