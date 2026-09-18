@@ -33,6 +33,7 @@
 
 /* Three-stage Fit Check: battery, wearing fit, then leak check. */
 #demo .r50-control .r50-fit-head{height:72px!important;min-height:72px!important;overflow:hidden!important}
+#demo .r50-control .r50-fit-head{position:relative!important;z-index:4!important}
 #demo .r50-control .r50-fit-copy{width:100%!important;min-width:0!important}
 #demo .r50-control .r50-fit-copy strong{height:24px!important;line-height:24px!important}
 #demo .r50-control .r50-fit-copy>span{display:block!important;height:38px!important;max-width:286px!important;margin-top:4px!important;overflow:hidden!important;font-size:12px!important;line-height:17px!important}
