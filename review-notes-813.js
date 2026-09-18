@@ -111,6 +111,7 @@
     return true;
   };
   window.air2PaintRun = function () {
+    if (window.Air2DemoTriggers && typeof window.Air2DemoTriggers.physics === 'function') return window.Air2DemoTriggers.physics();
     if (!state.running || state.paused) return;
     var t = Number(state.timer) || 0, flow = window.air2FlowAt(t);
     /* Legacy timers may still attempt to force Expression. Until this state
