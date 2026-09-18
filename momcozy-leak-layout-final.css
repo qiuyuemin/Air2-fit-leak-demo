@@ -102,7 +102,7 @@
 #demo .r50-control.is-inline-leak .r50-guide.is-leak-check .r50-pump-unit.is-problem{opacity:1!important;filter:none!important}
 #demo .r50-control.is-inline-leak .r50-guide.is-leak-check .r50-pump-unit.is-problem .r50-hardware{animation:mc-leak-alert-flash .62s ease-in-out 0s 3 both!important}
 #demo .r50-control.is-inline-leak .r50-guide.is-leak-check .r50-pump-unit.is-problem::before{animation:mc-leak-alert-halo .62s ease-in-out 0s 3 both!important}
-@keyframes mc-leak-alert-flash{0%,100%{opacity:1;filter:brightness(1.02) saturate(.98) drop-shadow(0 0 2px rgba(255,236,243,.28))}50%{opacity:.5;filter:brightness(.65) saturate(.78) drop-shadow(0 0 0 rgba(255,236,243,0))}}
+@keyframes mc-leak-alert-flash{0%,100%{opacity:1;filter:brightness(1.02) saturate(.98) drop-shadow(0 0 2px rgba(255,236,243,.28))}50%{opacity:.32;filter:brightness(.48) saturate(.68) drop-shadow(0 0 0 rgba(255,236,243,0))}}
 @keyframes mc-leak-alert-halo{0%,100%{opacity:.3;filter:brightness(1.12) saturate(.82) drop-shadow(0 0 5px rgba(255,221,233,.45));transform:scale(1.045)}50%{opacity:.015;filter:brightness(.9) saturate(.82) drop-shadow(0 0 0 rgba(255,221,233,0));transform:scale(1)}}
 @keyframes mc-leak-pump-light{0%,100%{filter:brightness(1.01) saturate(.99) drop-shadow(0 0 2px rgba(255,238,244,.42)) drop-shadow(0 0 6px rgba(244,142,174,.18))}50%{filter:brightness(.8) saturate(.9) drop-shadow(0 0 0 rgba(255,238,244,0))}}
 @keyframes mc-leak-shape-light{0%,100%{opacity:.18;filter:brightness(1.09) saturate(.84) drop-shadow(0 0 2px rgba(255,236,242,.38)) drop-shadow(0 0 5px rgba(244,142,174,.16));transform:scale(1.055)}50%{opacity:.012;filter:brightness(.96) saturate(.9) drop-shadow(0 0 0 rgba(255,226,235,0));transform:scale(1)}}
