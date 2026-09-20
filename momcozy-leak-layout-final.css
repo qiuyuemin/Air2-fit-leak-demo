@@ -155,3 +155,12 @@
 #demo .r50-control .r50-fit-item{height:34px!important;grid-template-columns:18px minmax(0,1fr)!important;column-gap:8px!important;padding:0 12px!important;border-radius:18px!important;font-size:12px!important}
 #demo .r50-control .r50-check-icon{width:18px!important;height:18px!important}
 #demo .r50-control.is-inline-leak .mc-fit-viewport{top:112px!important}
+
+/* Minimized startup check lives in the session area, above the pump readout. */
+#demo .v4-control > .mc-fit-minimized{position:absolute;z-index:65;top:122px;left:50%;display:grid;width:166px;height:38px;place-items:center;overflow:hidden;border:0;border-radius:22px;background:#fff;color:#87233d;box-shadow:0 4px 20px rgba(111,21,54,.10);cursor:pointer;transform:translateX(-50%)}
+#demo .v4-control > .mc-fit-minimized::before{position:absolute;top:-110px;left:-110px;width:386px;height:258px;background:conic-gradient(from 0deg,transparent 0deg,rgba(255,188,207,.25) 235deg,#ba496e 300deg,#ffcfdf 325deg,transparent 360deg);content:"";animation:mc-fit-orbit 3.2s linear infinite}
+#demo .v4-control > .mc-fit-minimized::after{position:absolute;inset:2px;border-radius:20px;background:#fff9fb;content:""}
+#demo .v4-control > .mc-fit-minimized span{position:relative;z-index:1;font:600 13px/1 var(--font);letter-spacing:.1px}
+#demo .v4-control > .mc-fit-minimized:focus-visible{outline:2px solid #9b3152;outline-offset:3px}
+@keyframes mc-fit-orbit{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){#demo .v4-control > .mc-fit-minimized::before{animation:none}}
