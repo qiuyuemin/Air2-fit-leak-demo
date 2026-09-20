@@ -156,11 +156,11 @@
 #demo .r50-control .r50-check-icon{width:18px!important;height:18px!important}
 #demo .r50-control.is-inline-leak .mc-fit-viewport{top:112px!important}
 
-/* Minimized startup check lives in the session area, above the pump readout. */
-#demo .v4-control > .mc-fit-minimized{position:absolute;z-index:65;top:111px;left:50%;display:grid;width:150px;height:30px;place-items:center;overflow:hidden;border:0;border-radius:17px;background:#f9edf0;color:#81384b;box-shadow:0 2px 10px rgba(111,21,54,.06);cursor:pointer;transform:translateX(-50%)}
-#demo .v4-control > .mc-fit-minimized::before{position:absolute;inset:-80px;background:conic-gradient(transparent 0deg 278deg,#e8b9c6 296deg,#a34b68 316deg,#fff 331deg,#d9a0b2 344deg,transparent 360deg);content:"";animation:mc-fit-orbit 2.4s linear infinite}
-#demo .v4-control > .mc-fit-minimized::after{position:absolute;inset:1.5px;border-radius:16px;background:#fffaf9;content:""}
-#demo .v4-control > .mc-fit-minimized span{position:relative;z-index:1;font:600 12px/1 var(--font);letter-spacing:.1px}
+/* Match the existing leak notice slot while keeping the status interactive. */
+#demo .v4-control.has-mc-fit-minimized .v4-top>h1{visibility:hidden!important;opacity:0!important}
+#demo .v4-control > .mc-fit-minimized{position:absolute;z-index:65;top:63px;left:50%;display:grid;width:246px;height:66px;place-items:center;overflow:hidden;border:0;border-radius:24px;background:rgba(255,255,255,.68);color:#240f1b;box-shadow:0 8px 18px rgba(36,15,27,.08);backdrop-filter:blur(18px) saturate(1.08);-webkit-backdrop-filter:blur(18px) saturate(1.08);cursor:pointer;transform:translateX(-50%)}
+#demo .v4-control > .mc-fit-minimized::before{position:absolute;inset:-100px;background:conic-gradient(transparent 0deg 282deg,rgba(206,129,151,.45) 305deg,#a55370 321deg,#fff 334deg,rgba(206,129,151,.45) 349deg,transparent 360deg);content:"";animation:mc-fit-orbit 2.4s linear var(--mc-fit-orbit-delay,0ms) infinite}
+#demo .v4-control > .mc-fit-minimized::after{position:absolute;inset:2px;border-radius:22px;background:rgba(255,255,255,.88);content:""}
+#demo .v4-control > .mc-fit-minimized span{position:relative;z-index:1;font:500 12px/18px Arial,sans-serif;letter-spacing:.12px}
 #demo .v4-control > .mc-fit-minimized:focus-visible{outline:2px solid #9b3152;outline-offset:3px}
 @keyframes mc-fit-orbit{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){#demo .v4-control > .mc-fit-minimized::before{animation-duration:7s}}
