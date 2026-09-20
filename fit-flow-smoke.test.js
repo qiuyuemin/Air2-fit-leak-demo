@@ -9,6 +9,7 @@ function makeDemo() {
   let nextId = 1;
   const timers = new Map();
   const documentListeners = new Map();
+  const windowListeners = new Map();
   const state = {};
   const document = {
     readyState: 'loading',
@@ -20,7 +21,10 @@ function makeDemo() {
   };
   const window = {
     v4View() {},
-    addEventListener() {},
+    addEventListener(type, handler) {
+      if (!windowListeners.has(type)) windowListeners.set(type, []);
+      windowListeners.get(type).push(handler);
+    },
   };
   const context = vm.createContext({
     state, document, window, navigator: { maxTouchPoints: 0 },
@@ -46,7 +50,16 @@ function makeDemo() {
     }
     now = to;
   }
-  return { state, window, advance };
+  function inlineDone() {
+    const button = { dataset: { mc: 'fit-inline-done' } };
+    const event = {
+      target: { closest(selector) { return selector.includes('[data-mc="fit-inline-done"]') ? button : null; } },
+      preventDefault() {},
+      stopImmediatePropagation() {},
+    };
+    for (const handler of windowListeners.get('pointerdown') || []) handler(event);
+  }
+  return { state, window, advance, inlineDone };
 }
 
 {
@@ -65,6 +78,8 @@ function makeDemo() {
   assert.equal(demo.state.mcFitWear, 'done');
   demo.advance(16100);
   assert.equal(demo.state.modal, null);
+  demo.advance(16800);
+  assert.equal(demo.state.mcFitNoticePhase, 'monitoring');
 }
 
 {
@@ -89,10 +104,19 @@ function makeDemo() {
   demo.advance(3180);
   assert.equal(demo.state.mcFitWear, 'failed');
   assert.equal(demo.state.mcFitInline, 'wear');
+  assert.equal(demo.state.mcFitNoticePhase, 'failed');
+  assert.equal(demo.state.mcFitCollapsed, true);
   demo.advance(6000);
   assert.equal(demo.state.mcFitBattery, 'done');
   demo.advance(16000);
   assert.equal(demo.state.mcFitWear, 'failed');
+  assert.equal(demo.state.mcFitNoticePhase, 'failed');
+  demo.inlineDone();
+  assert.equal(demo.state.mcFitNoticeLeaving, true);
+  demo.advance(16850);
+  assert.equal(demo.state.mcFitNoticePhase, 'passed');
+  demo.advance(18650);
+  assert.equal(demo.state.mcFitNoticePhase, 'monitoring');
 }
 
 {
@@ -132,6 +156,12 @@ function makeDemo() {
   demo.advance(3980);
   assert.equal(demo.state.mcFitInline, 'leak');
   assert.equal(demo.state.paused, true);
+  assert.equal(demo.state.mcFitNoticePhase, 'failed');
+  demo.inlineDone();
+  demo.advance(4830);
+  assert.equal(demo.state.mcFitNoticePhase, 'passed');
+  demo.advance(6630);
+  assert.equal(demo.state.mcFitNoticePhase, 'monitoring');
 }
 
 console.log('Fit-check timing smoke tests passed.');
