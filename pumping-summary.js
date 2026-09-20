@@ -17,6 +17,7 @@
   function chart(s) {
     var samples = s.reviewFrozen ? null : s.psFlowSamples;
     var useLive = Array.isArray(samples) && samples.length > 1;
+    function speedZone(y) { return y > 394 ? 'low' : y > 346 ? 'medium' : 'high'; }
     function livePath(side) {
       var end = Math.max(1, Number(s.timer) || samples[samples.length - 1].second || 1);
       return samples.map(function(sample, i) {
@@ -29,15 +30,15 @@
     var labels = [0, 1, 2, 3, 4].map(function (n, i) { return '<text x="' + (42 + i * 83.25) + '" y="460" text-anchor="middle">' + (n * maxMinutes / 4).toFixed(maxMinutes < 4 ? 1 : 0) + '</text>'; }).join('');
     var events = Array.isArray(s.air2LetdownEvents) ? s.air2LetdownEvents : [];
     function markers(side, fallback) {
-      if (!useLive) return s.reviewFrozen ? fallback.map(function (p, i) { return '<g class="ps-marker ps-marker-'+side+'"><circle cx="'+p[0]+'" cy="'+p[1]+'" r="6"/><text x="'+p[0]+'" y="'+(p[1]+3)+'">'+(i+1)+'</text></g>'; }).join('') : '';
+      if (!useLive) return s.reviewFrozen ? fallback.map(function (p, i) { return '<g class="ps-marker ps-marker-'+side+' ps-zone-'+speedZone(p[1]+12)+'"><circle cx="'+p[0]+'" cy="'+p[1]+'" r="6"/><text x="'+p[0]+'" y="'+(p[1]+3)+'">'+(i+1)+'</text></g>'; }).join('') : '';
       return events.filter(function(event){return event.type==='start' && (event.side===side || event.side==='both')}).map(function(event,i){
         var second = Math.max(0,Number(event.second)||0),end=Math.max(1,Number(s.timer)||1),x=42+Math.min(1,second/end)*333;
         var sample = samples.reduce(function(best,item){return Math.abs(item.second-second)<Math.abs(best.second-second)?item:best},samples[0]);
         var y=430-Math.min(15,Math.max(0,Number(sample[side])||0)*60)/15*144;
-        return '<g class="ps-marker ps-marker-'+side+'"><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="6"/><text x="'+x.toFixed(1)+'" y="'+(y+3).toFixed(1)+'">'+(i+1)+'</text></g>';
+        return '<g class="ps-marker ps-marker-'+side+' ps-zone-'+speedZone(y+12)+'"><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="6"/><text x="'+x.toFixed(1)+'" y="'+(y+3).toFixed(1)+'">'+(i+1)+'</text></g>';
       }).join('');
     }
-    return '<svg class="ps-chart" viewBox="0 282 390 195" role="img" aria-label="Milk flow over time, left and right"><g class="ps-chart-grid"><path d="M42 298H375M42 346H375M42 394H375"/></g><g class="ps-chart-axis"><path d="M42 294V442H375M42 442V446M125.25 442V446M208.5 442V446M291.75 442V446M375 442V446"/></g><g class="ps-chart-labels"><text x="34" y="302" text-anchor="end">15</text><text x="34" y="350" text-anchor="end">10</text><text x="34" y="398" text-anchor="end">5</text><text x="34" y="446" text-anchor="end">0</text>'+labels+'<text x="375" y="475" text-anchor="end">Time (min)</text></g><path class="ps-flow-l" d="'+(useLive?livePath('l'):s.reviewFrozen?chartPaths.l:'M42 442H375')+'"/><path class="ps-flow-r" d="'+(useLive?livePath('r'):s.reviewFrozen?chartPaths.r:'M42 442H375')+'"/>'+markers('l',[[86,334],[196,351],[305,369]])+markers('r',[[108,305],[215,315],[325,357]])+'</svg>';
+    return '<svg class="ps-chart" viewBox="0 282 390 195" role="img" aria-label="Milk flow over time: blue below 5, teal from 5 to below 10, orange at 10 mL per minute or above; left solid, right dashed"><defs><linearGradient id="ps-flow-zones" gradientUnits="userSpaceOnUse" x1="0" y1="442" x2="0" y2="298"><stop offset="0%" stop-color="#5B8FD9"/><stop offset="33.333%" stop-color="#5B8FD9"/><stop offset="33.333%" stop-color="#379D89"/><stop offset="66.667%" stop-color="#379D89"/><stop offset="66.667%" stop-color="#E6A044"/><stop offset="100%" stop-color="#E6A044"/></linearGradient></defs><g class="ps-chart-grid"><path d="M42 298H375M42 346H375M42 394H375"/></g><g class="ps-chart-axis"><path d="M42 294V442H375M42 442V446M125.25 442V446M208.5 442V446M291.75 442V446M375 442V446"/></g><g class="ps-chart-labels"><text x="34" y="302" text-anchor="end">15</text><text x="34" y="350" text-anchor="end">10</text><text x="34" y="398" text-anchor="end">5</text><text x="34" y="446" text-anchor="end">0</text>'+labels+'<text x="375" y="475" text-anchor="end">Time (min)</text></g><path class="ps-flow-l" d="'+(useLive?livePath('l'):s.reviewFrozen?chartPaths.l:'M42 442H375')+'"/><path class="ps-flow-r" d="'+(useLive?livePath('r'):s.reviewFrozen?chartPaths.r:'M42 442H375')+'"/>'+markers('l',[[86,334],[196,351],[305,369]])+markers('r',[[108,305],[215,315],[325,357]])+'</svg>';
   }
   function render() {
     var s = state, left = Math.max(0, Number(s.milkL) || 0), right = Math.max(0, Number(s.milkR) || 0);
@@ -50,7 +51,7 @@
       '<header class="ps-header"><button class="ps-icon-button" type="button" data-v4="control" aria-label="Close">'+icon('close')+'</button><div><h1>Pumping Record</h1><span>'+date+'</span></div><button class="ps-icon-button" type="button" data-ps="delete" aria-label="Delete record">'+icon('trash')+'</button></header>'+
       '<div class="ps-total"><span>Total milk</span><strong data-ps-total>'+ (left + right).toFixed(1) +'</strong><span>oz</span></div>'+
       '<div class="ps-sides">'+['l','r'].map(function(side){var value=side==='l'?left:right;return '<button class="ps-side" type="button" data-ps="milk" data-side="'+side+'"><i class="ps-dot ps-dot-'+side+'"></i><span>'+(side==='l'?'Left':'Right')+'</span><strong data-ps-value="'+side+'">'+value.toFixed(1)+'</strong><small>oz</small>'+icon('edit')+'</button>'}).join('')+'</div>'+
-      '<section class="ps-process"><button class="ps-duration" type="button" data-ps="duration"><span>Duration</span><strong>'+duration(s.timer)+'</strong>'+icon('edit')+'</button><div class="ps-chart-head"><h2>Milk Flow</h2><div class="ps-filters" role="group" aria-label="Chart sides"><button class="is-active" type="button" data-ps-filter="all">All</button><button type="button" data-ps-filter="l"><i class="ps-dot ps-dot-l"></i>Left</button><button type="button" data-ps-filter="r"><i class="ps-dot ps-dot-r"></i>Right</button></div></div><p class="ps-rate">Flow rate (mL/min)</p>'+chart(s)+'<div class="ps-letdown"><b>Let-down</b><span><i class="ps-dot ps-dot-l"></i>Left <strong data-ps-count="l">'+count('l')+'</strong></span><em></em><span><i class="ps-dot ps-dot-r"></i>Right <strong data-ps-count="r">'+count('r')+'</strong></span></div></section>'+
+      '<section class="ps-process"><button class="ps-duration" type="button" data-ps="duration"><span>Duration</span><strong>'+duration(s.timer)+'</strong>'+icon('edit')+'</button><div class="ps-chart-head"><h2>Milk Flow</h2><div class="ps-filters" role="group" aria-label="Chart sides"><button class="is-active" type="button" data-ps-filter="all">All</button><button type="button" data-ps-filter="l"><i class="ps-side-line"></i>Left</button><button type="button" data-ps-filter="r"><i class="ps-side-line is-dashed"></i>Right</button></div></div><div class="ps-rate"><span>Flow rate (mL/min)</span><span class="ps-speed-key" aria-label="Color shows flow speed, not health status"><i class="ps-speed-low"></i>&lt;5 <i class="ps-speed-medium"></i>5–&lt;10 <i class="ps-speed-high"></i>≥10</span></div>'+chart(s)+'<div class="ps-letdown"><b>Let-down</b><span><i class="ps-side-line"></i>Left <strong data-ps-count="l">'+count('l')+'</strong></span><em></em><span><i class="ps-side-line is-dashed"></i>Right <strong data-ps-count="r">'+count('r')+'</strong></span></div></section>'+
       (problem?'<button class="ps-leak-note mc-severe-log-note" type="button" data-mc="log">'+icon('alert')+'<span>'+problem+'</span><u>Troubleshoot</u><b>›</b></button>':'')+
       '<button class="ps-save" type="button" data-v4="save">Confirm &amp; Save</button></section></div>';
   }
@@ -67,6 +68,10 @@
     s.psFlowSamples.push({second:second,l:Number(s.flowRateL)||0,r:Number(s.flowRateR)||0});
   },1000);
   if (state.reviewFrozen && state.reviewScreenId === 'log-amount') {
+    state.milkL = 1.7;
+    state.milkR = 2.2;
+    state.timer = 24 * 60 + 36;
+    state.air2SessionSummaryKind = 'severe';
     root.innerHTML = v4Control() + render();
   }
   document.addEventListener('click', function(event) {
