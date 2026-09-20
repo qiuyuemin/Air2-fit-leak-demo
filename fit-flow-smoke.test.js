@@ -59,7 +59,32 @@ function makeDemo() {
     };
     for (const handler of windowListeners.get('pointerdown') || []) handler(event);
   }
-  return { state, window, advance, inlineDone };
+  function severeTrigger() {
+    const button = { dataset: { demoTrigger: 'air-leak' } };
+    const event = { target: { closest(selector) { return selector.includes('[data-demo-trigger="air-leak"]') ? button : null; } } };
+    for (const handler of windowListeners.get('click') || []) handler(event);
+  }
+  return { state, window, advance, inlineDone, severeTrigger };
+}
+
+{
+  const demo = makeDemo();
+  demo.state.page = 'control';
+  demo.state.running = false;
+  demo.severeTrigger();
+  demo.advance(0);
+  assert.equal(demo.state.mcSevereLocked, undefined);
+  assert.equal(demo.state.mcLeakGuide, undefined);
+}
+
+{
+  const demo = makeDemo();
+  demo.state.page = 'control';
+  demo.state.running = true;
+  demo.severeTrigger();
+  demo.advance(0);
+  assert.equal(demo.state.mcSevereLocked, true);
+  assert.equal(demo.state.mcLeakGuide.context, 'running');
 }
 
 {
