@@ -16,7 +16,7 @@
   display: flex;
   box-sizing: border-box;
   width: 100%;
-  height: 68px;
+  height: 64px;
   align-items: center;
   justify-content: space-between;
   margin-top: -1px;
@@ -108,9 +108,9 @@
 #demo .r43-boost-card,
 #demo .r49-boost-card.r55-program-flow,
 #demo .r49-boost-card[data-r49-boost-state] {
-  height: 104px !important;
-  min-height: 104px !important;
-  max-height: 104px !important;
+  height: 100px !important;
+  min-height: 100px !important;
+  max-height: 100px !important;
 }
 
 #demo .r49-boost-card .r49-boost__phase { top: 55px !important; }
@@ -127,6 +127,12 @@
 #demo .r43-boost-card .r43-boost-program { top: 56px !important; height: 18px !important; border-radius: 9px !important; }
 #demo .r43-boost-card .r43-boost-program i { height: 18px !important; }
 #demo .v4-controls > .auto-switch-component + .v4-levels { margin-top: 16px !important; }
+
+/* Trim only card whitespace; preserve the 170px drag tracks and dose mapping. */
+#demo .v4-controls > .v4-levels {
+  height: 228px !important;
+  padding-bottom: 12px !important;
+}
 
 /* Active Auto Switch: keep internals basically unchanged; use a restrained
    moving edge-light to make the whole combined card feel "awake". */

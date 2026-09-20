@@ -2,7 +2,7 @@
   if (!document.querySelector('link[data-auto-switch-decoupled]')) {
     var styles = document.createElement('link');
     styles.rel = 'stylesheet';
-    styles.href = './auto-switch-decoupled.css?v=20260817-13';
+    styles.href = './auto-switch-decoupled.css?v=20260920-1';
     styles.setAttribute('data-auto-switch-decoupled', '');
     document.head.appendChild(styles);
   }

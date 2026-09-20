@@ -33,6 +33,11 @@
   z-index: 40 !important;
 }
 
+/* Make room above the live bowls without moving their internal readouts. */
+#demo .v4-control:not(.has-c36-notice) > .v4-pump-row {
+  top: 176px !important;
+}
+
 /*
  * The mode, level and speed cards form the only vertical scroll surface.
  * Extra bottom padding lets the final card clear the pinned action bar and
@@ -40,7 +45,7 @@
  */
 #demo .v4-control > .v4-controls {
   z-index: 50 !important;
-  top: 287px !important;
+  top: 299px !important;
   right: 0 !important;
   bottom: 0 !important;
   left: 0 !important;
