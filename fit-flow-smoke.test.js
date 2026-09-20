@@ -139,9 +139,9 @@ function makeDemo() {
   demo.advance(31800);
   assert.equal(demo.state.mcFitNoticeLeaving, true);
   assert.equal(demo.state.mcFitCollapsed, true);
-  demo.advance(32649);
+  demo.advance(32499);
   assert.equal(demo.state.mcFitCollapsed, true);
-  demo.advance(32650);
+  demo.advance(32500);
   assert.equal(demo.state.mcFitCollapsed, false);
 }
 
