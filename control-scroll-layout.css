@@ -33,9 +33,14 @@
   z-index: 40 !important;
 }
 
-/* Make room above the live bowls without moving their internal readouts. */
-#demo .v4-control:not(.has-c36-notice) > .v4-pump-row {
+/* Keep the live bowls fixed when notices enter or leave the session area. */
+#demo .v4-control > .v4-pump-row,
+#demo .v4-control.has-c36-notice > .v4-pump-row {
   top: 176px !important;
+}
+
+#demo .v4-control.has-c36-notice.air2-notice-leaving > .v4-pump-row {
+  animation: none !important;
 }
 
 /*
