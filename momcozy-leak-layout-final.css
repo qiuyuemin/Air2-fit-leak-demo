@@ -193,7 +193,6 @@
 @keyframes mc-fit-notice-out{0%{opacity:1;translate:0 0;scale:1}100%{opacity:0;translate:0 -68px;scale:.94}}
 @keyframes mc-fit-card-pushed{0%{opacity:1;translate:0 0}100%{opacity:0;translate:0 34px}}
 @keyframes mc-fit-card-replace{0%{opacity:0;translate:0 -58px}100%{opacity:1;translate:0 0}}
-@media(prefers-reduced-motion:reduce){#demo .v4-control > .r72-leak-notice.mc-fit-minimized.mc-fit-leaving,#demo .v4-control > .r72-leak-notice.mc-fit-minimized.mc-fit-previous,#demo .v4-control > .r72-leak-notice.mc-fit-minimized.mc-fit-replacing{animation-duration:.01ms!important}}
 @keyframes mc-fit-dots{0%,24%{content:'.'}25%,49%{content:'..'}50%,74%{content:'...'}75%,100%{content:''}}
 @keyframes mc-fit-subtitle-in{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
 @keyframes mc-fit-subtitle-out{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-8px)}}
