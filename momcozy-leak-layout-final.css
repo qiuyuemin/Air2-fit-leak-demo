@@ -205,3 +205,6 @@
 #demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy small{height:15px;margin:0;line-height:15px}
 #demo .v4-control > .mc-fit-minimized.is-monitoring .mc-fit-minimized-icon{background:#f2f2f3}
 #demo .v4-control > .mc-fit-minimized.is-monitoring .mc-fit-minimized-copy strong{font-size:10px;letter-spacing:-.1px}
+#demo .v4-control > .mc-fit-minimized.is-monitoring .mc-fit-minimized-copy{display:flex;height:36px;align-items:center}
+#demo .v4-control > .mc-fit-minimized.is-monitoring .mc-fit-minimized-copy strong{height:auto;line-height:17px}
+#demo .v4-control > .mc-fit-minimized.is-monitoring .mc-fit-subtitle{display:none}
