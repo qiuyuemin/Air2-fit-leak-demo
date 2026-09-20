@@ -31,7 +31,7 @@
 .mc-stable-fit #demo .r50-control:not(.is-failure-preview):not(.is-inline-fit) .r50-pump-unit .r50-hardware img{animation:none!important;transform:none!important;filter:none!important;box-shadow:none!important}
 .mc-stable-fit #demo .r50-control:not(.is-failure-preview):not(.is-inline-fit) .r50-angle-guide{display:none!important;animation:none!important}
 
-/* Three-stage Fit Check: battery, wearing fit, then leak check. */
+/* Startup card shows battery and wear; air-seal monitoring stays in the background. */
 #demo .r50-control .r50-fit-head{height:72px!important;min-height:72px!important;overflow:hidden!important}
 #demo .r50-control .r50-fit-head{position:relative!important;z-index:4!important}
 #demo .r50-control .r50-fit-copy{width:100%!important;min-width:0!important}
@@ -149,3 +149,9 @@
 #demo .mc-post-guide .mc-native-page .mc-pages{top:455px!important;right:0!important;bottom:auto!important;left:0!important;height:18px!important;margin:0!important}
 #demo .mc-post-guide .mc-native-page-1 .mc-guide-done{right:20px!important;bottom:25px!important;left:20px!important;width:auto!important;height:56px!important;border:0!important;border-radius:30px!important;background:linear-gradient(180deg,#75001f,#bd5a62)!important;box-shadow:0 8px 40px rgba(0,0,0,.12)!important;color:#fff!important;font-size:16px!important}
 @media (prefers-reduced-motion:reduce){#demo .mc-leak-guide .mc-native-page{transition:none!important}}
+
+/* The two visible startup checks share the full row, including the wear issue state. */
+#demo .r50-control .r50-fit-checks{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+#demo .r50-control .r50-fit-item{height:34px!important;grid-template-columns:18px minmax(0,1fr)!important;column-gap:8px!important;padding:0 12px!important;border-radius:18px!important;font-size:12px!important}
+#demo .r50-control .r50-check-icon{width:18px!important;height:18px!important}
+#demo .r50-control.is-inline-leak .mc-fit-viewport{top:112px!important}
