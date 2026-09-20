@@ -164,3 +164,21 @@
 #demo .v4-control > .mc-fit-minimized:focus-visible{outline:2px solid #9b3152;outline-offset:3px}
 @property --mc-fit-angle{syntax:"<angle>";inherits:false;initial-value:0deg}
 @keyframes mc-fit-orbit{to{--mc-fit-angle:360deg}}
+
+/* The minimized check uses the same two-line notice silhouette as an air-leak alert. */
+#demo .v4-control > .mc-fit-minimized{top:34px;left:50%;display:flex;width:258px;min-width:0;height:68px;align-items:center;justify-content:flex-start;gap:10px;padding:11px 13px;border:0;border-radius:25px;background:rgba(255,255,255,.96);color:#281b22;box-shadow:0 11px 28px rgba(57,27,34,.10);text-align:left}
+#demo .v4-control > .mc-fit-minimized::before{content:none;animation:none}
+#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-icon{position:relative;display:grid;width:21px;height:21px;flex:none;place-items:center;border-radius:50%;background:#8d2949;color:#fff;font:700 15px/1 Arial,sans-serif}
+#demo .v4-control > .mc-fit-minimized.is-failed .mc-fit-minimized-icon{background:#c76838}
+#demo .v4-control > .mc-fit-minimized.is-passed .mc-fit-minimized-icon{background:#426c60}
+#demo .v4-control > .mc-fit-minimized .mc-fit-status-spinner{display:block;width:13px;height:13px;border:2px solid rgba(255,255,255,.42);border-top-color:#fff;border-radius:50%;animation:mc-fit-status-spin .9s linear infinite}
+#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy{position:relative;z-index:1;display:block;min-width:0;font:normal 12px/1.3 Arial,sans-serif;letter-spacing:0;white-space:normal}
+#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy strong{display:block;color:#281b22;font-size:12px;font-weight:600;white-space:nowrap}
+#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy small{display:block;margin-top:4px;color:#746e73;font-size:10px;font-weight:400;white-space:nowrap}
+#demo .mc-fit-loading-dots{display:inline-flex;width:16px;justify-content:flex-start}
+#demo .mc-fit-loading-dots i{font-style:normal;opacity:.16;animation:mc-fit-dot 1.35s ease-in-out infinite}
+#demo .mc-fit-loading-dots i:nth-child(2){animation-delay:.2s}
+#demo .mc-fit-loading-dots i:nth-child(3){animation-delay:.4s}
+@keyframes mc-fit-dot{0%,65%,100%{opacity:.16}25%,45%{opacity:1}}
+@keyframes mc-fit-status-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){#demo .v4-control > .mc-fit-minimized .mc-fit-status-spinner,#demo .mc-fit-loading-dots i{animation:none;opacity:1}}

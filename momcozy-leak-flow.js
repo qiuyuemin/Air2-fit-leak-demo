@@ -96,7 +96,21 @@ fitPanel=function(){
 };
 function resumeLock(){var s=S(),b=document.querySelector('#demo [data-v4="pause"]');if(!s||!b)return;b.disabled=!!s.mcSevereLocked;b.classList.toggle('mc-resume-locked',!!s.mcSevereLocked);b.setAttribute('aria-disabled',s.mcSevereLocked?'true':'false')}
 function clearStaleLeakGuide(){var s=S();if(!s||!s.running||s.paused)return;s.severeLeak=false;s.leakAdjusting=false;s.leakSide=null;document.querySelectorAll('#demo .r97-leak-guide').forEach(function(n){n.remove()});document.querySelectorAll('#demo .r97-leak-adjusting').forEach(function(n){n.classList.remove('r97-leak-adjusting')})}
-function collapsedFitBadge(){var s=S(),control=document.querySelector('#demo .v4-control'),header=control&&control.querySelector('.v4-top'),phase,label,checking;if(!s||!header||!s.mcFitCollapsed||s.mcFitInline||control.querySelector('.mc-fit-minimized'))return;checking=s.modal==='fit';if(!checking&&!(s.mcFitStatus&&s.mcFitStatusUntil>Date.now()))return;control.classList.add('has-mc-fit-minimized');phase=-(Date.now()%2400);label=s.mcFitStatus||'Checking...';header.insertAdjacentHTML('afterend','<button class="mc-fit-minimized" type="button" style="--mc-fit-orbit-delay:'+phase+'ms" aria-label="'+label+(checking?'. Expand fit check':'')+'" '+(checking?'onclick="window.mcExpandFitCheck();return false"':'disabled')+'><span>'+label+'</span></button>')}
+function collapsedFitBadge(){
+  var s=S(),control=document.querySelector('#demo .v4-control'),header=control&&control.querySelector('.v4-top'),active,failed,passed,title,detail,icon;
+  if(!s||!header||!s.mcFitCollapsed||s.mcFitInline||control.querySelector('.mc-fit-minimized'))return;
+  active=s.modal==='fit';
+  if(!active&&!(s.mcFitStatus&&s.mcFitStatusUntil>Date.now()))return;
+  failed=s.mcFitWear==='failed'||s.mcFitStatus==='Air leak detected'||s.mcFitStatus==='Wear check failed';
+  passed=!failed&&s.mcFitBattery==='done'&&s.mcFitWear==='done';
+  title=failed?'Fit check failed':passed?'Fit check passed':'Checking<span class="mc-fit-loading-dots" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span>';
+  detail=failed?(s.mcFitStatus==='Air leak detected'?'Air leak detected. Opening guide':'Wear check failed. Opening guide'):
+    passed?'Battery and wear check passed':s.mcFitStatus==='Minor leak compensated'?'Minor leak compensated. Checks continue':
+    s.mcFitBattery==='done'?'Battery passed. Checking wear':s.mcFitWear==='done'?'Wear passed. Checking battery':'Checking battery and wear';
+  icon=failed?'×':passed?'✓':'<i class="mc-fit-status-spinner"></i>';
+  control.classList.add('has-mc-fit-minimized');
+  header.insertAdjacentHTML('afterend','<button class="mc-fit-minimized is-'+(failed?'failed':passed?'passed':'checking')+'" type="button" aria-label="'+(failed?'Fit check failed':passed?'Fit check passed':'Checking fit')+'. '+detail+(active?'. Expand fit check':'')+'" '+(active?'onclick="window.mcExpandFitCheck();return false"':'disabled')+'><span class="mc-fit-minimized-icon" aria-hidden="true">'+icon+'</span><span class="mc-fit-minimized-copy"><strong>'+title+'</strong><small>'+detail+'</small></span></button>');
+}
 function extra(){clearStaleLeakGuide();triggers();fitPanel();collapsedFitBadge();originalNotice();logNote();minor();guideView();bindGuideButtons();bindGuideNavigation();finalizeGuide();resumeLock();syncLeakSides()}
 function wrap(){if(typeof window.v4View!=='function'||window.v4View.__mc)return;var old=window.v4View;window.v4View=v4View=function(){var s=S(),panel=document.querySelector('#demo .r50-fit-panel');if(s&&s.modal==='fit'&&panel&&panel.dataset.mcFitKey===fitRenderKey(s)){var clock=document.querySelector('#demo .v4-time');if(clock&&typeof time==='function')clock.textContent=time(s.timer||0);triggers();resumeLock();syncLeakSides();return}old.apply(this,arguments);extra()};window.v4View.__mc=true;if(typeof view!=='undefined')view=window.v4View;extra()}
 window.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#demo [data-v4="start"],#demo [data-quick-start="start"]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();runFit()},true);
