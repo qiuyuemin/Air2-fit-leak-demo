@@ -156,55 +156,25 @@
 #demo .r50-control .r50-check-icon{width:18px!important;height:18px!important}
 #demo .r50-control.is-inline-leak .mc-fit-viewport{top:112px!important}
 
-/* Compact session status: the moving highlight is masked to the outline only. */
-#demo .v4-control > .mc-fit-minimized{position:absolute;z-index:65;top:104px;left:50%;display:grid;min-width:154px;height:31px;place-items:center;overflow:hidden;padding:0 15px;border:1px solid #e7ced6;border-radius:17px;background:rgba(255,255,255,.88);color:#693947;box-shadow:0 3px 11px rgba(36,15,27,.055);cursor:pointer;transform:translateX(-50%)}
-#demo .v4-control > .mc-fit-minimized::before{position:absolute;inset:0;padding:2px;border-radius:inherit;background:conic-gradient(from var(--mc-fit-angle),transparent 0deg 285deg,#d9a8b8 305deg,#9d4865 323deg,#fff 335deg,transparent 355deg);content:"";-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:mc-fit-orbit 2.4s linear var(--mc-fit-orbit-delay,0ms) infinite}
-#demo .v4-control > .mc-fit-minimized span{position:relative;z-index:1;font:500 12px/18px Arial,sans-serif;letter-spacing:.12px;white-space:nowrap}
-#demo .v4-control > .mc-fit-minimized:disabled{cursor:default}
-#demo .v4-control > .mc-fit-minimized:focus-visible{outline:2px solid #9b3152;outline-offset:3px}
-@property --mc-fit-angle{syntax:"<angle>";inherits:false;initial-value:0deg}
-@keyframes mc-fit-orbit{to{--mc-fit-angle:360deg}}
-
-/* The minimized check uses the same two-line notice silhouette as an air-leak alert. */
-#demo .v4-control > .mc-fit-minimized{top:34px;left:50%;display:flex;width:258px;min-width:0;height:68px;align-items:center;justify-content:flex-start;gap:10px;padding:11px 13px;border:0;border-radius:25px;background:rgba(255,255,255,.96);color:#281b22;box-shadow:0 11px 28px rgba(57,27,34,.10);text-align:left}
-#demo .v4-control > .mc-fit-minimized::before{content:none;animation:none}
-#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-icon{position:relative;display:grid;width:21px;height:21px;flex:none;place-items:center;border-radius:50%;background:#8d2949;color:#fff;font:700 15px/1 Arial,sans-serif}
-#demo .v4-control > .mc-fit-minimized.is-failed .mc-fit-minimized-icon{background:#c76838}
-#demo .v4-control > .mc-fit-minimized.is-passed .mc-fit-minimized-icon{background:#426c60}
-#demo .v4-control > .mc-fit-minimized .mc-fit-status-spinner{display:block;width:13px;height:13px;border:2px solid rgba(255,255,255,.42);border-top-color:#fff;border-radius:50%;animation:mc-fit-status-spin .9s linear infinite}
-#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy{position:relative;z-index:1;display:block;min-width:0;font:normal 12px/1.3 Arial,sans-serif;letter-spacing:0;white-space:normal}
-#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy strong{display:block;color:#281b22;font-size:12px;font-weight:600;white-space:nowrap}
-#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy small{display:block;margin-top:4px;color:#746e73;font-size:10px;font-weight:400;white-space:nowrap}
-#demo .mc-fit-loading-dots{display:inline-flex;width:16px;justify-content:flex-start}
-#demo .mc-fit-loading-dots i{font-style:normal;opacity:.16;animation:mc-fit-dot 1.35s ease-in-out infinite}
-#demo .mc-fit-loading-dots i:nth-child(2){animation-delay:.2s}
-#demo .mc-fit-loading-dots i:nth-child(3){animation-delay:.4s}
-@keyframes mc-fit-dot{0%,65%,100%{opacity:.16}25%,45%{opacity:1}}
-@keyframes mc-fit-status-spin{to{transform:rotate(360deg)}}
-@media(prefers-reduced-motion:reduce){#demo .v4-control > .mc-fit-minimized .mc-fit-status-spinner,#demo .mc-fit-loading-dots i{animation:none;opacity:1}}
-
-/* Keep the entire status card monochrome and animate real states, not a tinted static ring. */
-#demo .v4-control > .mc-fit-minimized{width:286px;max-width:calc(100% - 100px);height:68px;overflow:visible}
-#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-icon,#demo .v4-control > .mc-fit-minimized.is-failed .mc-fit-minimized-icon,#demo .v4-control > .mc-fit-minimized.is-passed .mc-fit-minimized-icon{background:#34343a;color:#fff}
-#demo .v4-control > .mc-fit-minimized.is-checking .mc-fit-minimized-icon{background:#f2f2f3}
-#demo .v4-control > .mc-fit-minimized .mc-fit-status-spinner{width:18px;height:18px;border:2.5px solid #b7b7bc;border-top-color:#303037;animation:mc-fit-status-spin .8s linear infinite!important}
-#demo .v4-control > .mc-fit-minimized.is-passed .mc-fit-minimized-icon{font-size:0}
-#demo .v4-control > .mc-fit-minimized.is-passed .mc-fit-minimized-icon::after{content:'✓';font-size:15px;animation:mc-fit-check-pop .45s cubic-bezier(.2,1.5,.35,1) both}
-#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy{flex:1}
-#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy small{overflow:hidden;text-overflow:ellipsis}
-#demo .v4-control > .mc-fit-minimized .mc-fit-subtitle{animation:mc-fit-subtitle-in .38s ease-out both}
+/* Fit status reuses the live r72 leak-notice frame and typography above. */
+#demo .v4-control > .r72-leak-notice.mc-fit-minimized{pointer-events:auto!important;cursor:pointer;animation:none!important;transform:translateX(-50%)!important}
+#demo .v4-control:has(.mc-fit-minimized) .v4-top>h1{visibility:hidden!important;opacity:0!important}
+#demo .v4-control > .r72-leak-notice.mc-fit-minimized:disabled{cursor:default}
+#demo .v4-control > .r72-leak-notice.mc-fit-minimized:focus-visible{outline:2px solid #34343a;outline-offset:2px}
+#demo .r72-leak-notice.mc-fit-minimized .r72-leak-line{padding-right:0}
+#demo .r72-leak-notice.mc-fit-minimized .r72-leak-line b{max-width:calc(100% - 28px)}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-minimized-icon{background:#34343a;color:#fff}
+#demo .r72-leak-notice.mc-fit-minimized.is-checking .mc-fit-minimized-icon,#demo .r72-leak-notice.mc-fit-minimized.is-monitoring .mc-fit-minimized-icon{background:#f2f2f3}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-status-spinner{display:block;width:13px;height:13px;border:2px solid #b7b7bc;border-top-color:#303037;border-radius:50%;animation:mc-fit-status-spin .8s linear infinite!important}
+#demo .r72-leak-notice.mc-fit-minimized.is-passed .mc-fit-minimized-icon{font-size:0}
+#demo .r72-leak-notice.mc-fit-minimized.is-passed .mc-fit-minimized-icon::after{content:'✓';font-size:12px;animation:mc-fit-check-pop .45s cubic-bezier(.2,1.5,.35,1) both}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-subtitle{animation:mc-fit-subtitle-in .38s ease-out both}
+#demo .r72-leak-notice.mc-fit-minimized.is-monitoring .r72-leak-line{height:100%;align-items:center}
+#demo .r72-leak-notice.mc-fit-minimized.is-monitoring .r72-leak-line b{max-width:calc(100% - 28px);white-space:normal;overflow:visible;line-height:18px}
+#demo .r72-leak-notice.mc-fit-minimized.is-monitoring .mc-fit-subtitle{display:none}
 #demo .mc-fit-loading-dots{display:inline-block;width:18px;vertical-align:baseline;font-size:0}
 #demo .mc-fit-loading-dots::after{content:'';font-size:12px;animation:mc-fit-dots 1.25s steps(1,end) infinite}
+@keyframes mc-fit-status-spin{to{transform:rotate(360deg)}}
 @keyframes mc-fit-dots{0%,24%{content:'.'}25%,49%{content:'..'}50%,74%{content:'...'}75%,100%{content:''}}
 @keyframes mc-fit-subtitle-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes mc-fit-check-pop{from{opacity:0;transform:scale(.3) rotate(-25deg)}to{opacity:1;transform:scale(1) rotate(0)}}
-
-/* Fixed text slots: changes animate inside a row without shifting either baseline. */
-#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy{display:grid;height:36px;grid-template-rows:17px 15px;row-gap:4px;align-content:start;align-self:center}
-#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy strong{height:17px;line-height:17px;overflow:hidden;text-overflow:clip}
-#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy small{height:15px;margin:0;line-height:15px}
-#demo .v4-control > .mc-fit-minimized.is-monitoring .mc-fit-minimized-icon{background:#f2f2f3}
-#demo .v4-control > .mc-fit-minimized.is-monitoring .mc-fit-minimized-copy strong{font-size:10px;letter-spacing:-.1px}
-#demo .v4-control > .mc-fit-minimized.is-monitoring .mc-fit-minimized-copy{display:flex;height:36px;align-items:center}
-#demo .v4-control > .mc-fit-minimized.is-monitoring .mc-fit-minimized-copy strong{height:auto;line-height:17px}
-#demo .v4-control > .mc-fit-minimized.is-monitoring .mc-fit-subtitle{display:none}
