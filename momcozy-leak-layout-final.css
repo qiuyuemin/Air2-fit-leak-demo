@@ -158,11 +158,14 @@
 
 /* Fit status reuses the live r72 leak-notice frame and typography above. */
 #demo .v4-control > .r72-leak-notice.mc-fit-minimized{pointer-events:auto!important;cursor:pointer;animation:none!important;transform:translateX(-50%)!important}
+#demo .v4-control > .r72-leak-notice.mc-fit-minimized.mc-fit-entering{animation:mc-fit-notice-in .42s cubic-bezier(.22,.8,.24,1) var(--mc-fit-motion-delay,0ms) both!important}
+#demo .v4-control > .r72-leak-notice.mc-fit-minimized.mc-fit-leaving{pointer-events:none!important;animation:mc-fit-notice-out .46s cubic-bezier(.55,0,.78,.3) var(--mc-fit-motion-delay,0ms) both!important}
 #demo .v4-control:has(.mc-fit-minimized) .v4-top>h1{visibility:hidden!important;opacity:0!important}
 #demo .v4-control > .r72-leak-notice.mc-fit-minimized:disabled{cursor:default}
 #demo .v4-control > .r72-leak-notice.mc-fit-minimized:focus-visible{outline:2px solid #34343a;outline-offset:2px}
-#demo .r72-leak-notice.mc-fit-minimized .r72-leak-line{padding-right:0}
+#demo .r72-leak-notice.mc-fit-minimized .r72-leak-line{padding-right:0;padding-left:28px}
 #demo .r72-leak-notice.mc-fit-minimized .r72-leak-line b{max-width:calc(100% - 28px)}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-minimized-icon{position:absolute;top:0;left:0}
 #demo .r72-leak-notice.mc-fit-minimized .mc-fit-minimized-icon{background:#8d3c58;color:#fff}
 #demo .r72-leak-notice.mc-fit-minimized.is-checking .mc-fit-minimized-icon,#demo .r72-leak-notice.mc-fit-minimized.is-monitoring .mc-fit-minimized-icon{background:#f8edf1}
 #demo .r72-leak-notice.mc-fit-minimized.is-failed .mc-fit-minimized-icon{background:#ed8b29}
@@ -170,14 +173,20 @@
 #demo .r72-leak-notice.mc-fit-minimized .mc-fit-check-icon,#demo .r72-leak-notice.mc-fit-minimized .mc-fit-monitor-icon{display:block;width:15px;height:15px;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 #demo .r72-leak-notice.mc-fit-minimized .mc-fit-check-icon path{stroke-dasharray:19;stroke-dashoffset:19;animation:mc-fit-check-draw .52s ease-out .08s forwards}
 #demo .r72-leak-notice.mc-fit-minimized .mc-fit-monitor-icon{color:#8d3c58;stroke-width:1.7}
-#demo .r72-leak-notice.mc-fit-minimized .mc-fit-subtitle{animation:mc-fit-subtitle-in .42s cubic-bezier(.22,.8,.24,1) both}
-#demo .r72-leak-notice.mc-fit-minimized .mc-fit-subtitle-exit{position:absolute;top:33px;left:13px;pointer-events:none;animation:mc-fit-subtitle-out .32s ease-in both}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-subtitle-enter{animation:mc-fit-subtitle-in .42s cubic-bezier(.22,.8,.24,1) var(--mc-fit-subtitle-delay,0ms) both}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-subtitle-exit{position:absolute;top:33px;left:13px;pointer-events:none;animation:mc-fit-subtitle-out .32s ease-in var(--mc-fit-subtitle-delay,0ms) both}
+#demo .r72-leak-notice.mc-fit-minimized.is-passed .r72-leak-line{height:100%;align-items:center;justify-content:center;padding-left:0}
+#demo .r72-leak-notice.mc-fit-minimized.is-passed .mc-fit-minimized-icon{position:static}
+#demo .r72-leak-notice.mc-fit-minimized.is-passed .r72-leak-line b{max-width:none}
+#demo .r72-leak-notice.mc-fit-minimized.is-passed .mc-fit-subtitle{display:none}
 #demo .r72-leak-notice.mc-fit-minimized.is-monitoring .r72-leak-line{height:100%;align-items:center}
 #demo .r72-leak-notice.mc-fit-minimized.is-monitoring .r72-leak-line b{max-width:calc(100% - 28px);white-space:normal;overflow:visible;line-height:18px}
 #demo .r72-leak-notice.mc-fit-minimized.is-monitoring .mc-fit-subtitle{display:none}
 #demo .mc-fit-loading-dots{display:inline-block;width:18px;vertical-align:baseline;font-size:0}
 #demo .mc-fit-loading-dots::after{content:'';font-size:12px;animation:mc-fit-dots 1.25s steps(1,end) infinite}
 @keyframes mc-fit-status-spin{to{transform:rotate(360deg)}}
+@keyframes mc-fit-notice-in{from{opacity:0;translate:0 -18px;clip-path:inset(0 0 100% 0 round 24px)}to{opacity:1;translate:0 0;clip-path:inset(0 0 0 0 round 24px)}}
+@keyframes mc-fit-notice-out{from{opacity:1;translate:0 0;clip-path:inset(0 0 0 0 round 24px)}to{opacity:0;translate:0 -18px;clip-path:inset(0 0 100% 0 round 24px)}}
 @keyframes mc-fit-dots{0%,24%{content:'.'}25%,49%{content:'..'}50%,74%{content:'...'}75%,100%{content:''}}
 @keyframes mc-fit-subtitle-in{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
 @keyframes mc-fit-subtitle-out{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-8px)}}
