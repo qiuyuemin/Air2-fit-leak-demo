@@ -89,6 +89,9 @@
 
 .demo-trigger-content { max-height: min(540px, calc(100vh - 188px)); overflow: auto; padding: 12px; }
 .demo-trigger-group + .demo-trigger-group { margin-top: 12px; }
+.demo-trigger-content [hidden] { display: none !important; }
+.mc-letdown-picker { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; padding: 3px 4px; color: #4b383d; font-size: 14px; }
+.mc-letdown-picker select { min-width: 88px; padding: 5px 8px; border: 1px solid rgba(117,80,92,.25); border-radius: 8px; background: white; color: #4b383d; font: inherit; }
 
 .demo-trigger-group h3 {
   margin: 0 0 8px;
