@@ -1,5 +1,6 @@
 /* Editable end-of-session sheet, based on the supplied 402 × 630 SVG. */
 (function () {
+  var activeFilter = 'all';
   var chartPaths = {
     l: 'M42 442C53 436 61 405 70 378C77 355 80 346 86 346C94 346 98 374 109 391C123 412 137 439 149 439C163 439 173 406 182 382C188 365 193 363 196 363C206 363 211 391 222 408C233 427 246 440 258 440C272 440 283 412 292 395C298 383 304 380 309 383C320 389 328 412 338 421C353 434 364 439 375 442',
     r: 'M42 442C59 440 71 414 82 383C93 355 102 317 108 317C116 317 122 365 134 391C147 420 153 439 165 439C180 439 188 403 198 368C204 347 209 327 215 327C225 327 235 379 246 406C255 429 264 440 275 440C289 440 301 406 312 385C319 370 323 367 328 370C340 378 346 409 355 423C363 434 370 439 375 442'
@@ -47,11 +48,11 @@
     var problem = s.air2SessionSummaryKind === 'severe' ? 'Significant air leak detected' : s.air2SessionSummaryKind === 'wear' ? 'Pump fit issue detected' : '';
     var events = Array.isArray(s.air2LetdownEvents) ? s.air2LetdownEvents : [];
     function count(side) { return s.reviewFrozen ? 3 : events.filter(function(event){return event.type==='start' && (event.side===side || event.side==='both')}).length; }
-    return '<div class="v4-overlay ps-overlay"><section class="v4-log ps-sheet" aria-label="Pumping record">' +
+    return '<div class="v4-overlay ps-overlay"><section class="v4-log ps-sheet" data-filter="'+activeFilter+'" aria-label="Pumping record">' +
       '<header class="ps-header"><button class="ps-icon-button" type="button" data-v4="control" aria-label="Close">'+icon('close')+'</button><div><h1>Pumping Record</h1><span>'+date+'</span></div><button class="ps-icon-button" type="button" data-ps="delete" aria-label="Delete record">'+icon('trash')+'</button></header>'+
       '<div class="ps-total"><span>Total milk</span><strong data-ps-total>'+ (left + right).toFixed(1) +'</strong><span>oz</span></div>'+
       '<div class="ps-sides">'+['l','r'].map(function(side){var value=side==='l'?left:right;return '<button class="ps-side" type="button" data-ps="milk" data-side="'+side+'"><i class="ps-dot ps-dot-'+side+'"></i><span>'+(side==='l'?'Left':'Right')+'</span><strong data-ps-value="'+side+'">'+value.toFixed(1)+'</strong><small>oz</small>'+icon('edit')+'</button>'}).join('')+'</div>'+
-      '<section class="ps-process"><button class="ps-duration" type="button" data-ps="duration"><span>Duration</span><strong>'+duration(s.timer)+'</strong>'+icon('edit')+'</button><div class="ps-chart-head"><h2>Milk Flow</h2><div class="ps-filters" role="group" aria-label="Chart sides"><button class="is-active" type="button" data-ps-filter="all">All</button><button type="button" data-ps-filter="l"><i class="ps-side-line"></i>Left</button><button type="button" data-ps-filter="r"><i class="ps-side-line is-dashed"></i>Right</button></div></div><div class="ps-rate"><span>Flow rate (mL/min)</span><span class="ps-speed-key" aria-label="Color shows flow speed, not health status"><i class="ps-speed-low"></i>&lt;5 <i class="ps-speed-medium"></i>5–&lt;10 <i class="ps-speed-high"></i>≥10</span></div>'+chart(s)+'<div class="ps-letdown"><b>Let-down</b><span><i class="ps-side-line"></i>Left <strong data-ps-count="l">'+count('l')+'</strong></span><em></em><span><i class="ps-side-line is-dashed"></i>Right <strong data-ps-count="r">'+count('r')+'</strong></span></div></section>'+
+      '<section class="ps-process"><button class="ps-duration" type="button" data-ps="duration"><span>Duration</span><strong>'+duration(s.timer)+'</strong>'+icon('edit')+'</button><div class="ps-chart-head"><h2>Milk Flow</h2><div class="ps-filters" role="group" aria-label="Chart sides">'+[['all','All',''],['l','Left','<i class="ps-side-line"></i>'],['r','Right','<i class="ps-side-line is-dashed"></i>']].map(function(item){return '<button class="'+(activeFilter===item[0]?'is-active':'')+'" type="button" data-ps-filter="'+item[0]+'" aria-pressed="'+(activeFilter===item[0])+'">'+item[2]+item[1]+'</button>'}).join('')+'</div></div><div class="ps-rate"><span>Flow rate (mL/min)</span><span class="ps-speed-key" aria-label="Color shows flow speed, not health status"><i class="ps-speed-low"></i>&lt;5 <i class="ps-speed-medium"></i>5–&lt;10 <i class="ps-speed-high"></i>≥10</span></div>'+chart(s)+'<div class="ps-letdown"><b>Let-down</b><span data-ps-detail="l"><i class="ps-side-line"></i>Left <strong data-ps-count="l">'+count('l')+'</strong></span><em></em><span data-ps-detail="r"><i class="ps-side-line is-dashed"></i>Right <strong data-ps-count="r">'+count('r')+'</strong></span></div></section>'+
       (problem?'<button class="ps-leak-note mc-severe-log-note" type="button" data-mc="log">'+icon('alert')+'<span>'+problem+'</span><u>Troubleshoot</u><b>›</b></button>':'')+
       '<button class="ps-save" type="button" data-v4="save">Confirm &amp; Save</button></section></div>';
   }
@@ -80,8 +81,9 @@
     event.preventDefault(); event.stopImmediatePropagation();
     if (button.dataset.psFilter) {
       var filter = button.dataset.psFilter, sheet = button.closest('.ps-sheet');
+      activeFilter = filter;
       sheet.dataset.filter = filter;
-      sheet.querySelectorAll('[data-ps-filter]').forEach(function(item){item.classList.toggle('is-active',item.dataset.psFilter===filter)});
+      sheet.querySelectorAll('[data-ps-filter]').forEach(function(item){var selected=item.dataset.psFilter===filter;item.classList.toggle('is-active',selected);item.setAttribute('aria-pressed',String(selected))});
       return;
     }
     if (button.dataset.ps === 'milk') {
