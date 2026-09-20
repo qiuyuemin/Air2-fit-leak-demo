@@ -163,12 +163,15 @@
 #demo .v4-control > .r72-leak-notice.mc-fit-minimized:focus-visible{outline:2px solid #34343a;outline-offset:2px}
 #demo .r72-leak-notice.mc-fit-minimized .r72-leak-line{padding-right:0}
 #demo .r72-leak-notice.mc-fit-minimized .r72-leak-line b{max-width:calc(100% - 28px)}
-#demo .r72-leak-notice.mc-fit-minimized .mc-fit-minimized-icon{background:#34343a;color:#fff}
-#demo .r72-leak-notice.mc-fit-minimized.is-checking .mc-fit-minimized-icon,#demo .r72-leak-notice.mc-fit-minimized.is-monitoring .mc-fit-minimized-icon{background:#f2f2f3}
-#demo .r72-leak-notice.mc-fit-minimized .mc-fit-status-spinner{display:block;width:13px;height:13px;border:2px solid #b7b7bc;border-top-color:#303037;border-radius:50%;animation:mc-fit-status-spin .8s linear infinite!important}
-#demo .r72-leak-notice.mc-fit-minimized.is-passed .mc-fit-minimized-icon{font-size:0}
-#demo .r72-leak-notice.mc-fit-minimized.is-passed .mc-fit-minimized-icon::after{content:'✓';font-size:12px;animation:mc-fit-check-pop .45s cubic-bezier(.2,1.5,.35,1) both}
-#demo .r72-leak-notice.mc-fit-minimized .mc-fit-subtitle{animation:mc-fit-subtitle-in .38s ease-out both}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-minimized-icon{background:#8d3c58;color:#fff}
+#demo .r72-leak-notice.mc-fit-minimized.is-checking .mc-fit-minimized-icon,#demo .r72-leak-notice.mc-fit-minimized.is-monitoring .mc-fit-minimized-icon{background:#f8edf1}
+#demo .r72-leak-notice.mc-fit-minimized.is-failed .mc-fit-minimized-icon{background:#ed8b29}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-status-spinner{display:block;width:13px;height:13px;border:2px solid #d8b4c1;border-top-color:#8d3c58;border-radius:50%;animation:mc-fit-status-spin .8s linear infinite!important}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-check-icon,#demo .r72-leak-notice.mc-fit-minimized .mc-fit-monitor-icon{display:block;width:15px;height:15px;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-check-icon path{stroke-dasharray:19;stroke-dashoffset:19;animation:mc-fit-check-draw .52s ease-out .08s forwards}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-monitor-icon{color:#8d3c58;stroke-width:1.7}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-subtitle{animation:mc-fit-subtitle-in .42s cubic-bezier(.22,.8,.24,1) both}
+#demo .r72-leak-notice.mc-fit-minimized .mc-fit-subtitle-exit{position:absolute;top:33px;left:13px;pointer-events:none;animation:mc-fit-subtitle-out .32s ease-in both}
 #demo .r72-leak-notice.mc-fit-minimized.is-monitoring .r72-leak-line{height:100%;align-items:center}
 #demo .r72-leak-notice.mc-fit-minimized.is-monitoring .r72-leak-line b{max-width:calc(100% - 28px);white-space:normal;overflow:visible;line-height:18px}
 #demo .r72-leak-notice.mc-fit-minimized.is-monitoring .mc-fit-subtitle{display:none}
@@ -176,5 +179,6 @@
 #demo .mc-fit-loading-dots::after{content:'';font-size:12px;animation:mc-fit-dots 1.25s steps(1,end) infinite}
 @keyframes mc-fit-status-spin{to{transform:rotate(360deg)}}
 @keyframes mc-fit-dots{0%,24%{content:'.'}25%,49%{content:'..'}50%,74%{content:'...'}75%,100%{content:''}}
-@keyframes mc-fit-subtitle-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-@keyframes mc-fit-check-pop{from{opacity:0;transform:scale(.3) rotate(-25deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes mc-fit-subtitle-in{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@keyframes mc-fit-subtitle-out{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-8px)}}
+@keyframes mc-fit-check-draw{to{stroke-dashoffset:0}}
