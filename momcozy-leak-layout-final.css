@@ -176,7 +176,7 @@
 #demo .r72-leak-notice.mc-fit-minimized .mc-fit-monitor-icon{color:#fff;stroke-width:1.7}
 #demo .r72-leak-notice.mc-fit-minimized .mc-fit-subtitle-enter{animation:mc-fit-subtitle-in .42s cubic-bezier(.22,.8,.24,1) var(--mc-fit-subtitle-delay,0ms) both}
 #demo .r72-leak-notice.mc-fit-minimized .mc-fit-subtitle-exit{position:absolute;top:33px;left:13px;pointer-events:none;animation:mc-fit-subtitle-out .32s ease-in var(--mc-fit-subtitle-delay,0ms) both}
-#demo .r72-leak-notice.mc-fit-minimized.is-passed .r72-leak-line{height:100%;align-items:center;justify-content:center;padding-left:0}
+#demo .r72-leak-notice.mc-fit-minimized.is-passed .r72-leak-line{height:100%;align-items:center;justify-content:flex-start}
 #demo .r72-leak-notice.mc-fit-minimized.is-passed .mc-fit-minimized-icon{top:calc(50% - 9px)}
 #demo .r72-leak-notice.mc-fit-minimized.is-passed .r72-leak-line b{max-width:none}
 #demo .r72-leak-notice.mc-fit-minimized.is-passed .mc-fit-subtitle{display:none}
