@@ -76,9 +76,12 @@ function makeDemo() {
   assert.equal(demo.state.mcFitWear, 'checking');
   demo.advance(15000);
   assert.equal(demo.state.mcFitWear, 'done');
-  demo.advance(16100);
-  assert.equal(demo.state.modal, null);
+  assert.equal(demo.state.modal, 'fit');
+  assert.equal(demo.state.fitStage, 5);
+  demo.advance(16799);
+  assert.equal(demo.state.modal, 'fit');
   demo.advance(16800);
+  assert.equal(demo.state.modal, null);
   assert.equal(demo.state.mcFitNoticePhase, 'monitoring');
 }
 
@@ -92,8 +95,12 @@ function makeDemo() {
   assert.equal(demo.state.mcFitBattery, 'checking');
   demo.advance(6000);
   assert.equal(demo.state.mcFitBattery, 'done');
-  demo.advance(7100);
+  assert.equal(demo.state.fitStage, 5);
+  demo.advance(7799);
+  assert.equal(demo.state.modal, 'fit');
+  demo.advance(7800);
   assert.equal(demo.state.modal, null);
+  assert.equal(demo.state.mcFitNoticePhase, 'monitoring');
 }
 
 {
