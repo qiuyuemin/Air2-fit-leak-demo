@@ -182,3 +182,19 @@
 @keyframes mc-fit-dot{0%,65%,100%{opacity:.16}25%,45%{opacity:1}}
 @keyframes mc-fit-status-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){#demo .v4-control > .mc-fit-minimized .mc-fit-status-spinner,#demo .mc-fit-loading-dots i{animation:none;opacity:1}}
+
+/* Keep the entire status card monochrome and animate real states, not a tinted static ring. */
+#demo .v4-control > .mc-fit-minimized{width:286px;max-width:calc(100% - 100px);height:68px;overflow:visible}
+#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-icon,#demo .v4-control > .mc-fit-minimized.is-failed .mc-fit-minimized-icon,#demo .v4-control > .mc-fit-minimized.is-passed .mc-fit-minimized-icon{background:#34343a;color:#fff}
+#demo .v4-control > .mc-fit-minimized.is-checking .mc-fit-minimized-icon{background:#f2f2f3}
+#demo .v4-control > .mc-fit-minimized .mc-fit-status-spinner{width:18px;height:18px;border:2.5px solid #b7b7bc;border-top-color:#303037;animation:mc-fit-status-spin .8s linear infinite!important}
+#demo .v4-control > .mc-fit-minimized.is-passed .mc-fit-minimized-icon{font-size:0}
+#demo .v4-control > .mc-fit-minimized.is-passed .mc-fit-minimized-icon::after{content:'✓';font-size:15px;animation:mc-fit-check-pop .45s cubic-bezier(.2,1.5,.35,1) both}
+#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy{flex:1}
+#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy small{overflow:hidden;text-overflow:ellipsis}
+#demo .v4-control > .mc-fit-minimized .mc-fit-subtitle{animation:mc-fit-subtitle-in .38s ease-out both}
+#demo .mc-fit-loading-dots{display:inline-block;width:18px;vertical-align:baseline;font-size:0}
+#demo .mc-fit-loading-dots::after{content:'';font-size:12px;animation:mc-fit-dots 1.25s steps(1,end) infinite}
+@keyframes mc-fit-dots{0%,24%{content:'.'}25%,49%{content:'..'}50%,74%{content:'...'}75%,100%{content:''}}
+@keyframes mc-fit-subtitle-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes mc-fit-check-pop{from{opacity:0;transform:scale(.3) rotate(-25deg)}to{opacity:1;transform:scale(1) rotate(0)}}

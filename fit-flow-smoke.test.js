@@ -100,14 +100,19 @@ function makeDemo() {
   demo.window.v4RunFit();
   demo.window.mcMinimizeFitCheck();
   demo.advance(6000);
-  assert.equal(demo.state.mcFitStatus, 'Battery check passed');
-  demo.advance(7300);
-  assert.equal(demo.state.mcFitStatus, null);
+  assert.equal(demo.state.mcFitNoticePhase, 'battery-passed');
+  demo.advance(7700);
+  assert.equal(demo.state.mcFitNoticePhase, 'checking-wear');
   demo.advance(15000);
-  assert.equal(demo.state.mcFitStatus, 'Wear check passed');
+  assert.equal(demo.state.mcFitNoticePhase, 'passed');
   demo.advance(16100);
   assert.equal(demo.state.modal, null);
-  demo.advance(16300);
+  assert.equal(demo.state.mcFitCollapsed, true);
+  demo.advance(16800);
+  assert.equal(demo.state.mcFitNoticePhase, 'monitoring');
+  demo.advance(31799);
+  assert.equal(demo.state.mcFitCollapsed, true);
+  demo.advance(31800);
   assert.equal(demo.state.mcFitCollapsed, false);
 }
 
