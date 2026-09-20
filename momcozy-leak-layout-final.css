@@ -156,11 +156,11 @@
 #demo .r50-control .r50-check-icon{width:18px!important;height:18px!important}
 #demo .r50-control.is-inline-leak .mc-fit-viewport{top:112px!important}
 
-/* Match the existing leak notice slot while keeping the status interactive. */
-#demo .v4-control.has-mc-fit-minimized .v4-top>h1{visibility:hidden!important;opacity:0!important}
-#demo .v4-control > .mc-fit-minimized{position:absolute;z-index:65;top:63px;left:50%;display:grid;width:246px;height:66px;place-items:center;overflow:hidden;border:0;border-radius:24px;background:rgba(255,255,255,.68);color:#240f1b;box-shadow:0 8px 18px rgba(36,15,27,.08);backdrop-filter:blur(18px) saturate(1.08);-webkit-backdrop-filter:blur(18px) saturate(1.08);cursor:pointer;transform:translateX(-50%)}
-#demo .v4-control > .mc-fit-minimized::before{position:absolute;inset:-100px;background:conic-gradient(transparent 0deg 282deg,rgba(206,129,151,.45) 305deg,#a55370 321deg,#fff 334deg,rgba(206,129,151,.45) 349deg,transparent 360deg);content:"";animation:mc-fit-orbit 2.4s linear var(--mc-fit-orbit-delay,0ms) infinite}
-#demo .v4-control > .mc-fit-minimized::after{position:absolute;inset:2px;border-radius:22px;background:rgba(255,255,255,.88);content:""}
-#demo .v4-control > .mc-fit-minimized span{position:relative;z-index:1;font:500 12px/18px Arial,sans-serif;letter-spacing:.12px}
+/* Compact session status: the moving highlight is masked to the outline only. */
+#demo .v4-control > .mc-fit-minimized{position:absolute;z-index:65;top:104px;left:50%;display:grid;min-width:154px;height:31px;place-items:center;overflow:hidden;padding:0 15px;border:1px solid #e7ced6;border-radius:17px;background:rgba(255,255,255,.88);color:#693947;box-shadow:0 3px 11px rgba(36,15,27,.055);cursor:pointer;transform:translateX(-50%)}
+#demo .v4-control > .mc-fit-minimized::before{position:absolute;inset:0;padding:2px;border-radius:inherit;background:conic-gradient(from var(--mc-fit-angle),transparent 0deg 285deg,#d9a8b8 305deg,#9d4865 323deg,#fff 335deg,transparent 355deg);content:"";-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:mc-fit-orbit 2.4s linear var(--mc-fit-orbit-delay,0ms) infinite}
+#demo .v4-control > .mc-fit-minimized span{position:relative;z-index:1;font:500 12px/18px Arial,sans-serif;letter-spacing:.12px;white-space:nowrap}
+#demo .v4-control > .mc-fit-minimized:disabled{cursor:default}
 #demo .v4-control > .mc-fit-minimized:focus-visible{outline:2px solid #9b3152;outline-offset:3px}
-@keyframes mc-fit-orbit{to{transform:rotate(360deg)}}
+@property --mc-fit-angle{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes mc-fit-orbit{to{--mc-fit-angle:360deg}}
