@@ -106,14 +106,14 @@ function collapsedFitBadge(){
   failed=s.mcFitWear==='failed'||s.mcFitStatus==='Air leak detected'||s.mcFitStatus==='Wear check failed';
   passed=!failed&&s.mcFitBattery==='done'&&s.mcFitWear==='done';
   phase=s.mcFitNoticePhase||'checking';
-  title=failed?'Fit check failed':passed?'Fit check passed':'Checking<span class="mc-fit-loading-dots" aria-hidden="true"></span>';
+  title=failed?'Fit check failed':phase==='monitoring'?'Checking for air leaks throughout pumping<span class="mc-fit-loading-dots" aria-hidden="true"></span>':passed?'Fit check passed':'Checking<span class="mc-fit-loading-dots" aria-hidden="true"></span>';
   detail=failed?(s.mcFitStatus==='Air leak detected'?'Air leak detected. Opening guide':'Wear check failed. Opening guide'):
-    phase==='monitoring'?'Checking for air leaks throughout pumping<span class="mc-fit-loading-dots" aria-hidden="true"></span>':
+    phase==='monitoring'?'':
     phase==='passed'?'Self-check passed':phase==='battery-passed'?'Battery passed':phase==='wear-passed'?'Wear passed':
     phase==='checking-wear'?'Checking wear':phase==='checking-battery'?'Checking battery':'Checking battery and wear';
-  icon=failed?'×':passed?'✓':'<i class="mc-fit-status-spinner"></i>';
+  icon=failed?'×':passed&&phase!=='monitoring'?'✓':'<i class="mc-fit-status-spinner"></i>';
   control.classList.add('has-mc-fit-minimized');
-  header.insertAdjacentHTML('afterend','<button class="mc-fit-minimized is-'+(failed?'failed':passed?'passed':'checking')+'" data-mc-fit-key="'+fitRenderKey(s)+'" type="button" aria-label="'+(failed?'Fit check failed':passed?'Fit check passed':'Checking fit')+(active?'. Expand fit check':'')+'" '+(active?'onclick="window.mcExpandFitCheck();return false"':'disabled')+'><span class="mc-fit-minimized-icon" aria-hidden="true">'+icon+'</span><span class="mc-fit-minimized-copy"><strong>'+title+'</strong><small class="mc-fit-subtitle" data-phase="'+phase+'">'+detail+'</small></span></button>');
+  header.insertAdjacentHTML('afterend','<button class="mc-fit-minimized is-'+(failed?'failed':phase==='monitoring'?'monitoring':passed?'passed':'checking')+'" data-mc-fit-key="'+fitRenderKey(s)+'" type="button" aria-label="'+(failed?'Fit check failed':phase==='monitoring'?'Checking for air leaks throughout pumping':passed?'Fit check passed':'Checking fit')+(active?'. Expand fit check':'')+'" '+(active?'onclick="window.mcExpandFitCheck();return false"':'disabled')+'><span class="mc-fit-minimized-icon" aria-hidden="true">'+icon+'</span><span class="mc-fit-minimized-copy"><strong>'+title+'</strong><small class="mc-fit-subtitle" data-phase="'+phase+'">'+detail+'</small></span></button>');
 }
 function refreshFitPumps(s){
   var control=document.querySelector('#demo .v4-control'),clock=control&&control.querySelector('.v4-time');

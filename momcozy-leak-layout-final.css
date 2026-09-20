@@ -198,3 +198,10 @@
 @keyframes mc-fit-dots{0%,24%{content:'.'}25%,49%{content:'..'}50%,74%{content:'...'}75%,100%{content:''}}
 @keyframes mc-fit-subtitle-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes mc-fit-check-pop{from{opacity:0;transform:scale(.3) rotate(-25deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+
+/* Fixed text slots: changes animate inside a row without shifting either baseline. */
+#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy{display:grid;height:36px;grid-template-rows:17px 15px;row-gap:4px;align-content:start;align-self:center}
+#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy strong{height:17px;line-height:17px;overflow:hidden;text-overflow:clip}
+#demo .v4-control > .mc-fit-minimized .mc-fit-minimized-copy small{height:15px;margin:0;line-height:15px}
+#demo .v4-control > .mc-fit-minimized.is-monitoring .mc-fit-minimized-icon{background:#f2f2f3}
+#demo .v4-control > .mc-fit-minimized.is-monitoring .mc-fit-minimized-copy strong{font-size:10px;letter-spacing:-.1px}
