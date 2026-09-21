@@ -161,8 +161,11 @@
 #demo .r50-control .r50-check-icon{width:18px!important;height:18px!important}
 #demo .r50-control.is-inline-leak .mc-fit-viewport{top:112px!important}
 
-/* Fit status reuses the live r72 leak-notice frame and typography above. */
-#demo .v4-control > .r72-leak-notice.mc-fit-minimized{pointer-events:auto!important;cursor:pointer;animation:none!important;transform:translateX(-50%)!important}
+/* Fit status reuses the live r72 leak-notice frame and typography above.
+   It also carries the legacy c36-notice class. Keep its geometry explicit here:
+   otherwise the older full-width c36 rule wins after a self-check repaint and
+   drops this compact status card into the pump row. */
+#demo .v4-control > .r72-leak-notice.mc-fit-minimized{position:absolute!important;z-index:12!important;top:63px!important;right:auto!important;left:50%!important;display:block!important;width:246px!important;height:66px!important;min-height:66px!important;padding:0!important;border:0!important;border-radius:24px!important;box-sizing:border-box!important;pointer-events:auto!important;cursor:pointer;animation:none!important;transform:translateX(-50%)!important}
 #demo .v4-control > .r72-leak-notice.mc-fit-minimized.mc-fit-entering{animation:mc-fit-notice-in .42s cubic-bezier(.22,.8,.24,1) var(--mc-fit-motion-delay,0ms) both!important}
 #demo .v4-control > .r72-leak-notice.mc-fit-minimized.mc-fit-leaving{pointer-events:none!important;animation:mc-fit-notice-out .7s cubic-bezier(.36,0,.7,.36) both!important}
 #demo .v4-control > .r72-leak-notice.mc-fit-minimized.mc-fit-previous{z-index:11!important;pointer-events:none!important;animation:mc-fit-card-pushed .56s cubic-bezier(.22,.8,.24,1) both!important}
