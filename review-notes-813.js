@@ -271,13 +271,13 @@
   function sideFlow(side) {
     var sideRate = side === 'r' ? state.flowRateR : state.flowRateL;
     var rate = state.paused ? 0 : Math.max(0, Number(sideRate == null ? state.flowRate : sideRate) || 0);
-    return rate * (side === 'r' ? 1.018 : 1.015);
+    return rate;
   }
-  function sideFlowOz(side) { return sideFlow(side) / 28.3495; }
+  function sideFlowPerMinute(side) { return sideFlow(side) * 60; }
   window.v4Hardware = function (side, amount) {
     var html = r60Hardware.apply(this, arguments);
     if (!state.running) return html;
-    var readout = '<span class="r60-flow-readout" data-flow-side="' + side + '"><b>' + sideFlowOz(side).toFixed(3) + '</b><em>oz/s</em></span>';
+    var readout = '<span class="r60-flow-readout" data-flow-side="' + side + '"><b>' + sideFlowPerMinute(side).toFixed(1) + '</b><em>mL/min</em></span>';
     if (state.leakAdjusting && state.leakSide === side) {
       html = html.replace(/(<span class="c32-vessel)([^>]*>)/, '$1 r97-leak-adjusting$2');
       html = html.replace(/(<span class="c32-vessel[^>]*>)/,
@@ -442,7 +442,7 @@
     });
     host.querySelectorAll('.r60-flow-readout').forEach(function (readout) {
       var value = readout.querySelector('b');
-      var nextValue = sideFlowOz(readout.getAttribute('data-flow-side')).toFixed(3);
+      var nextValue = sideFlowPerMinute(readout.getAttribute('data-flow-side')).toFixed(1);
       if (value && value.textContent !== nextValue) value.textContent = nextValue;
     });
     return true;

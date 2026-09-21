@@ -32,6 +32,8 @@ assert.match(severe, /#379D89/);
 assert.match(severe, /#E6A044/);
 assert.match(severe, /ps-side-line is-dashed/);
 assert.match(severe, /Color shows flow speed, not health status/);
+assert.match(severe, /Time \(sec\)/);
+assert.match(severe, /data-ps-event="0"/);
 assert.match(severe, /data-ps-detail="l"/);
 assert.match(severe, /data-ps-detail="r"/);
 assert.match(severe, /data-ps-filter="all" aria-pressed="true"/);
@@ -54,7 +56,7 @@ const items = ['all', 'l', 'r'].map(filter => ({
 }));
 const sheet = { dataset: {}, querySelectorAll() { return items; } };
 const button = { dataset: { psFilter: 'l' }, closest() { return sheet; } };
-onClick({ target: { closest() { return button; } }, preventDefault() {}, stopImmediatePropagation() {} });
+onClick({ target: { closest(selector) { return selector.includes('data-ps-event') ? null : button; } }, preventDefault() {}, stopImmediatePropagation() {} });
 assert.equal(sheet.dataset.filter, 'l');
 assert.deepEqual(items.map(item => item['aria-pressed']), ['false', 'true', 'false']);
 assert.match(interactive.window.v4Log(), /data-filter="l"/);

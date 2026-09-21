@@ -1,9 +1,8 @@
 (function () {
-  if (window.Air2DemoTriggers && window.Air2DemoTriggers.version === 65) return;
+  if (window.Air2DemoTriggers && window.Air2DemoTriggers.version === 66) return;
   var CAP = 6.09;
-  var BASE_FLOW = 0.002 * 28.3495;
-  var DEMO_MILK_ACCEL = 0.6;
-  var LETDOWN_STEP_MS = 650;
+  var ML_PER_OZ = 29.5735;
+  var BASE_FLOW = 1.1 / 60; /* mL/s; the chart converts it back to mL/min. */
   var SWITCH_CONFIRM_MS = 1200;
   var END_CONFIRM_MS = 1200;
   var fitTimers = [];
@@ -29,38 +28,59 @@
   function isActive(s){ return !!(s && s.running && !s.modal); }
   function ignored(s,id){ s.lastIgnoredTrigger=id+' requires active pumping'; sync(); return false; }
   function scheduleDropBoundary(s){var now,wait;if(dropTimer)clearTimeout(dropTimer);if(!s||!s.running)return;if(!s.air2DropEpoch)s.air2DropEpoch=Date.now();now=Date.now();wait=2400-((now-s.air2DropEpoch)%2400);dropTimer=setTimeout(function(){var c=st();dropTimer=null;if(!c||!c.running)return;c.dropFlowKindL=flowKind(flowNow(c,'l'));c.dropFlowKindR=flowKind(flowNow(c,'r'));paint();scheduleDropBoundary(c)},Math.max(16,wait));}
-  function beginSession(s){ s.page='control'; s.modal=null; s.running=true; s.paused=false; s.timer=0; s.milkL=0; s.milkR=0; s.mode='stimulation'; s.letdownPhase='baseline'; s.letdownPhaseL='baseline'; s.letdownPhaseR='baseline'; s.letdownEventAtL=null; s.letdownEventAtR=null; s.air2ModeLetdownConfirmed=false; s.flowRate=BASE_FLOW; s.flowRateL=BASE_FLOW; s.flowRateR=BASE_FLOW; s.flowKind='low'; s.flowKindL='low'; s.flowKindR='low'; s.dropFlowKindL='low'; s.dropFlowKindR='low'; s.air2DropEpoch=Date.now(); s.air2LetdownEvents=[]; s.air2LastPhysicsAt=Date.now(); s.air2SessionEnded=false; s.controlNotice=null; scheduleDropBoundary(s); if(window.air2DemoRun) window.air2DemoRun={prompted:false,autoMoved:false,finishing:false,lastMilkTick:0}; }
+  function beginSession(s){ s.page='control'; s.modal=null; s.running=true; s.paused=false; s.timer=0; s.milkL=0; s.milkR=0; s.mode='stimulation'; s.letdownPhase='baseline'; s.letdownPhaseL='baseline'; s.letdownPhaseR='baseline'; s.letdownEventAtL=null; s.letdownEventAtR=null; s.air2ModeLetdownConfirmed=false; s.flowRate=BASE_FLOW; s.flowRateL=BASE_FLOW; s.flowRateR=BASE_FLOW; s.flowKind='low'; s.flowKindL='low'; s.flowKindR='low'; s.dropFlowKindL='low'; s.dropFlowKindR='low'; s.air2DropEpoch=Date.now(); s.air2LetdownEvents=[]; s.air2FlowPulses={l:[],r:[]}; s.psFlowSamples=[{second:0,l:BASE_FLOW,r:BASE_FLOW}]; s.air2LastPhysicsSecond=0; s.air2SessionStartedAt=Date.now(); s.air2SessionEnded=false; s.controlNotice=null; scheduleDropBoundary(s); if(window.air2DemoRun) window.air2DemoRun={prompted:false,autoMoved:false,finishing:false,lastMilkTick:0}; }
   function nextPhase(s){ var seq=s.rhythmSequence||['stimulation','expression','stimulation','expression']; var idx=isFinite(Number(s.rhythmIndex))?Number(s.rhythmIndex):1; s.rhythmSequence=seq; s.rhythmIndex=Math.min(seq.length-1,idx+1); s.mode=seq[s.rhythmIndex]||'stimulation'; }
   function resetBasePlan(s){ s.mode='stimulation'; s.selectedProgram=null; s.rhythmIndex=0; s.rhythmSequence=['stimulation','expression','stimulation','expression']; s.letdownPhase='baseline'; s.letdownPhaseL='baseline'; s.letdownPhaseR='baseline'; s.letdownEventAt=null; s.letdownEventAtL=null; s.letdownEventAtR=null; s.air2ModeLetdownConfirmed=false; s.letdownStableSince=null; s.noMilkSince=null; s.letdownSuggestionShown=false; s.manualEndSuggestionShown=false; s.flowRate=BASE_FLOW; s.flowRateL=BASE_FLOW; s.flowRateR=BASE_FLOW; s.flowKind='low'; s.flowKindL='low'; s.flowKindR='low'; }
   function captureSession(s){ var total,id,existing,record; if(s.microLeakDuringSession) s.air2SessionSummaryKind='minor-leak'; else if(!s.air2SessionSummaryKind) s.air2SessionSummaryKind='stable'; s.hasLogged=true; s.lastSessionL=Number(s.milkL)||0; s.lastSessionR=Number(s.milkR)||0; total=Math.round((s.lastSessionL+s.lastSessionR)*100)/100; s.lastSessionTotal=total; if(!Array.isArray(s.air2SessionHistory)) s.air2SessionHistory=[]; id=s.air2ActiveSessionId||('session-'+Date.now()); record={id:id,left:s.lastSessionL,right:s.lastSessionR,total:total}; existing=s.air2SessionHistory.find?s.air2SessionHistory.find(function(item){return item.id===id;}):null; if(existing){ existing.left=record.left; existing.right=record.right; existing.total=record.total; } else s.air2SessionHistory.push(record); s.air2ActiveSessionId=id; }
   function prepareSummaryLog(s){ s.air2AutoSubmitPending=true; s.air2AutoSubmitCancelled=false; s.microLeakDuringSession=false; }
   function settle(s,msg){ captureSession(s); prepareSummaryLog(s); resetBasePlan(s); s.running=false; s.paused=false; s.modal='log'; s.air2SessionEnded=true; if(msg) notify(s,'ending',msg,false); }
-  function flowNow(s,side){
-    var age, step, suffix=side==='r'?'R':'L', phase;
-    if(!s) return BASE_FLOW;
-    /* Each bowl owns its let-down state. Never inherit the session-wide phase:
-       one confirmed side sets that summary phase to active, which previously
-       promoted an uninitialised opposite side to high flow as well. */
-    phase=s['letdownPhase'+suffix]||'baseline';
-    if(phase==='rising'){
-      age=Math.max(0,Date.now()-(s['letdownEventAt'+suffix]||Date.now()));
-      step=Math.floor(age/LETDOWN_STEP_MS);
-      return Math.min(.005,.001+step*.001) * 28.3495;
-    }
-    if(phase==='active') return .006 * 28.3495;
-    if(phase==='falling'){
-      age=Math.max(0,Date.now()-(s['letdownEventAt'+suffix]||Date.now()));
-      step=Math.floor(age/LETDOWN_STEP_MS);
-      return Math.max(.0005,.006-step*.001) * 28.3495;
-    }
-    if(phase==='ended') return .0005 * 28.3495;
-    return BASE_FLOW;
+  function smooth(t){t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);}
+  function pulseFlow(pulse,second){
+    var age=second-pulse.start;
+    if(age<0||age>=pulse.duration)return 0;
+    if(pulse.cutAt!=null&&second>=pulse.cutAt){return pulse.cutFlow*(1-smooth((second-pulse.cutAt)/4));}
+    if(age<pulse.rise)return pulse.peak*smooth(age/pulse.rise);
+    if(age<pulse.rise+pulse.hold)return pulse.peak;
+    return pulse.peak*(1-smooth((age-pulse.rise-pulse.hold)/(pulse.duration-pulse.rise-pulse.hold)));
   }
-  function flowKind(flow){return flow<=0?'none':(flow<.003*28.3495?'low':(flow<.005*28.3495?'medium':'high'));}
-  function physics(){ var s=st(), now=Date.now(), flowL, flowR, flow, elapsed, addL, addR, anyActive, activeName, bothEnding; if(!s||!s.running||s.paused) return; flowL=flowNow(s,'l'); flowR=flowNow(s,'r'); flow=Math.max(flowL,flowR); s.flowRateL=Math.round(flowL*1000)/1000; s.flowRateR=Math.round(flowR*1000)/1000; s.flowRate=Math.round(((flowL+flowR)/2)*1000)/1000; s.flowKindL=flowKind(flowL); s.flowKindR=flowKind(flowR); s.flowKind=flowKind(flow); if(!s.air2DropEpoch)s.air2DropEpoch=now;if(!s.dropFlowKindL)s.dropFlowKindL=s.flowKindL;if(!s.dropFlowKindR)s.dropFlowKindR=s.flowKindR;if(!dropTimer)scheduleDropBoundary(s); elapsed=Math.max(.25,Math.min(2,(now-(s.air2LastPhysicsAt||now))/1000)); s.air2LastPhysicsAt=now; addL=(flowL/28.3495)*elapsed*DEMO_MILK_ACCEL; addR=(flowR/28.3495)*elapsed*DEMO_MILK_ACCEL; s.milkL=Math.min(CAP,Math.round(((Number(s.milkL)||0)+addL*.98)*1000)/1000); s.milkR=Math.min(CAP,Math.round(((Number(s.milkR)||0)+addR*1.02)*1000)/1000);
-    if(s.letdownPhaseL==='rising'&&flowL>=.005*28.3495&&now-(s.letdownEventAtL||now)>=SWITCH_CONFIRM_MS)s.letdownPhaseL='active'; if(s.letdownPhaseR==='rising'&&flowR>=.005*28.3495&&now-(s.letdownEventAtR||now)>=SWITCH_CONFIRM_MS)s.letdownPhaseR='active'; anyActive=s.letdownPhaseL==='active'||s.letdownPhaseR==='active'; activeName=s.letdownPhaseL==='active'&&s.letdownPhaseR==='active'?'Both sides':s.letdownPhaseR==='active'?'Right side':'Left side'; if(anyActive&&!s.air2ModeLetdownConfirmed){s.air2ModeLetdownConfirmed=true;s.letdownPhase='active';if(s.mode==='stimulation'){if(s.selectedProgram){s.mode='expression';s.rhythmIndex=Math.max(1,Number(s.rhythmIndex)||1);notify(s,'auto',activeName+' let-down confirmed. Moving into the Expression phase.',false)}else if(s.auto){s.mode='expression';notify(s,'auto',activeName+' let-down confirmed. Switched to Expression mode.',false)}else if(!s.letdownSuggestionShown){s.letdownSuggestionShown=true;notify(s,'suggestion',activeName+' let-down confirmed. You can switch to Expression when ready.',false)}}}
-    if(s.letdownPhaseL==='falling'&&flowL<=.001*28.3495)s.letdownPhaseL='ended'; if(s.letdownPhaseR==='falling'&&flowR<=.001*28.3495)s.letdownPhaseR='ended'; bothEnding=s.letdownPhaseL==='ended'&&s.letdownPhaseR==='ended'; if(bothEnding){s.letdownPhase='ended';if(!s.noMilkSince)s.noMilkSince=now;if(now-s.noMilkSince>=END_CONFIRM_MS&&!s.manualEndSuggestionShown){s.manualEndSuggestionShown=true;if(s.selectedProgram&&s.auto){nextPhase(s);notify(s,'ending','Let-down has eased. Moving to the next program phase.',false)}else if(s.auto){notify(s,'ending','Milk flow has ended. This session will be settled shortly.',false,true);setTimeout(function(){var c=st();if(c&&c.letdownPhaseL==='ended'&&c.letdownPhaseR==='ended'&&c.running&&!c.modal){c.controlNotice=null;settle(c);paint()}},5200)}else notify(s,'suggestion','Milk flow has slowed. You can finish pumping when you are ready.',false)}}
-    if(s.milkL>=CAP||s.milkR>=CAP){ s.milkL=CAP; s.milkR=CAP; settle(s,'Milk level is high. Pumping stopped automatically to prevent overflow.'); }
+  function flowNow(s,side,second){
+    if(!s)return BASE_FLOW;
+    var pulses=s.air2FlowPulses&&s.air2FlowPulses[side]||[], time=second==null?(Number(s.timer)||0):second, signal=0;
+    for(var i=0;i<pulses.length;i++)signal=Math.max(signal,pulseFlow(pulses[i],time));
+    return Math.min(13,(1.1+signal))/60;
+  }
+  function flowKind(flow){var perMinute=flow*60;return perMinute<=0?'none':(perMinute<5?'low':(perMinute<10?'medium':'high'));}
+  function physics(){
+    var s=st(), now=Date.now(), second, previous, elapsed, beforeL, beforeR, flowL, flowR, anyActive, activeName, bothEnding;
+    if(!s||!s.running||s.paused)return;
+    second=Math.max(0,Number(s.timer)||0);
+    previous=Math.max(0,Number(s.air2LastPhysicsSecond)||0);
+    elapsed=Math.max(0,Math.min(2,second-previous));
+    beforeL=flowNow(s,'l',previous); beforeR=flowNow(s,'r',previous);
+    flowL=flowNow(s,'l',second); flowR=flowNow(s,'r',second);
+    s.air2LastPhysicsSecond=second;
+    s.flowRateL=flowL; s.flowRateR=flowR; s.flowRate=(flowL+flowR)/2;
+    s.flowKindL=flowKind(flowL); s.flowKindR=flowKind(flowR); s.flowKind=flowKind(Math.max(flowL,flowR));
+    if(!s.air2DropEpoch)s.air2DropEpoch=now;
+    if(!s.dropFlowKindL)s.dropFlowKindL=s.flowKindL;
+    if(!s.dropFlowKindR)s.dropFlowKindR=s.flowKindR;
+    if(!dropTimer)scheduleDropBoundary(s);
+    /* Each side integrates its own average mL/min over active elapsed seconds.
+       State remains in oz for the existing UI, but retains full precision. */
+    s.milkL=Math.min(CAP,(Number(s.milkL)||0)+(beforeL+flowL)*.5*elapsed/ML_PER_OZ);
+    s.milkR=Math.min(CAP,(Number(s.milkR)||0)+(beforeR+flowR)*.5*elapsed/ML_PER_OZ);
+    if(!Array.isArray(s.psFlowSamples))s.psFlowSamples=[];
+    if(!s.psFlowSamples.length||s.psFlowSamples[s.psFlowSamples.length-1].second!==second)s.psFlowSamples.push({second:second,l:flowL,r:flowR});
+    if(s.letdownPhaseL==='rising'&&flowL*60>=5&&second-(s.letdownEventSecondL||0)>=SWITCH_CONFIRM_MS/1000)s.letdownPhaseL='active';
+    if(s.letdownPhaseR==='rising'&&flowR*60>=5&&second-(s.letdownEventSecondR||0)>=SWITCH_CONFIRM_MS/1000)s.letdownPhaseR='active';
+    anyActive=s.letdownPhaseL==='active'||s.letdownPhaseR==='active';
+    activeName=s.letdownPhaseL==='active'&&s.letdownPhaseR==='active'?'Both sides':s.letdownPhaseR==='active'?'Right side':'Left side';
+    if(anyActive&&!s.air2ModeLetdownConfirmed){s.air2ModeLetdownConfirmed=true;s.letdownPhase='active';if(s.mode==='stimulation'){if(s.selectedProgram){s.mode='expression';s.rhythmIndex=Math.max(1,Number(s.rhythmIndex)||1);notify(s,'auto',activeName+' let-down confirmed. Moving into the Expression phase.',false)}else if(s.auto){s.mode='expression';notify(s,'auto',activeName+' let-down confirmed. Switched to Expression mode.',false)}else if(!s.letdownSuggestionShown){s.letdownSuggestionShown=true;notify(s,'suggestion',activeName+' let-down confirmed. You can switch to Expression when ready.',false)}}}
+    if(s.letdownPhaseL!=='baseline'&&flowL*60<=1.2&&second-(s.letdownEventSecondL||0)>5)s.letdownPhaseL='ended';
+    if(s.letdownPhaseR!=='baseline'&&flowR*60<=1.2&&second-(s.letdownEventSecondR||0)>5)s.letdownPhaseR='ended';
+    bothEnding=s.letdownPhaseL==='ended'&&s.letdownPhaseR==='ended';
+    if(bothEnding){s.letdownPhase='ended';if(!s.noMilkSince)s.noMilkSince=now;if(now-s.noMilkSince>=END_CONFIRM_MS&&!s.manualEndSuggestionShown){s.manualEndSuggestionShown=true;if(s.selectedProgram&&s.auto){nextPhase(s);notify(s,'ending','Let-down has eased. Moving to the next program phase.',false)}else if(s.auto){notify(s,'ending','Milk flow has ended. This session will be settled shortly.',false,true);setTimeout(function(){var c=st();if(c&&c.letdownPhaseL==='ended'&&c.letdownPhaseR==='ended'&&c.running&&!c.modal){c.controlNotice=null;settle(c);paint()}},5200)}else notify(s,'suggestion','Milk flow has slowed. You can finish pumping when you are ready.',false)}}
+    if(s.milkL>=CAP||s.milkR>=CAP){s.milkL=Math.min(CAP,s.milkL);s.milkR=Math.min(CAP,s.milkR);settle(s,'Milk level is high. Pumping stopped automatically to prevent overflow.');}
   }
   function install(){
     window.v4RunFit = v4RunFit = function(){ var s=st(); if(!s) return; clearFit(); s.page='control'; s.modal='fit'; s.running=false; s.paused=false; s.fitStage=0; s.fitAdjust=true; paint(); fitTimers.push(setTimeout(function(){s.fitStage=1;paint();},360)); fitTimers.push(setTimeout(function(){s.fitStage=2;s.fitAdjust=true;paint();},980)); };
@@ -70,8 +90,21 @@
   function fitOk(){ var s=st(); if(!s) return false; if(s.modal==='fit'){ clearFit(); s.fitAdjust=false; s.fitStage=3; paint(); fitTimers.push(setTimeout(function(){s.fitStage=4;paint();},650)); fitTimers.push(setTimeout(function(){s.fitStage=5;paint();},1300)); fitTimers.push(setTimeout(function(){s.fitStage=6;paint();},1900)); fitTimers.push(setTimeout(function(){beginSession(s);paint();},2500)); return true; } if(s.paused&&(s.severeLeak||s.leakAdjusting)){ s.severeLeak=false; s.leakAdjusting=false; s.leakSide=null; s.paused=false; s.air2LastPhysicsAt=Date.now(); s.controlNotice=null; paint(); setTimeout(function(){ var c=st(); if(!c) return; c.controlNotice={kind:'leak',phase:'recovered',text:'Suction pressure normal',id:Date.now()}; paint(); },160); setTimeout(function(){ var c=st(); if(c&&c.controlNotice&&c.controlNotice.kind==='leak'&&c.controlNotice.phase==='recovered'){ c.controlNotice={kind:'leak',phase:'closing-recovered',text:'Suction pressure normal',id:c.controlNotice.id}; paint(); } },2960); setTimeout(function(){ var c=st(); if(c&&c.controlNotice&&c.controlNotice.kind==='leak'){ c.controlNotice=null; paint(); } },3320); return true; } return false; }
   function criticalBattery(){ var s=st(), left=5, start=Date.now(), id=Date.now(); if(!s) return false; s.batteryL=3; s.batteryR=2; s.air2ShutdownAfterSave=true; s.air2CriticalBatteryActive=true; s.air2AutoSubmitPending=false; s.air2AutoSubmitCancelled=true; function setText(text){ var c=st(); if(!c||!c.air2CriticalBatteryActive) return; c.controlNotice={kind:'critical-battery',text:text,id:id,startedAt:start,duration:6500,backdrop:true,steady:true}; paint(); setTimeout(patchNotice,30); } function tick(){ if(left>=1){ setText('Battery is too low for this session. It will save and shut down in '+left+'s.'); left-=1; setTimeout(tick,1000); return; } setText('Please charge, see you later.'); setTimeout(function(){ var a=st(); if(!a) return; a.air2CriticalBatteryActive=false; a.controlNotice=null; captureSession(a); resetBasePlan(a); a.running=false; a.paused=false; a.modal='log'; a.air2SessionEnded=true; prepareSummaryLog(a); paint(); },1200); } tick(); return true; }
 
-  function recordLetdown(s,side,type){if(!Array.isArray(s.air2LetdownEvents))s.air2LetdownEvents=[];s.air2LetdownEvents.push({side:side,type:type,at:Date.now(),second:Number(s.timer)||0,milk:side==='l'?(Number(s.milkL)||0):(Number(s.milkR)||0)});}
-  function trigger(id){ var s=st(), match, side, sides, suffix, sideName, now, i; if(!s) return false; s.lastIgnoredTrigger=''; if(id==='fit-ok') return fitOk(); if(!isActive(s)) return ignored(s,id); match=/^letdown-(start|end)-(l|r|both)$/.exec(id); if(match){side=match[2];sides=side==='both'?['l','r']:[side];sideName=side==='both'?'Both sides':side==='r'?'Right':'Left';now=Date.now();if(!s.letdownPhaseL)s.letdownPhaseL='baseline';if(!s.letdownPhaseR)s.letdownPhaseR='baseline';for(i=0;i<sides.length;i++){suffix=sides[i]==='r'?'R':'L';s['letdownPhase'+suffix]=match[1]==='start'?'rising':'falling';s['letdownEventAt'+suffix]=now;recordLetdown(s,sides[i],match[1])}s.letdownPhase=match[1]==='start'?'rising':s.letdownPhase;s.noMilkSince=null;s.manualEndSuggestionShown=false;if(match[1]==='start'){if(s.mode==='stimulation')s.air2ModeLetdownConfirmed=false;notify(s,'side-letdown',sideName+' let-down detected.',false)}else notify(s,'side-letdown',sideName+' let-down has ended.',false);paint();return true;} if(id==='air-leak'){ s.paused=true; s.severeLeak=true; s.leakSide='r'; s.leakAdjusting=true; s.flowRate=0; s.flowKind='paused'; s.controlNotice={kind:'leak',phase:'warning',text:'Air leak detected',id:Date.now()}; paint(); return true; } if(id==='low-battery'){ s.batteryL=12; s.batteryR=10; notify(s,'low-battery','Battery is running low. You can finish this session, then charge Air 2 soon.',false); paint(); return true; } if(id==='critical-battery') return criticalBattery(); if(id==='minor-leak'){ s.microLeakDuringSession=true; return true; } return false; }
+  function recordLetdown(s,side,type,pulse){if(!Array.isArray(s.air2LetdownEvents))s.air2LetdownEvents=[];s.air2LetdownEvents.push({side:side,type:type,at:Date.now(),second:Number(s.timer)||0,milk:side==='l'?(Number(s.milkL)||0):(Number(s.milkR)||0),peak:pulse?Math.min(13,1.1+pulse.peak):null,peakSecond:pulse?pulse.start+pulse.rise+pulse.hold/2:null,duration:pulse?pulse.duration:null});}
+  function startPulse(s,side,dual){
+    if(!s.air2FlowPulses)s.air2FlowPulses={l:[],r:[]};
+    var list=s.air2FlowPulses[side]||(s.air2FlowPulses[side]=[]);
+    var count=(s.air2LetdownEvents||[]).filter(function(item){return item.type==='start'&&item.side===side}).length;
+    var peaks=[7.7,9.5,11.4,8.6], duration=19+(count%3)*2+(side==='r'?1:0);
+    var pulse={start:(Number(s.timer)||0)+(dual&&side==='r'?1.5:0),rise:4+(count%2),hold:2,duration:duration,peak:peaks[count%peaks.length]+(side==='r'?.25:0)};
+    list.push(pulse);
+    return pulse;
+  }
+  function endPulse(s,side){
+    var list=s.air2FlowPulses&&s.air2FlowPulses[side]||[], second=Number(s.timer)||0;
+    list.forEach(function(pulse){if(second>=pulse.start&&second<pulse.start+pulse.duration){pulse.cutFlow=pulseFlow(pulse,second);pulse.cutAt=second;pulse.duration=Math.max(pulse.duration,second+4-pulse.start);}});
+  }
+  function trigger(id){ var s=st(), match, side, sides, suffix, sideName, now, i, pulse; if(!s) return false; s.lastIgnoredTrigger=''; if(id==='fit-ok') return fitOk(); if(!isActive(s)) return ignored(s,id); match=/^letdown-(start|end)-(l|r|both)$/.exec(id); if(match){side=match[2];sides=side==='both'?['l','r']:[side];sideName=side==='both'?'Both sides':side==='r'?'Right':'Left';now=Date.now();if(!s.letdownPhaseL)s.letdownPhaseL='baseline';if(!s.letdownPhaseR)s.letdownPhaseR='baseline';for(i=0;i<sides.length;i++){suffix=sides[i]==='r'?'R':'L';pulse=match[1]==='start'?startPulse(s,sides[i],side==='both'):null;if(match[1]==='end')endPulse(s,sides[i]);s['letdownPhase'+suffix]=match[1]==='start'?'rising':'falling';s['letdownEventAt'+suffix]=now;s['letdownEventSecond'+suffix]=Number(s.timer)||0;recordLetdown(s,sides[i],match[1],pulse)}s.letdownPhase=match[1]==='start'?'rising':s.letdownPhase;s.noMilkSince=null;s.manualEndSuggestionShown=false;if(match[1]==='start'){if(s.mode==='stimulation')s.air2ModeLetdownConfirmed=false;notify(s,'side-letdown',sideName+' let-down detected.',false)}else notify(s,'side-letdown',sideName+' let-down has ended.',false);paint();return true;} if(id==='air-leak'){ s.paused=true; s.severeLeak=true; s.leakSide='r'; s.leakAdjusting=true; s.flowRate=0; s.flowRateL=0; s.flowRateR=0; s.flowKind='paused'; s.controlNotice={kind:'leak',phase:'warning',text:'Air leak detected',id:Date.now()}; paint(); return true; } if(id==='low-battery'){ s.batteryL=12; s.batteryR=10; notify(s,'low-battery','Battery is running low. You can finish this session, then charge Air 2 soon.',false); paint(); return true; } if(id==='critical-battery') return criticalBattery(); if(id==='minor-leak'){ s.microLeakDuringSession=true; return true; } return false; }
   document.addEventListener('pointerdown',function(e){ var finish=e.target.closest&&e.target.closest('#demo [data-v4="finish"],#demo [data-action="finish"]'), s=st(), abnormal; if(!finish||!s) return; abnormal=s.air2SessionSummaryKind==='severe'||s.air2SessionSummaryKind==='wear'; if(s.microLeakDuringSession) s.air2SessionSummaryKind='minor-leak'; else if(!abnormal) s.air2SessionSummaryKind='stable'; s.air2ShowSessionSummary=true; },true);
   document.addEventListener('click',function(e){ var done=e.target.closest&&e.target.closest('#demo [data-air2-logged-done]'), s=st(); if(!done||!s) return; e.preventDefault(); e.stopImmediatePropagation(); s.air2ShowLoggedSummary=false; var offline=!!s.air2ShutdownAfterSave; s.modal=null; s.running=false; s.paused=false; s.controlNotice=null; if(offline){ s.page='control'; s.air2Offline=true; } else { s.page='home'; } paint(); },true);
   document.addEventListener('click',function(e){ var guide=e.target.closest&&e.target.closest('#demo [data-air2-wear-guide]'); if(!guide) return; e.preventDefault(); e.stopImmediatePropagation(); var card=guide.closest('.air2-logged-summary'); if(card) card.classList.add('is-guide-open'); },true);
@@ -85,7 +118,7 @@
 
 
   function wrapView(){ if(window.__air2TriggerViewWrapped||typeof window.v4View!=='function') return; var old=window.v4View; window.v4View=v4View=function(){ old.apply(this,arguments); var s=st(), root=document.getElementById('demo'), screen, n, started, age, leaveAge; if(!s||!root) return; screen=root.querySelector('.v4-control.has-c36-notice'); n=s.controlNotice; if(screen){ screen.classList.toggle('air2-warm-notice',!!(n&&n.backdrop)); } patchNotice(); if(screen&&n){ started=Number(n.startedAt||n.id||Date.now()); age=Math.max(0,Math.min(5,(Date.now()-started)/1000)); screen.style.setProperty('--notice-age',age.toFixed(3)+'s'); if(n.leaving){leaveAge=Math.max(0,Math.min(1.2,(Date.now()-Number(n.leavingAt||Date.now()))/1000));screen.style.setProperty('--notice-leave-delay',(-leaveAge).toFixed(3)+'s');} } if(s.air2Offline) root.insertAdjacentHTML('beforeend','<div class="air2-offline-screen" role="status"><button class="air2-offline-exit" type="button" data-air2-offline-exit>×</button><div><b>Device Offline</b><span><i></i>Reconnecting</span></div></div>');  }; window.__air2TriggerViewWrapped=true; }
-  function sync(){ var b=document.querySelector('[data-demo-trigger-state]'), s=st(); if(b) b.textContent=s?((s.running?(s.paused?'paused':'pumping'):'not pumping')+' · flow '+(((Number(s.flowRate)||0)/28.3495).toFixed(3))+(s.lastIgnoredTrigger?' · '+s.lastIgnoredTrigger:'')):'Waiting for Demo...'; }
+  function sync(){ var b=document.querySelector('[data-demo-trigger-state]'), s=st(); if(b) b.textContent=s?((s.running?(s.paused?'paused':'pumping'):'not pumping')+' · flow '+(((Number(s.flowRate)||0)*60).toFixed(1))+' mL/min'+(s.lastIgnoredTrigger?' · '+s.lastIgnoredTrigger:'')):'Waiting for Demo...'; }
   function mount(){
     if(document.querySelector('.demo-trigger-root')) return;
     var host=document.createElement('aside'), html, i;
@@ -121,6 +154,6 @@
     host.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-demo-trigger]'); if(!b) return; e.preventDefault(); trigger(b.getAttribute('data-demo-trigger')); open(false);});
     sync();
   }
-  function boot(){ install(); wrapLogged(); wrapView(); mount(); window.Air2DemoTriggers={version:65,trigger:trigger,list:function(){return triggers;},sync:sync,physics:physics}; }
+  function boot(){ install(); wrapLogged(); wrapView(); mount(); window.Air2DemoTriggers={version:66,trigger:trigger,list:function(){return triggers;},sync:sync,physics:physics,flowAt:function(side,second){return flowNow(st(),side,second)}}; }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot(); setTimeout(boot,700); setTimeout(boot,1800);
 }());

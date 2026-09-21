@@ -1,4 +1,5 @@
 #demo .ps-overlay{z-index:100!important;background:rgba(36,15,27,.26)!important;backdrop-filter:blur(3px)!important}
+#demo .r60-flow-readout{width:88px;font-size:11px}
 #demo .ps-sheet{position:absolute!important;inset:auto 0 0!important;width:100%!important;height:710px!important;max-height:96%!important;overflow:auto!important;scrollbar-width:none!important;padding:0 12px 20px!important;border-radius:31px 31px 0 0!important;background:linear-gradient(#fffefd,#fbedef)!important;color:#241c29!important;box-shadow:0 -12px 34px rgba(52,15,29,.11)!important;font-family:var(--font),Arial,sans-serif!important}
 #demo .ps-sheet::-webkit-scrollbar{display:none!important}
 #demo .ps-sheet *{box-sizing:border-box}
@@ -40,10 +41,13 @@
 #demo .ps-flow-l,#demo .ps-flow-r{fill:none;stroke-width:1.8;stroke-linecap:round}
 #demo .ps-flow-l,#demo .ps-flow-r{stroke:url(#ps-flow-zones)}#demo .ps-flow-r{stroke-dasharray:5 5}
 #demo .ps-marker text{fill:#fff;font-size:8px;font-weight:600;text-anchor:middle}
+#demo .ps-marker[data-ps-event]{cursor:pointer}
+#demo .ps-marker.is-selected circle,#demo .ps-marker[data-ps-event]:focus-visible circle{stroke:#fff;stroke-width:2.5;filter:drop-shadow(0 0 2px #5a4050)}
 #demo .ps-marker.ps-zone-low circle{fill:#5b8fd9}#demo .ps-marker.ps-zone-medium circle{fill:#379d89}#demo .ps-marker.ps-zone-high circle{fill:#e6a044}
 #demo .ps-sheet[data-filter=l] .ps-flow-r,#demo .ps-sheet[data-filter=l] .ps-marker-r,#demo .ps-sheet[data-filter=r] .ps-flow-l,#demo .ps-sheet[data-filter=r] .ps-marker-l{opacity:.2}
 #demo .ps-letdown{display:flex;align-items:center;justify-content:center;gap:13px;min-height:30px;margin-top:5px;color:#656575;font-size:12px}
 #demo .ps-letdown>b{font-weight:600}#demo .ps-letdown span{display:flex;align-items:center;gap:5px}#demo .ps-letdown strong{font-weight:500}#demo .ps-letdown em{height:12px;border-left:1px solid #d5d1d9}
+#demo .ps-letdown .ps-event-detail{font-size:12px;white-space:nowrap}
 #demo .ps-sheet[data-filter=l] [data-ps-detail=r],#demo .ps-sheet[data-filter=r] [data-ps-detail=l],#demo .ps-sheet[data-filter=l] .ps-letdown em,#demo .ps-sheet[data-filter=r] .ps-letdown em{display:none}
 #demo .ps-leak-note{display:flex;align-items:center;width:calc(100% - 8px);height:37px;margin:10px 4px 0;padding:0 10px;border:0;border-radius:12px;background:#fbe9ed!important;box-shadow:none!important;color:#941f3a;font-size:12px;text-align:left}
 #demo .ps-leak-note svg{width:16px;height:16px;margin-right:6px;fill:none;stroke:#941f3a;stroke-width:1.5;stroke-linecap:round}

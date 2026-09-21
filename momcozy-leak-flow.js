@@ -132,11 +132,11 @@ function refreshFitPumps(s){
   if(!control)return;
   if(clock&&typeof time==='function')clock.textContent=time(s.timer||0);
   control.querySelectorAll('.c32-pump').forEach(function(pump,i){
-    var side=i?'r':'l',amount=Number(i?s.milkR:s.milkL)||0,rate=Number(i?s.flowRateR:s.flowRateL)||Number(s.flowRate)||0;
+    var side=i?'r':'l',amount=Number(i?s.milkR:s.milkL)||0,sideRate=i?s.flowRateR:s.flowRateL,rate=s.paused?0:(Number(sideRate==null?s.flowRate:sideRate)||0);
     var label=pump.querySelector('.amount'),liquid=pump.querySelector('.c32-liquid'),readout=pump.querySelector('.r60-flow-readout b'),vessel=pump.querySelector('.c32-vessel');
     if(label)label.textContent=(amount<=.02?'0':amount.toFixed(1))+' oz';
     if(liquid){var level=Math.max(0,Math.min(94,Math.round(amount/(typeof AIR2_BOWL_CAPACITY_OZ==='number'?AIR2_BOWL_CAPACITY_OZ:7)*94)));liquid.style.height=level+'px';liquid.style.setProperty('--liquid-height',level+'px')}
-    if(readout)readout.textContent=(rate*(i?1.018:1.015)/28.3495).toFixed(3);
+    if(readout)readout.textContent=(rate*60).toFixed(1);
     if(!vessel)return;
     var kind=s.paused?'paused':(i?s.dropFlowKindR||s.flowKindR:s.dropFlowKindL||s.flowKindL)||'low';
     ['none','low','medium','high','paused'].forEach(function(name){vessel.classList.remove('c32-flow-'+name)});
